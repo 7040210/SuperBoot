@@ -1,0 +1,1 @@
+SuperBoot框架是基于SpringBoot的敏捷开发框架，框架开发初衷是为了方便快速开发项目，无需关心基础代码的编写，可以更专注于业务本身。框架实现基于JWT 和 Spring Security 的Token授权验证，实现Redis数据缓存，无缝集成MongoDB数据库，支持热部署，集成swagger框架，实现自动API测试及调试功能，数据源基于Druid，提供更高性能及SQL监控。框架提供统一异常处理，统一响应结果，增加对JPA、Mongo的AOP拦截，由Snowflake ID自动生成赋值主键，数据实体无需开发均可由Idea自动生成。增删改查默认基于方法名称即可实现，无需写具体SQL。
