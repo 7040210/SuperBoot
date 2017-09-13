@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.springframework.data:spring-data-keyvalue:1.2.7.BUILD-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-keyvalue/1.2.7.BUILD-SNAPSHOT/spring-data-keyvalue-1.2.7.BUILD-20170727.053039-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-keyvalue/1.2.7.BUILD-SNAPSHOT/spring-data-keyvalue-1.2.7.BUILD-20170727.053039-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-keyvalue/1.2.7.BUILD-SNAPSHOT/spring-data-keyvalue-1.2.7.BUILD-20170727.053039-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

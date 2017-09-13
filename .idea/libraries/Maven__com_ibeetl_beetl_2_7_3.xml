@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.ibeetl:beetl:2.7.3">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/ibeetl/beetl/2.7.3/beetl-2.7.3.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/ibeetl/beetl/2.7.3/beetl-2.7.3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/ibeetl/beetl/2.7.3/beetl-2.7.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="zheng-wechat-mp-admin:war">
+    <output-path>$PROJECT_DIR$/../zheng/zheng-wechat/zheng-wechat-mp/zheng-wechat-mp-admin/target</output-path>
+    <root id="archive" name="zheng-wechat-mp-admin.war">
+      <element id="artifact" artifact-name="zheng-wechat-mp-admin:war exploded" />
+    </root>
+  </artifact>
+</component>

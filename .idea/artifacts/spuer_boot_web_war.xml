@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="spuer-boot-web:war">
+    <output-path>$PROJECT_DIR$/spuer-boot-web/target</output-path>
+    <root id="archive" name="spuer-boot-web.war">
+      <element id="artifact" artifact-name="spuer-boot-web:war exploded" />
+    </root>
+  </artifact>
+</component>

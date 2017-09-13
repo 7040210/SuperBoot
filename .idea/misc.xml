@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/spuer-boot-web" />
+    <file type="web" url="file://$PROJECT_DIR$/super-boot-api" />
+    <file type="web" url="file://$PROJECT_DIR$/../zheng/zheng-api/zheng-api-server" />
+    <file type="web" url="file://$PROJECT_DIR$/../zheng/zheng-cms/zheng-cms-admin" />
+    <file type="web" url="file://$PROJECT_DIR$/../zheng/zheng-cms/zheng-cms-job" />
+    <file type="web" url="file://$PROJECT_DIR$/../zheng/zheng-cms/zheng-cms-search" />
+    <file type="web" url="file://$PROJECT_DIR$/../zheng/zheng-cms/zheng-cms-web" />
+    <file type="web" url="file://$PROJECT_DIR$/../zheng/zheng-demo/zheng-demo-web" />
+    <file type="web" url="file://$PROJECT_DIR$/../zheng/zheng-oss/zheng-oss-admin" />
+    <file type="web" url="file://$PROJECT_DIR$/../zheng/zheng-oss/zheng-oss-web" />
+    <file type="web" url="file://$PROJECT_DIR$/../zheng/zheng-pay/zheng-pay-admin" />
+    <file type="web" url="file://$PROJECT_DIR$/../zheng/zheng-pay/zheng-pay-web" />
+    <file type="web" url="file://$PROJECT_DIR$/../zheng/zheng-ucenter/zheng-ucenter-web" />
+    <file type="web" url="file://$PROJECT_DIR$/../zheng/zheng-upms/zheng-upms-server" />
+    <file type="web" url="file://$PROJECT_DIR$/../zheng/zheng-wechat/zheng-wechat-mp/zheng-wechat-mp-admin" />
+    <file type="web" url="file://F:/开点软件/项目源码/Web/cti/cti_web" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="F:/SpringBoot/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/pom.xml" />
+        <option value="F:/开点软件/项目源码/Web/cti/pom.xml" />
+        <option value="$PROJECT_DIR$/super-boot-dao/pom.xml" />
+        <option value="$PROJECT_DIR$/../any-video/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/spuer-boot-web/pom.xml" />
+        <option value="$PROJECT_DIR$/super-boot-cms/pom.xml" />
+        <option value="$PROJECT_DIR$/super-boot-oss/pom.xml" />
+        <option value="$PROJECT_DIR$/super-boot-pay/pom.xml" />
+        <option value="$PROJECT_DIR$/super-boot-ucenter/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-api/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-api/zheng-api-common/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-api/zheng-api-rpc-api/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-api/zheng-api-rpc-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-api/zheng-api-server/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-cms/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-cms/zheng-cms-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-cms/zheng-cms-common/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-cms/zheng-cms-dao/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-cms/zheng-cms-job/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-cms/zheng-cms-rpc-api/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-cms/zheng-cms-rpc-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-cms/zheng-cms-search/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-cms/zheng-cms-web/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-common/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-demo/zheng-demo-rpc-api/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-demo/zheng-demo-rpc-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-demo/zheng-demo-web/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-eoms/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-im/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-oa/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-oss/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-oss/zheng-oss-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-oss/zheng-oss-sdk/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-oss/zheng-oss-web/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-pay/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-pay/zheng-pay-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-pay/zheng-pay-common/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-pay/zheng-pay-dao/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-pay/zheng-pay-rpc-api/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-pay/zheng-pay-rpc-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-pay/zheng-pay-sdk/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-pay/zheng-pay-web/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-shop/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-ucenter/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-ucenter/zheng-ucenter-common/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-ucenter/zheng-ucenter-dao/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-ucenter/zheng-ucenter-rpc-api/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-ucenter/zheng-ucenter-rpc-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-ucenter/zheng-ucenter-web/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-upms/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-upms/zheng-upms-client/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-upms/zheng-upms-common/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-upms/zheng-upms-dao/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-upms/zheng-upms-rpc-api/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-upms/zheng-upms-rpc-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-upms/zheng-upms-server/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-wechat/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-wechat/zheng-wechat-app/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-wechat/zheng-wechat-mp/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-wechat/zheng-wechat-mp/zheng-wechat-mp-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-wechat/zheng-wechat-mp/zheng-wechat-mp-dao/pom.xml" />
+        <option value="$PROJECT_DIR$/../zheng/zheng-wechat/zheng-wechat-mp/zheng-wechat-mp-service/pom.xml" />
+        <option value="F:/开点软件/项目源码/Web/cti/cti_common/pom.xml" />
+        <option value="F:/开点软件/项目源码/Web/cti/cti_interface/pom.xml" />
+        <option value="F:/开点软件/项目源码/Web/cti/cti_order/pom.xml" />
+        <option value="F:/开点软件/项目源码/Web/cti/cti_product/pom.xml" />
+        <option value="F:/开点软件/项目源码/Web/cti/cti_report/pom.xml" />
+        <option value="F:/开点软件/项目源码/Web/cti/cti_system/pom.xml" />
+        <option value="F:/开点软件/项目源码/Web/cti/cti_web/pom.xml" />
+        <option value="F:/开点软件/项目源码/Web/cti/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
+</project>

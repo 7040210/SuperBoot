@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ResourceBundleManager">
+    <file url="file://$PROJECT_DIR$/super-boot-api/src/main/resources/messages.properties" />
+    <file url="file://$PROJECT_DIR$/super-boot-api/src/main/resources/messages_en_US.properties" />
+    <file url="file://$PROJECT_DIR$/super-boot-api/src/main/resources/messages_zh_CN.properties" />
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/super-boot-api/src/main/resources/messages.properties" />
+      <file value="file://$PROJECT_DIR$/super-boot-api/src/main/resources/messages_en_US.properties" />
+      <file value="file://$PROJECT_DIR$/super-boot-api/src/main/resources/messages_zh_CN.properties" />
+      <base-name>messages</base-name>
+    </custom-resource-bundle>
+  </component>
+</project>

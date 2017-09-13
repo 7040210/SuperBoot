@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="zheng-pay-admin:war">
+    <output-path>$PROJECT_DIR$/../zheng/zheng-pay/zheng-pay-admin/target</output-path>
+    <root id="archive" name="zheng-pay-admin.war">
+      <element id="artifact" artifact-name="zheng-pay-admin:war exploded" />
+    </root>
+  </artifact>
+</component>

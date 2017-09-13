@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="super-boot-api:war">
+    <output-path>$PROJECT_DIR$/super-boot-api/target</output-path>
+    <root id="archive" name="spuer-boot-web.war">
+      <element id="artifact" artifact-name="super-boot-api:war exploded" />
+    </root>
+  </artifact>
+</component>
