@@ -20,3 +20,25 @@ super-boot
 ├── super-boot-user-center     --  用户中心  
 
 ```
+
+Idea逆向生成数据库实体类
+
+第一步配置 数据库
+
+(project_info/png/genentity/0.png)
+(project_info/png/genentity/1.png)
+
+第二步  配置hibernate，如果没有cfg.xml文件，点击ok后会自动生成
+
+(project_info/png/genentity/2.png)
+
+第三步 选择hibernate配置文件生成实体
+
+(project_info/png/genentity/3.png)
+
+
+第四步 设置完点击，选中要生成的实体的表
+(project_info/png/genentity/4.png)
+
+注意：intellij 15 在这一步会自动将VARCHAR2转换成java.lang.Object，而且不能选择为java.lang.String，这点比较坑，我都是生成后手动改的String
+
