@@ -21,15 +21,104 @@ super-boot
 
 ```
 
-### Idea逆向生成数据库实体类
-#### 第一步配置 数据库
+## 模块介绍
+
+> super-boot-common
+
+项目共用工具类及通用方法常量等信息，项目打包的时候会打包为jar包放入项目lib中。
+
+> super-boot-dao
+
+项目公共数据库操作模块，此模块主要配置操作super_boot_base数据库的相关接口方法，此模块定义为各模块均会用到的表，比如api定义的表及api接口授权角色表。项目打包的时候会打包为jar包放入项目lib中。
+
+> super-boot-status
+
+此项目主要为采集个模块运行状态信息，包含内存、CUP、硬盘等相关信息，项目打包的时候会打包为jar包放入项目lib中。
+
+
+
+## Idea逆向生成数据库实体类
+### 第一步配置 数据库
 ![第一步配置 数据库](project_info/png/genentity/0.png)
-#### 第二步配置 数据库连接信
+### 第二步配置 数据库连接信
 ![第二步配置 数据库连接信息](project_info/png/genentity/1.png)
-#### 第三步  配置hibernate，如果没有cfg.xml文件，点击ok后会自动生成
+### 第三步  配置hibernate，如果没有cfg.xml文件，点击ok后会自动生成
 ![第三步  配置hibernate，如果没有cfg.xml文件，点击ok后会自动生成](project_info/png/genentity/2.png)
-#### 第四步 选择hibernate配置文件生成实体
+### 第四步 选择hibernate配置文件生成实体
 ![第四步 选择hibernate配置文件生成实体](project_info/png/genentity/3.png)
-#### 第五步 设置完点击，选中要生成的实体的表
+### 第五步 设置完点击，选中要生成的实体的表
 ![第五步 设置完点击，选中要生成的实体的表](project_info/png/genentity/4.png)
 
+## 项目API接口自动添加到数据库示例代码
+~~~~java
+
+	@Autowired
+    private RequestMappingHandlerConfig requestMappingHandlerConfig;
+	
+    /**
+     * 扫描URL，如果数据库中不存在，则保存入数据库
+     */
+    @PostConstruct  //这个注解很重要，可以在每次启动的时候检查是否有URL更新，RequestMappingHandlerMapping只能在controller层用。这里我们放在主类中
+    public void detectHandlerMethods() {
+        final RequestMappingHandlerMapping requestMappingHandlerMapping = requestMappingHandlerConfig.requestMappingHandlerMapping();
+        Map<RequestMappingInfo, HandlerMethod> map = requestMappingHandlerMapping.getHandlerMethods();
+        Set<RequestMappingInfo> mappings = map.keySet();
+        for (RequestMappingInfo info : mappings) {
+            HandlerMethod method = map.get(info);
+            String moduleStr = method.toString();
+            if (0 < moduleStr.split("\\(").length) {
+                moduleStr = moduleStr.split("\\(")[0];
+            }
+
+            if (2 < moduleStr.split(" ").length) {
+                moduleStr = moduleStr.split(" ")[2];
+            }
+            int i = moduleStr.lastIndexOf(".");
+            moduleStr = moduleStr.substring(0, i);
+            String urlparm = info.getPatternsCondition().toString();
+            String url = urlparm.substring(1, urlparm.length() - 1);
+            String methodName = method.getMethod().getName();
+
+            //获取API信息
+            List<BaseApi> list = sysApiRepository.findByUrlAndMethodName(url, methodName);
+            if (null == list || 0 == list.size()) {
+                //只有项目用到的资源才需要添加
+                if (moduleStr.startsWith("org.superboot.controller")) {
+                    BaseApi api = new BaseApi();
+                    api.setUrl(url);
+                    api.setMethodPath(moduleStr);
+                    //获取字段的注解信息，此处用到的swagger配置的注解信息
+                    try {
+                        api.setMethodName(methodName);
+                        //获取对象信息
+                        Object o = Class.forName(moduleStr).newInstance();
+                        //映射模块路径
+                        RequestMapping requestMapping = o.getClass().getAnnotation(RequestMapping.class);
+                        if (null != requestMapping) {
+                            api.setModulePath(StringUtils.join(requestMapping.value(), ","));
+                        }
+                        //设置模块名称
+                        Api api_annotation = o.getClass().getAnnotation(Api.class);
+                        if (null != api_annotation) {
+                            api.setModuleName(StringUtils.join(api_annotation.tags(), ","));
+                        }
+                        //根据API注解设置API名称及备注信息
+                        Annotation operation_annotation = Pub_Tools.getMothodAnnotationByAnnotation(o, ApiOperation.class, methodName);
+                        if (null != operation_annotation) {
+                            api.setApiName(((ApiOperation) operation_annotation).value());
+                            api.setRemark(((ApiOperation) operation_annotation).notes());
+                        }
+                        sysApiRepository.save(api);
+                    } catch (InstantiationException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
+~~~~
