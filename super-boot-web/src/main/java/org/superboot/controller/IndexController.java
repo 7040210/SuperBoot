@@ -48,17 +48,15 @@ public class IndexController extends BaseWebController {
 
         BaseMessage message = new BaseMessage<>();
         //post请求数据
-        getRestTemplate().postForObject(getServerUrl() + "/auth/get_token", user, BaseMessage.class, message
-        );
+        //getRestTemplate().postForObject(getServerUrl() + "/auth/get_token", user, BaseMessage.class, message);
 
         //post请求数据
-        getRestTemplate().postForObject(getServerUrl() + "/auth/get_token", user, BaseResponse.class, BaseMessage
-        );
+        //getRestTemplate().postForObject(getServerUrl() + "/auth/get_token", user, BaseResponse.class, BaseMessage);
 
 
         //post请求数据
-        JSONObject json = getRestTemplate().postForObject(getServerUrl() + "/auth/get_token", user, JSONObject.class, BaseMessage
-        );
+        //JSONObject json = getRestTemplate().postForObject(getServerUrl() + "/auth/get_token", user, JSONObject.class, BaseMessage);
+
 
         return "index";
     }

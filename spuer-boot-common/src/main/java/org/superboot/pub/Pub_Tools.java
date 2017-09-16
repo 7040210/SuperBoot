@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.superboot.base.BaseMessage;
 import org.superboot.base.SuperBootCode;
 import org.superboot.base.SuperBootStatus;
+import org.superboot.utils.RSAUtils;
 import org.superboot.utils.ReflectionUtils;
 import org.superboot.utils.SnowflakeIdWorker;
 
@@ -44,6 +45,18 @@ public class Pub_Tools {
     public static long genUUID() {
         SnowflakeIdWorker idWorker0 = new SnowflakeIdWorker(workerId, datacenterId);
         return idWorker0.nextId();
+    }
+
+
+    /**
+     * 获取对象方法上的注解信息
+     *
+     * @param o               对象信息
+     * @param annotationClass 注解类
+     * @return
+     */
+    public static Annotation getClassAnnotationByAnnotation(Object o, Class annotationClass) {
+        return o.getClass().getAnnotation(annotationClass);
     }
 
 
@@ -223,4 +236,93 @@ public class Pub_Tools {
                 message);
     }
 
+
+    /**
+     * 特殊字符转义，实现对一些特殊字符的转义操作，防止处理的时候出错
+     * @param text
+     * @return
+     */
+    public static String transfString(String text){
+
+        if(null != text){
+            text = text.replace(">", "&gt;");
+            text = text.replace("<", "&lt;");
+            text = text.replace(" ", "&nbsp;");
+            text = text.replace("\"", "&quot;");
+            text = text.replace("\'", "&#39;");
+            text = text.replace("\\", "\\\\");
+            text = text.replace("\n", "\\n");
+            text = text.replace("\r", "\\r");
+        }
+
+        return text;
+    }
+
+
+    /**
+     * 转义还原，在RSA解密的时候转义的字符需要还原，否则会解密出错
+     * @param text
+     * @return
+     */
+    public static String transfBack(String text){
+
+        if(null != text){
+            text = text.replace("&gt;",">" );
+            text = text.replace("&lt;","<");
+            text = text.replace("&nbsp;"," ");
+            text = text.replace("&quot;","\"");
+            text = text.replace("&#39;","\'" );
+            text = text.replace("\\\\","\\" );
+            text = text.replace("\\n","\n" );
+            text = text.replace("\\r","\r" );
+        }
+
+        return text;
+    }
+
+
+
+    /**
+     * RSA解密
+     *
+     * @param PrivateKey 私钥
+     * @param text       密文
+     * @return
+     */
+    public static String RSAdecrypt(String PrivateKey, String text) throws Exception {
+
+        if (null != text && PrivateKey != null) {
+            RSAUtils RSAUtils = new RSAUtils();
+            //加载秘钥
+            RSAUtils.loadPrivateKey(PrivateKey);
+            //解密
+            byte[] plainText = RSAUtils.decrypt(RSAUtils.getPrivateKey(), RSAUtils.decryptBASE64(transfBack(text)));
+            //URL转码
+            return new String(plainText);
+        }
+
+        return null;
+    }
+
+    /**
+     * RSA加密,加密后的内容会进行特殊字符的转码，解密的时候也需要将转义内容变成原文
+     *
+     * @param PublicKey 公钥
+     * @param text      密文
+     * @return
+     */
+    public static String RSAEncrypt(String PublicKey, String text) throws Exception {
+
+        if (null != text && PublicKey != null) {
+            RSAUtils RSAUtils = new RSAUtils();
+            //加载公钥
+            RSAUtils.loadPublicKey(PublicKey);
+            //加密
+            byte[] plainText = RSAUtils.encrypt(RSAUtils.getPublicKey(), text);
+            //特殊字符转义
+            return transfString(RSAUtils.encryptBASE64(plainText));
+        }
+
+        return null;
+    }
 }

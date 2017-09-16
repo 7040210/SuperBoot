@@ -14,4 +14,10 @@ package org.superboot.base;
 public class BaseConstants {
 
 
+    /**
+     * token存储字段名
+     */
+    public static final String TOKEN_KEY = "_SuperBootToken_";
+
+
 }

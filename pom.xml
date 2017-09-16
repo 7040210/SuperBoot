@@ -14,10 +14,14 @@
 	<modules>
 		<module>spuer-boot-common</module>
 		<module>super-boot-dao</module>
-		<module>super-boot-api</module>
 		<module>super-boot-web</module>
-		<module>super-boot-secruity</module>
-	</modules>
+        <module>super-boot-status</module>
+		<module>super-boot-registry-center</module>
+		<module>super-boot-operation-center</module>
+		<module>super-boot-secruity-center</module>
+		<module>super-boot-user-center</module>
+		<module>super-boot-logger-center</module>
+    </modules>
 
 
 	<developers>
