@@ -20,7 +20,8 @@ public enum SuperBootCode {
     NOT_FIND(404,"信息不存在"),
 
 
-    PARAMS_NOT_FIND(501,"参数不能为空"),
+    EXCEPTION(500,"程序出现异常"),
+    PARAMS_NOT_VALIDATE(501,"参数校验失败"),
     LANG_NOT_FIND(502,"参数【语言】不能为空"),
     VERSION_NOT_FIND(503,"参数【客户端版本】不能为空"),
     PLATFORM_NOT_FIND(504,"参数【来源平台】不能为空"),

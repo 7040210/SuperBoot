@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="zheng-demo-web:war">
-    <output-path>$PROJECT_DIR$/../zheng/zheng-demo/zheng-demo-web/target</output-path>
-    <root id="archive" name="zheng-demo-web.war">
-      <element id="artifact" artifact-name="zheng-demo-web:war exploded" />
-    </root>
-  </artifact>
-</component>

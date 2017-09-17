@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="cti_web:war">
-    <output-path>F:/开点软件/项目源码/Web/cti/cti_web/target</output-path>
-    <root id="archive" name="cti_web.war">
-      <element id="artifact" artifact-name="cti_web:war exploded" />
-    </root>
-  </artifact>
-</component>

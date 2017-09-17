@@ -3,6 +3,8 @@ package org.superboot.entity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 import org.superboot.base.BaseRequest;
 
 /**
@@ -21,8 +23,11 @@ import org.superboot.base.BaseRequest;
 public class LoginUser extends BaseRequest {
 
     @ApiModelProperty(value = "账号")
+    @NotBlank
     private String username;
     @ApiModelProperty(value = "密码")
+    @NotBlank
+    @Length(min=6,max=20)
     private String password;
 
     public LoginUser() {

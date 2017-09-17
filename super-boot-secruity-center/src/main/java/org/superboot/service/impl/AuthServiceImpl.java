@@ -1,14 +1,17 @@
 package org.superboot.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.superboot.base.BaseResponse;
-import org.superboot.base.BaseToken;
-import org.superboot.base.SuperBootCode;
-import org.superboot.base.SuperBootException;
+import org.springframework.web.client.RestTemplate;
+import org.superboot.base.*;
 import org.superboot.entity.LoginUser;
 import org.superboot.entity.Token;
 import org.superboot.pub.Pub_JWTUtils;
+import org.superboot.pub.Pub_Tools;
 import org.superboot.service.AuthService;
 
 import java.util.HashMap;
@@ -27,25 +30,35 @@ import java.util.HashMap;
 @Service
 public class AuthServiceImpl implements AuthService {
 
+    @Autowired
     private Pub_JWTUtils jwtTokenUtil;
 
     @Autowired
-    public AuthServiceImpl(
-            Pub_JWTUtils jwtTokenUtil) {
-        this.jwtTokenUtil = jwtTokenUtil;
-    }
+    private Pub_Tools Pub_Tools;
 
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Override
     public BaseResponse genToken(LoginUser loginUser) {
 
         BaseToken bt = new BaseToken();
-        bt.setUsername(loginUser.getUsername());
-        bt.setUserid(123L);
-        HashMap map = new HashMap();
-        map.put("token", jwtTokenUtil.generateToken(bt));
+        BaseMessage message = new BaseMessage();
+        message = restTemplate.postForObject(  "http://127.0.0.1:2222/users/login", loginUser, BaseMessage.class, message);
+        if(SuperBootStatus.OK.getCode() ==message.getStatus()){
+            if(SuperBootCode.OK.getCode() == message.getCode() ){
+                JSONArray array = (JSONArray) JSON.toJSON(message.getData());
+                JSONObject data = (JSONObject) array.get(0);
+                bt.setUserid(Long.valueOf(data.get("userid").toString()));
+                bt.setUsername(data.get("username").toString());
+                HashMap map = new HashMap();
+                map.put("token", jwtTokenUtil.generateToken(bt));
+                return new BaseResponse(map);
+            }
+        }
 
-        return new BaseResponse(map);
+        return new BaseResponse(SuperBootCode.ACCOUNT_DISABLED);
     }
 
     @Override

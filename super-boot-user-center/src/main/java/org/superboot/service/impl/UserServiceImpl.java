@@ -9,11 +9,13 @@ import org.superboot.base.SuperBootCode;
 import org.superboot.base.SuperBootException;
 import org.superboot.entity.LoginUser;
 import org.superboot.entity.RegisterUser;
-import org.superboot.entity.ext.UcenterUser;
-import org.superboot.entity.ext.UcenterUserRole;
-import org.superboot.repository.sql.ext.UcenterRoleRepository;
-import org.superboot.repository.sql.ext.UcenterUserRepository;
-import org.superboot.repository.sql.ext.UcenterUserRoleRepository;
+import org.superboot.entity.base.BaseApiRole;
+import org.superboot.entity.business.UcenterUser;
+import org.superboot.entity.business.UcenterUserRole;
+import org.superboot.repository.sql.base.BaseApiRoleRepository;
+import org.superboot.repository.sql.business.UcenterRoleRepository;
+import org.superboot.repository.sql.business.UcenterUserRepository;
+import org.superboot.repository.sql.business.UcenterUserRoleRepository;
 import org.superboot.service.UserService;
 import org.superboot.utils.DateUtils;
 import org.superboot.utils.MD5Util;
@@ -39,15 +41,17 @@ public class UserServiceImpl implements UserService {
     private UcenterUserRoleRepository sysUserRoleRepository;
     @Autowired
     private UcenterRoleRepository sysRoleRepository;
+    @Autowired
+    private BaseApiRoleRepository baseApiRoleRepository;
 
     @Override
-    public BaseResponse register(RegisterUser regUser) throws SuperBootException {
-        return saveUser(regUser, -1);
+    public BaseResponse register(RegisterUser regUser) {
+        return saveUser(regUser, 0);
     }
 
     @Override
-    public BaseResponse register_admin(RegisterUser regUser) throws SuperBootException {
-        return saveUser(regUser, 0);
+    public BaseResponse register_admin(RegisterUser regUser) {
+        return saveUser(regUser, -1);
     }
 
     @Override
@@ -84,7 +88,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Transactional
-    public BaseResponse saveUser(RegisterUser regUser, int user_type) throws SuperBootException {
+    public BaseResponse saveUser(RegisterUser regUser, int user_type) {
 
         String usercode = regUser.getUsercode();
         if (null == usercode) {
@@ -106,6 +110,8 @@ public class UserServiceImpl implements UserService {
         //对Rsa加密信息进行解密
         //rawPassword = Pub_Tools.RSAdecrypt(RSAUtils.DEFAULT_PRIVATE_KEY, rawPassword);
 
+
+
         //构造默认用户
         UcenterUser SysUser = new UcenterUser();
         //进行密码加密
@@ -113,6 +119,7 @@ public class UserServiceImpl implements UserService {
         SysUser.setLastPasswordResetDate(DateUtils.getTimestamp());
         SysUser.setUserCode(usercode);
         SysUser.setRandom(random);
+
         SysUser = userRepository.save(SysUser);
 
 

@@ -11,7 +11,7 @@
 
     <artifactId>super-boot-operation-center</artifactId>
     <version>${parent.version}</version>
-    <name>super-boot-user-center</name>
+    <name>super-boot-operation-center</name>
 
     <dependencies>
         <!-- 公共模块 -->

@@ -5,127 +5,120 @@ server:
   tomcat:
     uri-encoding: UTF-8
 #启用调试模式
-debug: true
+debug: false
 #日志配置
 logging:
   config: classpath:log4j2-prod.xml
 #spring配置
 spring:
+  #jta相关参数配置
+  jta:
+    log-dir: classpath:tx-logs
+    transaction-manager-id: txManager
   jpa:
     show-sql: true
   #数据库连接配置
   datasource:
+    #配置为分布式数据源
+    base:
+      name: baseDB
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/super_boot_base?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&remarks=true&useInformationSchema=true
+      username: superboot
+      password: 123456
+      #初始化大小
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 30
+      #检测连接是否有效的sql
+      validation-query: SELECT 'x'
+      validation-query-timeout: 10000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小 Mysql下建议关闭
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+      #max-open-prepared-statements: 1
+      filters: stat,wall,log4j2
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 合并多个DruidDataSource的监控数据
+      useGlobalDataSourceStat: true
+
+    business:
+      name: businessDB
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/super_boot_user?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&remarks=true&useInformationSchema=true
+      username: superboot
+      password: 123456
+      #初始化大小
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 30
+      #检测连接是否有效的sql
+      validation-query: SELECT 'x'
+      validation-query-timeout: 10000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小 Mysql下建议关闭
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+      #max-open-prepared-statements: 1
+      filters: stat,wall,log4j2
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 合并多个DruidDataSource的监控数据
+      useGlobalDataSourceStat: true
     druid:
-      base:
-        name: baseDB
-        driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/super_boot_base?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&remarks=true&useInformationSchema=true
-        username: superboot
-        password: 123456
-        #初始化大小
-        initial-size: 5
-        max-active: 20
-        # 配置获取连接等待超时的时间
-        max-wait: 60000
-        # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
-        time-between-eviction-runs-millis: 60000
-        # 配置一个连接在池中最小生存的时间，单位是毫秒
-        min-evictable-idle-time-millis: 30000
-        #检测连接是否有效的sql
-        validation-query: SELECT 'x'
-        validation-query-timeout: 60000
-        test-while-idle: true
-        test-on-borrow: false
-        test-on-return: false
-        # 打开PSCache，并且指定每个连接上PSCache的大小 Mysql下建议关闭
-        pool-prepared-statements: false
-        max-pool-prepared-statement-per-connection-size: 1
-        #max-open-prepared-statements: 1
-
-        # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
-        filters: stat,wall
-        connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
-
-        #Druid监控拦截相关配置相关配置
-        web-stat-filter:
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filters: stat,wall,log4j2
+      #配置密码加密存储
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      #启动ConfigFilter 启用密码加密后必须启用此配置
+      filter:
+        config:
           enabled: true
-          url-pattern: /*
-          exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
-          #缺省sessionStatMaxCount是1000个
-          session-stat-max-count: 1000
-          #关闭session统计功能
-          session-stat-enable: false
-          #druid 0.2.7版本开始支持profile，配置profileEnable能够监控单个url调用的sql列表。
-          profile-enable: false
+      #Druid监控拦截相关配置相关配置
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
+        #缺省sessionStatMaxCount是1000个
+        session-stat-max-count: 1000
+        #关闭session统计功能
+        session-stat-enable: false
+        #druid 0.2.7版本开始支持profile，配置profileEnable能够监控单个url调用的sql列表。
+        profile-enable: false
+      #StatViewServlet配置，说明请参考Druid Wiki，配置_StatViewServlet配置
+      #启动项目后访问 http://127.0.0.1:8080/druid
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        #禁用HTML页面上的“Reset All”功能
+        reset-enable: false
+        login-username: superboot
+        login-password: superboot
+        #IP白名单(没有配置或者为空，则允许所有访问)
+        allow: 127.0.0.1,192.168.30.50
+        #IP黑名单 (存在共同时，deny优先于allow)
+        deny: 192.168.1.102
 
-        #StatViewServlet配置，说明请参考Druid Wiki，配置_StatViewServlet配置
-        #启动项目后访问 http://127.0.0.1:8080/druid
-        stat-view-servlet:
-          enabled: true
-          url-pattern: /druid/*
-          #禁用HTML页面上的“Reset All”功能
-          reset-enable: false
-          login-username: superboot
-          login-password: superboot
-          #IP白名单(没有配置或者为空，则允许所有访问)
-          allow: 127.0.0.1,192.168.30.50
-          #IP黑名单 (存在共同时，deny优先于allow)
-          deny: 192.168.1.102
-      ext:
-        name: extDB
-        driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/super_boot_ucenter?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&remarks=true&useInformationSchema=true
-        username: superboot
-        password: 123456
-        #初始化大小
-        initial-size: 5
-        max-active: 20
-        # 配置获取连接等待超时的时间
-        max-wait: 60000
-        # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
-        time-between-eviction-runs-millis: 60000
-        # 配置一个连接在池中最小生存的时间，单位是毫秒
-        min-evictable-idle-time-millis: 30000
-        #检测连接是否有效的sql
-        validation-query: SELECT 'x'
-        validation-query-timeout: 60000
-        test-while-idle: true
-        test-on-borrow: false
-        test-on-return: false
-        # 打开PSCache，并且指定每个连接上PSCache的大小 Mysql下建议关闭
-        pool-prepared-statements: false
-        max-pool-prepared-statement-per-connection-size: 1
-        #max-open-prepared-statements: 1
 
-        # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
-        filters: stat,wall
-        connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 
-        #Druid监控拦截相关配置相关配置
-        web-stat-filter:
-          enabled: true
-          url-pattern: /*
-          exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
-          #缺省sessionStatMaxCount是1000个
-          session-stat-max-count: 1000
-          #关闭session统计功能
-          session-stat-enable: false
-          #druid 0.2.7版本开始支持profile，配置profileEnable能够监控单个url调用的sql列表。
-          profile-enable: false
-
-        #StatViewServlet配置，说明请参考Druid Wiki，配置_StatViewServlet配置
-        #启动项目后访问 http://127.0.0.1:8080/druid
-        stat-view-servlet:
-          enabled: true
-          url-pattern: /druid/*
-          #禁用HTML页面上的“Reset All”功能
-          reset-enable: false
-          login-username: superboot
-          login-password: superboot
-          #IP白名单(没有配置或者为空，则允许所有访问)
-          allow: 127.0.0.1,192.168.30.50
-          #IP黑名单 (存在共同时，deny优先于allow)
-          deny: 192.168.1.102
   redis:
     cluster:
       nodes: 127.0.0.1:7000, 127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003,127.0.0.1:7004,127.0.0.1:7005

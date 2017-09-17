@@ -19,7 +19,7 @@ import java.io.Serializable;
  */
 @Data
 @ApiModel("基础消息返回对象")
-public class BaseMessage<T> implements Serializable {
+public class BaseMessage  implements Serializable {
 
 
     @ApiModelProperty(value = "返回码")
@@ -29,15 +29,10 @@ public class BaseMessage<T> implements Serializable {
     @ApiModelProperty(value = "返回消息，如请求异常此处会包含异常信息")
     private String message;
     @ApiModelProperty(value = "数据体")
-    private T object;
+    private Object data;
 
     public BaseMessage() {
         super();
-    }
-
-    public BaseMessage(T data) {
-        super();
-        this.object = data;
     }
 
     public BaseMessage(Throwable e) {

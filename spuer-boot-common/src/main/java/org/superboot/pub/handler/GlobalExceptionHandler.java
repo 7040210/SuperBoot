@@ -1,5 +1,10 @@
 package org.superboot.pub.handler;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,6 +16,8 @@ import org.superboot.pub.Pub_Tools;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * <b> 统一异常处理 </b>
@@ -28,10 +35,13 @@ public class GlobalExceptionHandler {
 
 
     @Resource
-    Pub_Tools Pub_Tools;
+    private Pub_Tools Pub_Tools;
 
     @Resource
-    Pub_LocalTools local;
+    private Pub_LocalTools local;
+
+    @Autowired
+    private MessageSource messageSource;
 
     /**
      * 默认异常处理
@@ -44,7 +54,30 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public BaseMessage defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
-        return Pub_Tools.genNoMsg(SuperBootCode.NO);
+        return Pub_Tools.genNoMsg(SuperBootCode.NO.getCode(), e.getMessage());
+    }
+
+
+    /**
+     * 字段验证异常处理,统一处理增加国际化支持
+     *
+     * @param req 请求内容
+     * @param e   异常信息
+     * @return
+     * @throws Exception
+     */
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    @ResponseBody
+    public BaseMessage methodArgumentNotValidExceptionErrorHandler(HttpServletRequest req, Exception e) throws Exception {
+        MethodArgumentNotValidException c = (MethodArgumentNotValidException) e;
+        List<FieldError> errors = c.getBindingResult().getFieldErrors();
+        Locale locale = LocaleContextHolder.getLocale();
+        StringBuffer errorMsg = new StringBuffer();
+        for (FieldError err : errors) {
+            String message = messageSource.getMessage(err, locale);
+            errorMsg.append(err.getField() + ":" + message + ",");
+        }
+        return Pub_Tools.genNoMsg(SuperBootCode.PARAMS_NOT_VALIDATE, errorMsg.subSequence(0, errorMsg.length() - 1));
     }
 
 

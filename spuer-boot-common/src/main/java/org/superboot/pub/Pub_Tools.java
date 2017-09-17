@@ -53,18 +53,6 @@ public class Pub_Tools {
      *
      * @param o               对象信息
      * @param annotationClass 注解类
-     * @return
-     */
-    public static Annotation getClassAnnotationByAnnotation(Object o, Class annotationClass) {
-        return o.getClass().getAnnotation(annotationClass);
-    }
-
-
-    /**
-     * 获取对象方法上的注解信息
-     *
-     * @param o               对象信息
-     * @param annotationClass 注解类
      * @param methodName      方法名称
      * @return
      */
@@ -139,7 +127,7 @@ public class Pub_Tools {
         basemessage.setCode(code);
         basemessage.setStatus(status);
         basemessage.setMessage(message);
-        basemessage.setObject(data);
+        basemessage.setData(data);
         return basemessage;
     }
 
@@ -236,15 +224,33 @@ public class Pub_Tools {
                 message);
     }
 
+    /**
+     * 生成失败消息相应信息,使用国际化配置显示错误信息
+     *
+     * @param sc 异常信息
+     * @param data 消息体
+     * @return
+     */
+    public BaseMessage genNoMsg(SuperBootCode sc,Object data) {
+        String message = local.getMessage(sc.getCode());
+        return genMsg(
+                sc.getCode(),
+                SuperBootStatus.NO.getCode(),
+                message,
+                data);
+    }
+
+
 
     /**
      * 特殊字符转义，实现对一些特殊字符的转义操作，防止处理的时候出错
+     *
      * @param text
      * @return
      */
-    public static String transfString(String text){
+    public static String transfString(String text) {
 
-        if(null != text){
+        if (null != text) {
             text = text.replace(">", "&gt;");
             text = text.replace("<", "&lt;");
             text = text.replace(" ", "&nbsp;");
@@ -261,25 +267,25 @@ public class Pub_Tools {
 
     /**
      * 转义还原，在RSA解密的时候转义的字符需要还原，否则会解密出错
+     *
      * @param text
      * @return
      */
-    public static String transfBack(String text){
+    public static String transfBack(String text) {
 
-        if(null != text){
-            text = text.replace("&gt;",">" );
-            text = text.replace("&lt;","<");
-            text = text.replace("&nbsp;"," ");
-            text = text.replace("&quot;","\"");
-            text = text.replace("&#39;","\'" );
-            text = text.replace("\\\\","\\" );
-            text = text.replace("\\n","\n" );
-            text = text.replace("\\r","\r" );
+        if (null != text) {
+            text = text.replace("&gt;", ">");
+            text = text.replace("&lt;", "<");
+            text = text.replace("&nbsp;", " ");
+            text = text.replace("&quot;", "\"");
+            text = text.replace("&#39;", "\'");
+            text = text.replace("\\\\", "\\");
+            text = text.replace("\\n", "\n");
+            text = text.replace("\\r", "\r");
         }
 
         return text;
     }
-
 
 
     /**
@@ -325,4 +331,6 @@ public class Pub_Tools {
 
         return null;
     }
+
+
 }

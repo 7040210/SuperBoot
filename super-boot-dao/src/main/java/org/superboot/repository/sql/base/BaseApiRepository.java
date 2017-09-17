@@ -4,6 +4,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
 import org.superboot.entity.base.BaseApi;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
  * @time 16:59
  * @Path org.superboot.repository.sql.base.BaseApiRepository
  */
+@Service
 @CacheConfig(cacheNames = "apis")
 public interface BaseApiRepository  extends JpaRepository<BaseApi, Long> {
 

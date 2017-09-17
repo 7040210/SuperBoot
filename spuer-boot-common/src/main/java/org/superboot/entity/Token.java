@@ -3,6 +3,7 @@ package org.superboot.entity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.hibernate.validator.constraints.NotBlank;
 import org.superboot.base.BaseRequest;
 
 /**
@@ -21,6 +22,7 @@ import org.superboot.base.BaseRequest;
 public class Token extends BaseRequest {
 
     @ApiModelProperty(value = "Token")
+    @NotBlank
     private String token;
 
     public Token() {

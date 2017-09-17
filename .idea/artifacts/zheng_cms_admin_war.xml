@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="zheng-cms-admin:war">
-    <output-path>$PROJECT_DIR$/../zheng/zheng-cms/zheng-cms-admin/target</output-path>
-    <root id="archive" name="zheng-cms-admin.war">
-      <element id="artifact" artifact-name="zheng-cms-admin:war exploded" />
-    </root>
-  </artifact>
-</component>

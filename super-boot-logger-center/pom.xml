@@ -11,7 +11,7 @@
 
     <artifactId>super-boot-logger-center</artifactId>
     <version>${parent.version}</version>
-    <name>super-boot-user-center</name>
+    <name>super-boot-logger-center</name>
 
     <dependencies>
         <!-- 公共模块 -->

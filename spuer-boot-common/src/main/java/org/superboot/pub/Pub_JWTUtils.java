@@ -287,11 +287,14 @@ public class Pub_JWTUtils {
         if (null == token) {
             //判断COOKIE是否包含授权TOKEN
             Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies) {
-                if (BaseConstants.TOKEN_KEY.toLowerCase().equals(cookie.getName().toLowerCase())) {
-                    token = cookie.getValue();
+            if(null != cookies){
+                for (Cookie cookie : cookies) {
+                    if (BaseConstants.TOKEN_KEY.toLowerCase().equals(cookie.getName().toLowerCase())) {
+                        token = cookie.getValue();
+                    }
                 }
             }
+
         }
 
         if (null != token) {
