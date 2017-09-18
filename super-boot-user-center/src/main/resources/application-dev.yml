@@ -19,7 +19,6 @@ spring:
     show-sql: true
   #数据库连接配置
   datasource:
-    #配置为分布式数据源
     base:
       name: baseDB
       driver-class-name: com.mysql.jdbc.Driver

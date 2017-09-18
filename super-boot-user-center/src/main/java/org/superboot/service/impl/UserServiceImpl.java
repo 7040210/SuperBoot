@@ -2,16 +2,18 @@ package org.superboot.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.superboot.base.BaseResponse;
 import org.superboot.base.BaseToken;
 import org.superboot.base.SuperBootCode;
 import org.superboot.base.SuperBootException;
 import org.superboot.entity.LoginUser;
 import org.superboot.entity.RegisterUser;
-import org.superboot.entity.base.BaseApiRole;
 import org.superboot.entity.business.UcenterUser;
 import org.superboot.entity.business.UcenterUserRole;
+import org.superboot.pub.Pub_Tools;
 import org.superboot.repository.sql.base.BaseApiRoleRepository;
 import org.superboot.repository.sql.business.UcenterRoleRepository;
 import org.superboot.repository.sql.business.UcenterUserRepository;
@@ -87,8 +89,8 @@ public class UserServiceImpl implements UserService {
      * @param user_type 用户类型 -1管理员 其他为普通用户
      * @return
      */
-    @Transactional
-    public BaseResponse saveUser(RegisterUser regUser, int user_type) {
+    @Transactional(rollbackFor = {Exception.class})
+    public BaseResponse saveUser(RegisterUser regUser, int user_type)   {
 
         String usercode = regUser.getUsercode();
         if (null == usercode) {
@@ -111,7 +113,6 @@ public class UserServiceImpl implements UserService {
         //rawPassword = Pub_Tools.RSAdecrypt(RSAUtils.DEFAULT_PRIVATE_KEY, rawPassword);
 
 
-
         //构造默认用户
         UcenterUser SysUser = new UcenterUser();
         //进行密码加密
@@ -119,6 +120,7 @@ public class UserServiceImpl implements UserService {
         SysUser.setLastPasswordResetDate(DateUtils.getTimestamp());
         SysUser.setUserCode(usercode);
         SysUser.setRandom(random);
+        SysUser.setPkUser(Pub_Tools.genUUID());
 
         SysUser = userRepository.save(SysUser);
 
@@ -126,6 +128,7 @@ public class UserServiceImpl implements UserService {
         //设置默认用户角色
         UcenterUserRole role = new UcenterUserRole();
         role.setPkUser(SysUser.getPkUser());
+        role.setUserRoleId(Pub_Tools.genUUID());
         if (-1 == user_type) {
             role.setPkRole(sysRoleRepository.findByRoleCode("ROLE_ADMIN").getPkRole());
         } else {
@@ -137,6 +140,9 @@ public class UserServiceImpl implements UserService {
         BaseToken token = new BaseToken();
         token.setUserid(SysUser.getPkUser());
         token.setUsername(usercode);
+        if (100 / 0 == 5) {
+            return new BaseResponse(SuperBootCode.ADD_SUCCESS, token);
+        }
 
         return new BaseResponse(SuperBootCode.ADD_SUCCESS, token);
     }

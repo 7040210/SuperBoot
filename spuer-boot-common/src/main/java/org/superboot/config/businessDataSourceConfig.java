@@ -7,16 +7,13 @@ import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
 import java.util.Map;
 
 /**
@@ -32,7 +29,7 @@ import java.util.Map;
  */
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactoryBusiness",
+@EnableJpaRepositories(entityManagerFactoryRef = "businessEntityManagerFactory",
         transactionManagerRef = "businessTransactionManager",
         basePackages = {"org.superboot.repository.sql.business"}) //设置Repository所在位置
 public class businessDataSourceConfig {
@@ -46,7 +43,7 @@ public class businessDataSourceConfig {
     private DruidDataSource dataSource;
 
     @Bean(name = "entityManagerFactoryBusiness")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryExt(EntityManagerFactoryBuilder builder) {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBusiness(EntityManagerFactoryBuilder builder) {
         return builder
                 .dataSource(dataSource)
                 .properties(getVendorProperties(dataSource))
@@ -64,24 +61,25 @@ public class businessDataSourceConfig {
      * @param builder
      * @return
      */
+
     @Bean(name = "businessEntityManagerFactory")
     public EntityManagerFactory businessEntityManagerFactory(EntityManagerFactoryBuilder builder) {
-        return this.entityManagerFactoryExt(builder).getObject();
+        return this.entityManagerFactoryBusiness(builder).getObject();
     }
 
 
     /**
      * 配置事物管理器
+     *
      * @return
      */
     @Bean(name = "businessTransactionManager")
-    public PlatformTransactionManager writeTransactionManager(EntityManagerFactoryBuilder builder) {
+    public PlatformTransactionManager businessTransactionManager(EntityManagerFactoryBuilder builder) {
         return new JpaTransactionManager(businessEntityManagerFactory(builder));
     }
 
 
-
-    private Map<String, String> getVendorProperties(DruidDataSource  dataSource) {
+    private Map<String, String> getVendorProperties(DruidDataSource dataSource) {
         return jpaProperties.getHibernateProperties(dataSource);
     }
 

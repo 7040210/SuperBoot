@@ -27,11 +27,11 @@ public interface UcenterUserRepository extends JpaRepository<UcenterUser, Long> 
      * @param userCode 用户账号
      * @return
      */
-    @Cacheable(key = "#p0")
+    //@Cacheable(key = "#p0")
     UcenterUser findByUserCode(String userCode);
 
 
-    @CachePut(key = "#p0.userCode")
+    //@CachePut(key = "#p0.userCode")
     UcenterUser save(UcenterUser user);
 
 }

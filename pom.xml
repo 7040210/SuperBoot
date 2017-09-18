@@ -138,12 +138,6 @@
 			<artifactId>spring-boot-starter-jetty</artifactId>
 		</dependency>
 
-		<!--分布式事务支持-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jta-atomikos</artifactId>
-		</dependency>
-
 		<!--Redis支持-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

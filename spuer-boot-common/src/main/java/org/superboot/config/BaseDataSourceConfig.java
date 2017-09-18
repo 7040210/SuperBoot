@@ -9,14 +9,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
 import java.util.Map;
 
 /**
@@ -32,7 +30,7 @@ import java.util.Map;
  */
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactoryBase",
+@EnableJpaRepositories(entityManagerFactoryRef = "baseEntityManagerFactory",
         transactionManagerRef = "baseTransactionManager",
         basePackages = {"org.superboot.repository.sql.base"}) //设置Repository所在位置
 public class BaseDataSourceConfig {
@@ -44,8 +42,8 @@ public class BaseDataSourceConfig {
     @Qualifier("baseDataSource")
     private DruidDataSource dataSource;
 
-
     @Bean(name = "entityManagerFactoryBase")
+    @Primary
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBase(EntityManagerFactoryBuilder builder) {
         return builder
                 .dataSource(dataSource)
@@ -64,26 +62,27 @@ public class BaseDataSourceConfig {
      * @param builder
      * @return
      */
+
+
     @Bean(name = "baseEntityManagerFactory")
-    @Primary
     public EntityManagerFactory baseEntityManagerFactory(EntityManagerFactoryBuilder builder) {
         return this.entityManagerFactoryBase(builder).getObject();
     }
 
 
-
     /**
      * 配置事物管理器
+     *
      * @return
      */
     @Bean(name = "baseTransactionManager")
     @Primary
-    public PlatformTransactionManager writeTransactionManager(EntityManagerFactoryBuilder builder) {
+    public PlatformTransactionManager baseTransactionManager(EntityManagerFactoryBuilder builder) {
         return new JpaTransactionManager(baseEntityManagerFactory(builder));
     }
 
 
-    private Map<String, String> getVendorProperties(DruidDataSource  dataSource) {
+    private Map<String, String> getVendorProperties(DruidDataSource dataSource) {
         return jpaProperties.getHibernateProperties(dataSource);
     }
 
