@@ -29,12 +29,6 @@ spring:
   devtools:
     remote:
       secret: thisismysecret
-  #配置消息总线
-  rabbitmq:
-    host: localhost
-    port: 6572
-    username: admin
-    password: admin
   jpa:
     show-sql: true
   #数据库连接配置
@@ -150,15 +144,6 @@ spring:
       timeout: 10000
   mvc:
     throw-exception-if-no-handler-found: true
-  #启用消息追踪
-  cloud:
-    bus:
-      trace:
-        enabled: true
-#关闭安全认证
-management:
-  security:
-    enabled: false
 #Swagger配置
 swagger:
   #是否启用swagger，默认：true
