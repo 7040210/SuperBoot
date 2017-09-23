@@ -2,6 +2,7 @@ package org.superboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.config.server.EnableConfigServer;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
  * @time 12:31
  * @Path org.superboot.StartConfigCenter
  */
+@EnableDiscoveryClient
 @EnableConfigServer
 @SpringBootApplication
 public class StartConfigCenter {

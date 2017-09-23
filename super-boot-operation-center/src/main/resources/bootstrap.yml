@@ -2,7 +2,7 @@
 spring:
   cloud:
     config:
-      name: super-boot-secruity-center
+      name: super-boot-operation-center
       profile: dev
       label: master
       discovery:

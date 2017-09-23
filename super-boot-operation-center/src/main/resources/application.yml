@@ -1,29 +1,6 @@
-#定义环境引用的配置文件
-spring:
-  profiles:
-    active: dev
-  application:
-    name: super-boot-operation-center
-  http:
-    encoding:
-      force: true
-      charset: UTF-8
-    multipart:
-      enabled: true
-      max-file-size: 1024MB
-  #热加载配置
-  devtools:
-    remote:
-      secret: thisismysecret
-eureka:
-  instance:
-    #心跳时间间隔
-    lease-renewal-interval-in-seconds: 10
-    #无心跳多久后,该服务失效
-    lease-expiration-duration-in-seconds: 30
-    appname: 监控中心
-    instance-id: ${spring.application.name}:${server.port}
-turbine:
-  cluster-name-expression: default
-  combine-host-port: true
-  app-config: super-boot-secruity-center,super-boot-user-center,super-boot-gateway-center
+#web容器配置
+server:
+  context-path: /
+  port: 9080
+  tomcat:
+    uri-encoding: UTF-8

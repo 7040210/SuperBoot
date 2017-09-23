@@ -5,6 +5,30 @@ logging:
   config: classpath:log4j2-dev.xml
 #spring配置
 spring:
+  application:
+    name: super-boot-user-center
+  #使用@Aspect注解将一个java类定义为切面类
+  #使用@Pointcut定义一个切入点，可以是一个规则表达式，比如下例中某个package下的所有函数，也可以是一个注解等。
+  #根据需要在切入点不同位置的切入内容
+  #使用@Before在切入点开始处切入内容
+  #使用@After在切入点结尾处切入内容
+  #使用@AfterReturning在切入点return内容之后切入内容（可以用来对处理返回值做一些加工处理）
+  #使用@Around在切入点前后切入内容，并自己控制何时执行切入点自身的内容
+  #使用@AfterThrowing用来处理当切入内容部分抛出异常之后的处理逻辑
+  #使用CGLIB来实现AOP，false是标准Java的实现
+  aop:
+    proxy-target-class: true
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+    multipart:
+      enabled: true
+      max-file-size: 1024MB
+  #热加载配置
+  devtools:
+    remote:
+      secret: thisismysecret
   jpa:
     show-sql: true
   #数据库连接配置
@@ -120,8 +144,67 @@ spring:
       timeout: 10000
   mvc:
     throw-exception-if-no-handler-found: true
-#配置注册中心地址
+#Swagger配置
+swagger:
+  #是否启用swagger，默认：true
+  enabled: true
+  #标题
+  title: 权限管理平台接口文档
+  #描述
+  description: 官网：http://www.superboot.org/
+  #版本
+  version: 1.0
+  #许可证
+  license: Apache License, Version 2.0
+  #许可证URL
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.html
+  #服务条款URL
+  termsOfServiceUrl: http://www.superboot.org/
+  #swagger扫描的基础包，默认：全扫描
+  base-package: org.superboot.controller
+  #需要处理的基础URL规则，默认：/**
+  base-path: /**
+  #需要排除的URL规则，默认：空
+  exclude-path: /error ,/view/**
+  #文档的host信息，默认：空
+  host:
+  contact:
+    #维护人
+    name: Jesion
+    #维护人URL
+    url: http://www.superboot.org/
+    #维护人email
+    email: 7040210@qq.com
+  #自定义参数信息
+  globalOperationParameters[0]:
+    #参数名
+    name: _SuperBootToken_
+    #描述信息
+    description: Token信息
+    #指定参数类型
+    modelRef: string
+    #指定参数存放位置,可选header,query,path,body.form
+    parameterType: header
+    #指定参数是否必传，true,false
+    required: false
+
+#Twitter_Snowflake 序列号生成器配置
+Snowflake:
+  #工作中心ID 0-31
+  workerId: 0
+  #数据中心ID(0~31)
+  datacenterId: 0
+
+#启用服务容错保护
+feign:
+  hystrix:
+    enabled: true
+#配置注册中心信息
 eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:1111/eureka/
+  instance:
+    #心跳时间间隔
+    lease-renewal-interval-in-seconds: 10
+    #无心跳多久后,该服务失效
+    lease-expiration-duration-in-seconds: 30
+    appname: 用户中心
+    instance-id: ${spring.application.name}:${server.port}

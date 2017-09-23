@@ -208,6 +208,3 @@ eureka:
     lease-expiration-duration-in-seconds: 30
     appname: 鉴权中心
     instance-id: ${spring.application.name}:${server.port}
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:1111/eureka/
