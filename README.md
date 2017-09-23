@@ -43,37 +43,41 @@ super-boot
 
 此模块项目公共数据库操作模块，此模块主要配置操作super_boot_base数据库的相关接口方法，此模块定义为各模块均会用到的表，比如api定义的表及api接口授权角色表。项目打包的时候会打包为jar包放入项目lib中。
 
-> client-config
-
-此模块为各项目远程配置信息，服务端使用配置中心读取配置进行服务的相关动态设置，在分布式环境中减少每个服务都需要单独配置。
-
 > super-boot-config-center
 
-此模块为配置中心，在分布式环境中需要配置为高可用集群模式，增加安全及稳定性。启动后访问http://localhost:9080/config-info.yml 
+此模块为配置中心，在分布式环境中需要配置为高可用集群模式，增加安全及稳定性。
+启动后可以访问 http://localhost:9080/config-info.yml 
 
 > super-boot-gateway-center
 
-此模块为API网关中心，提供统一的API调用接口及相关配置功能。启动后可以访问 http://localhost:80，可以看到服务是否启动成功
+此模块为API网关中心，提供统一的API调用接口及相关配置功能。
+启动后可以访问 http://localhost:80
 
 > super-boot-logger-center
 
 此模块为日志可视化管理模块，提供项目操作日志的追踪分析及查看功能。
 
+
+
 > super-boot-operation-center
 
-此模块为监控中心，主要用于监控各服务模块运行状况。启动后可以访问 http://localhost:8080/hystrix
+此模块为监控中心，主要用于监控各服务模块运行状况。
+启动后可以访问 http://localhost:8080/hystrix
 
 > super-boot-registry-center
 
-此模块为注册中心，提供所以服务模块的注册、容错、负载均衡等功能。分布式环境中需要配置为高可用集群模式，要保证注册中心的稳定。启动后访问 http://localhost:1111，可以看到目前已经运行的服务
+此模块为注册中心，提供所以服务模块的注册、容错、负载均衡等功能。分布式环境中需要配置为高可用集群模式，要保证注册中心的稳定。
+启动后可以访问 http://localhost:1111
 
 > super-boot-secruity-center
 
 此模块为鉴权中心，主要提供TOKEN的生成、刷新、校验等功能。
+启动后可以访问 http://localhost:3333/swagger-ui.html
 
 > super-boot-user-center
 
 此模块为用户中心，提供用户注册、密码修改等相关功能。
+启动后可以访问 http://localhost:2222/swagger-ui.html
 
 
 ## Idea逆向生成数据库实体类
