@@ -15,7 +15,7 @@ eureka:
       defaultZone: http://localhost:1111/eureka/
 
 spring:
-  #配置消息总线
+  #配置消息中心
   rabbitmq:
     host: localhost
     port: 6572

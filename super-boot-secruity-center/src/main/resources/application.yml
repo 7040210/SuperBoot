@@ -1,6 +1,6 @@
 #web容器配置
 server:
   context-path: /
-  port: ${random.int[10000,29999]}
+  port: 3333
   tomcat:
     uri-encoding: UTF-8

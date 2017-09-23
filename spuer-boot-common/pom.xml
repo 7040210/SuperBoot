@@ -45,6 +45,19 @@
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
 
+        <!--配置日志写入MongoDB-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-nosql</artifactId> <!-- 必需，否则报错 -->
+            <version>2.7</version>
+        </dependency>
+        <!--配置日志写入MongoDB-->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId> <!--必需 -->
+            <version>3.2.2</version>
+        </dependency>
+
 
         <!--MYSQL数据库驱动-->
         <dependency>
@@ -91,6 +104,10 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>0.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver</artifactId>
         </dependency>
 
     </dependencies>
