@@ -2,9 +2,6 @@ package org.superboot.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.superboot.base.BaseResponse;
 import org.superboot.base.BaseToken;
 import org.superboot.base.SuperBootCode;
@@ -14,7 +11,6 @@ import org.superboot.entity.RegisterUser;
 import org.superboot.entity.business.UcenterUser;
 import org.superboot.entity.business.UcenterUserRole;
 import org.superboot.pub.Pub_Tools;
-import org.superboot.repository.sql.base.BaseApiRoleRepository;
 import org.superboot.repository.sql.business.UcenterRoleRepository;
 import org.superboot.repository.sql.business.UcenterUserRepository;
 import org.superboot.repository.sql.business.UcenterUserRoleRepository;
@@ -43,8 +39,6 @@ public class UserServiceImpl implements UserService {
     private UcenterUserRoleRepository sysUserRoleRepository;
     @Autowired
     private UcenterRoleRepository sysRoleRepository;
-    @Autowired
-    private BaseApiRoleRepository baseApiRoleRepository;
 
     @Override
     public BaseResponse register(RegisterUser regUser) {
@@ -89,8 +83,7 @@ public class UserServiceImpl implements UserService {
      * @param user_type 用户类型 -1管理员 其他为普通用户
      * @return
      */
-    @Transactional(rollbackFor = {Exception.class})
-    public BaseResponse saveUser(RegisterUser regUser, int user_type)   {
+    public BaseResponse saveUser(RegisterUser regUser, int user_type) {
 
         String usercode = regUser.getUsercode();
         if (null == usercode) {
@@ -140,9 +133,8 @@ public class UserServiceImpl implements UserService {
         BaseToken token = new BaseToken();
         token.setUserid(SysUser.getPkUser());
         token.setUsername(usercode);
-        if (100 / 0 == 5) {
-            return new BaseResponse(SuperBootCode.ADD_SUCCESS, token);
-        }
+
+        // int i = 100 / 0;
 
         return new BaseResponse(SuperBootCode.ADD_SUCCESS, token);
     }

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:1.5.7.BUILD-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-data-jpa/1.5.7.BUILD-SNAPSHOT/spring-boot-starter-data-jpa-1.5.7.BUILD-20170912.091033-38.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-data-jpa/1.5.7.BUILD-SNAPSHOT/spring-boot-starter-data-jpa-1.5.7.BUILD-20170912.091033-38-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-data-jpa/1.5.7.BUILD-SNAPSHOT/spring-boot-starter-data-jpa-1.5.7.BUILD-20170912.091033-38-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -32,63 +32,52 @@ import java.util.Properties;
 public class DruidDataSourceConfig {
 
 
-    @Primary
-    @ConfigurationProperties(prefix = "spring.datasource.base")
-    @Qualifier("baseDataSource")
-    @Bean(name = "baseDataSource")
-    public DruidDataSource baseDataSource() {
-        return DruidDataSourceBuilder.create().build();
-    }
-
-
-
-    @ConfigurationProperties(prefix = "spring.datasource.business")
-    @Qualifier("businessDataSource")
-    @Bean(name = "businessDataSource")
-    public DruidDataSource  extDataSource(){
-        return DruidDataSourceBuilder.create().build();
-    }
-
-
-
-//    @Bean(name = "baseDataSource")
-//    @Qualifier("baseDataSource")
 //    @Primary
-//    public DataSource baseDataSource(Environment env) {
-//        AtomikosDataSourceBean ds = new AtomikosDataSourceBean();
-//        Properties prop = build(env, "spring.datasource.base.");
-//        ds.setXaDataSourceClassName("com.alibaba.druid.pool.xa.DruidXADataSource");
-//        ds.setUniqueResourceName("baseDB");
-//        ds.setPoolSize(5);
-//        ds.setXaProperties(prop);
-//        return ds;
-//
+//    @ConfigurationProperties(prefix = "spring.datasource.base")
+//    @Qualifier("baseDataSource")
+//    @Bean(name = "baseDataSource")
+//    public DruidDataSource baseDataSource() {
+//        return DruidDataSourceBuilder.create().build();
 //    }
 //
+//
+//
+//    @ConfigurationProperties(prefix = "spring.datasource.business")
 //    @Qualifier("businessDataSource")
 //    @Bean(name = "businessDataSource")
-//    public DataSource businessDataSource(Environment env) {
-//
-//        AtomikosDataSourceBean ds = new AtomikosDataSourceBean();
-//        Properties prop = build(env, "spring.datasource.business.");
-//        ds.setXaDataSourceClassName("com.alibaba.druid.pool.xa.DruidXADataSource");
-//        ds.setUniqueResourceName("businessDB");
-//        ds.setPoolSize(5);
-//        ds.setXaProperties(prop);
-//
-//        return ds;
+//    public DruidDataSource  extDataSource(){
+//        return DruidDataSourceBuilder.create().build();
 //    }
+//
 
-    @Bean("sysJdbcTemplate")
-    public JdbcTemplate sysJdbcTemplate(@Qualifier("baseDataSource") DataSource ds) {
-        return new JdbcTemplate(ds);
+
+    @Bean(name = "baseDataSource",initMethod = "init", destroyMethod = "close")
+    @Qualifier("baseDataSource")
+    @Primary
+    public DataSource baseDataSource(Environment env) {
+        AtomikosDataSourceBean ds = new AtomikosDataSourceBean();
+        Properties prop = build(env, "spring.datasource.base.");
+        ds.setXaDataSourceClassName("com.alibaba.druid.pool.xa.DruidXADataSource");
+        ds.setUniqueResourceName("baseDB");
+        ds.setPoolSize(5);
+        ds.setXaProperties(prop);
+        return ds;
+
     }
 
-    @Bean("busJdbcTemplate")
-    public JdbcTemplate busJdbcTemplate(@Qualifier("businessDataSource") DataSource ds) {
-        return new JdbcTemplate(ds);
-    }
+    @Qualifier("businessDataSource")
+    @Bean(name = "businessDataSource",initMethod = "init", destroyMethod = "close")
+    public DataSource businessDataSource(Environment env) {
 
+        AtomikosDataSourceBean ds = new AtomikosDataSourceBean();
+        Properties prop = build(env, "spring.datasource.business.");
+        ds.setXaDataSourceClassName("com.alibaba.druid.pool.xa.DruidXADataSource");
+        ds.setUniqueResourceName("businessDB");
+        ds.setPoolSize(5);
+        ds.setXaProperties(prop);
+
+        return ds;
+    }
     private Properties build(Environment env, String prefix) {
 
         Properties prop = new Properties();

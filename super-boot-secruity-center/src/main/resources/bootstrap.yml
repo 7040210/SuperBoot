@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    config:
+      name: super-boot-secruity-center
+      profile: dev
+      label: master
+      discovery:
+        enabled: true
+        service-id: super-boot-config-center
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/

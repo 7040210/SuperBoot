@@ -25,7 +25,6 @@ import java.util.List;
 public interface BaseApiRepository  extends JpaRepository<BaseApi, Long> {
 
 
-
     @Cacheable(key="#p0+#p1")
     List<BaseApi> findByUrlAndMethodName(String url, String methodName);
 

@@ -26,6 +26,19 @@
             <artifactId>super-boot-common</artifactId>
             <version>${parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+
+        <!--WEB应用支持-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+import org.superboot.config.RequestMappingHandlerConfig;
 import org.superboot.entity.base.BaseApi;
 import org.superboot.pub.Pub_Tools;
 import org.superboot.repository.sql.base.BaseApiRepository;
@@ -37,9 +38,10 @@ public class Pub_DBUtils {
 
     /**
      * 自动添加服务器的接口API到数据库
-     * @param requestMappingHandlerMapping
+     * @param requestMappingHandlerConfig
      */
-    public void addApiToDB(RequestMappingHandlerMapping requestMappingHandlerMapping){
+    public void addApiToDB(RequestMappingHandlerConfig requestMappingHandlerConfig){
+        RequestMappingHandlerMapping requestMappingHandlerMapping = requestMappingHandlerConfig.requestMappingHandlerMapping ();
         Map<RequestMappingInfo, HandlerMethod> map = requestMappingHandlerMapping.getHandlerMethods();
         Set<RequestMappingInfo> mappings = map.keySet();
         for(RequestMappingInfo info : mappings) {

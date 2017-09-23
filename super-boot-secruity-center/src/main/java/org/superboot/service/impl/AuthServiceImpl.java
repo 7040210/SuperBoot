@@ -3,6 +3,7 @@ package org.superboot.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import org.superboot.entity.LoginUser;
 import org.superboot.entity.Token;
 import org.superboot.pub.Pub_JWTUtils;
 import org.superboot.pub.Pub_Tools;
+import org.superboot.remote.UserRemote;
 import org.superboot.service.AuthService;
 
 import java.util.HashMap;
@@ -36,19 +38,20 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private Pub_Tools Pub_Tools;
 
-
     @Autowired
-    private RestTemplate restTemplate;
+    private UserRemote userRemote;
+
 
     @Override
     public BaseResponse genToken(LoginUser loginUser) {
 
+
         BaseToken bt = new BaseToken();
         BaseMessage message = new BaseMessage();
-        message = restTemplate.postForObject(  "http://127.0.0.1:2222/users/login", loginUser, BaseMessage.class, message);
-        if(SuperBootStatus.OK.getCode() ==message.getStatus()){
-            if(SuperBootCode.OK.getCode() == message.getCode() ){
-                JSONArray array = (JSONArray) JSON.toJSON(message.getData());
+        BaseResponse response  =  userRemote.createToken(loginUser);
+        if(SuperBootStatus.OK.getCode() ==response.getSuperBootStatus().getCode()){
+            if(SuperBootCode.OK.getCode() == response.getSuperBootCode().getCode() ){
+                JSONArray array = (JSONArray) JSON.toJSON(response.getData());
                 JSONObject data = (JSONObject) array.get(0);
                 bt.setUserid(Long.valueOf(data.get("userid").toString()));
                 bt.setUsername(data.get("username").toString());
@@ -58,7 +61,7 @@ public class AuthServiceImpl implements AuthService {
             }
         }
 
-        return new BaseResponse(SuperBootCode.ACCOUNT_DISABLED);
+        return response;
     }
 
     @Override
@@ -77,5 +80,8 @@ public class AuthServiceImpl implements AuthService {
 
         return new BaseResponse(map);
     }
+
+
+
 
 }

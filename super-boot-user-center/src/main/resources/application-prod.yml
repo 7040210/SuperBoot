@@ -1,25 +1,15 @@
-#web容器配置
-server:
-  context-path: /
-  port: 80
-  tomcat:
-    uri-encoding: UTF-8
-#启用调试模式
-debug: false
 #日志配置
 logging:
   config: classpath:log4j2-prod.xml
 #spring配置
 spring:
-  #jta相关参数配置
-  jta:
-    log-dir: classpath:tx-logs
-    transaction-manager-id: txManager
   jpa:
     show-sql: true
   #数据库连接配置
   datasource:
-    #配置为分布式数据源
+    type: com.alibaba.druid.pool.xa.DruidXADataSource
+    xa:
+      data-source-class-name: com.alibaba.druid.pool.xa.DruidXADataSource
     base:
       name: baseDB
       driver-class-name: com.mysql.jdbc.Driver
@@ -116,9 +106,6 @@ spring:
         allow: 127.0.0.1,192.168.30.50
         #IP黑名单 (存在共同时，deny优先于allow)
         deny: 192.168.1.102
-
-
-
   redis:
     cluster:
       nodes: 127.0.0.1:7000, 127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003,127.0.0.1:7004,127.0.0.1:7005
@@ -131,5 +118,8 @@ spring:
       timeout: 10000
   mvc:
     throw-exception-if-no-handler-found: true
-
-
+#配置注册中心地址
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/

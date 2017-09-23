@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="super-boot-common" />
+        <module name="super-boot-config-center" />
+        <module name="super-boot-dao" />
+        <module name="super-boot-gateway-center" />
+        <module name="super-boot-logger-center" />
+        <module name="super-boot-operation-center" />
+        <module name="super-boot-registry-center" />
+        <module name="super-boot-secruity-center" />
+        <module name="super-boot-user-center" />
+        <module name="super-boot-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.8">
+      <module name="super-boot" target="1.8" />
+      <module name="super-boot-common" target="1.8" />
+      <module name="super-boot-config-center" target="1.8" />
+      <module name="super-boot-dao" target="1.8" />
+      <module name="super-boot-gateway-center" target="1.8" />
+      <module name="super-boot-logger-center" target="1.8" />
+      <module name="super-boot-operation-center" target="1.8" />
+      <module name="super-boot-registry-center" target="1.8" />
+      <module name="super-boot-secruity-center" target="1.8" />
+      <module name="super-boot-status" target="1.8" />
+      <module name="super-boot-user-center" target="1.8" />
+      <module name="super-boot-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

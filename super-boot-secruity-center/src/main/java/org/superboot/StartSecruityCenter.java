@@ -5,7 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 import org.superboot.config.RequestMappingHandlerConfig;
 import org.superboot.pub.utils.Pub_DBUtils;
 
@@ -25,6 +30,9 @@ import javax.annotation.PostConstruct;
 @EnableSwagger2Doc
 @SpringBootApplication
 @EnableCaching
+@EnableDiscoveryClient
+@EnableFeignClients
+@EnableCircuitBreaker
 public class StartSecruityCenter {
 
 
@@ -46,7 +54,17 @@ public class StartSecruityCenter {
      */
     @PostConstruct  //这个注解很重要，可以在每次启动的时候检查是否有URL更新，RequestMappingHandlerMapping只能在controller层用。这里我们放在主类中
     public void detectHandlerMethods(){
-        final RequestMappingHandlerMapping requestMappingHandlerMapping = requestMappingHandlerConfig.requestMappingHandlerMapping ();
-        pub_DBUtils.addApiToDB(requestMappingHandlerMapping);
+        pub_DBUtils.addApiToDB(requestMappingHandlerConfig);
+    }
+
+
+    /**
+     * 设置RestTemplate支持SpringCloud注册中心调用
+     * @return
+     */
+    @Bean
+    @LoadBalanced
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }

@@ -4,13 +4,10 @@ package org.superboot.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.superboot.base.BaseResponse;
-import org.superboot.base.MethedNotValidateToken;
 import org.superboot.base.NotValidateToken;
 import org.superboot.base.SuperBootException;
 import org.superboot.entity.LoginUser;
@@ -34,6 +31,9 @@ import org.superboot.service.AuthService;
 @NotValidateToken
 public class AuthController {
 
+
+    @Autowired
+    DiscoveryClient discoveryClient;
 
     @Autowired
     private AuthService authService;

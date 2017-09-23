@@ -1,0 +1,15 @@
+#web容器配置
+server:
+  context-path: /
+  port: 80
+  tomcat:
+    uri-encoding: UTF-8
+#启用调试模式
+debug: true
+#日志配置
+logging:
+  config: classpath:log4j2-prod.xml
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
