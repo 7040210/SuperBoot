@@ -14,6 +14,11 @@
             <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
         </Console>
 
+        <!--配置MongoDB，设置数据直接写入数据库-->
+        <NoSql name="mongoAppender" bufferSize="10"> <!--建议bufferSize配置,减少频繁写操作。 -->
+            <MongoDb databaseName="logs" collectionName="registry" server="127.0.0.1" port="27017"/>
+        </NoSql>
+
         <!-- name可以自定义，作用是在Loggers中AppenderRef中使用 -->
         <!-- fileName定义输出文件名称（当前文件） -->
         <!-- filePattern定义输出文件名称（文件满足条件后自动截断，生成历史文件） -->
@@ -68,10 +73,10 @@
     </Appenders>
 
     <Loggers>
-        <root level="error">
-            <appender-ref ref="INFO_ROLLING_FILE"/>
+        <root level="info">
+            <!-- 输出日志到mongodb -->
+            <appender-ref ref="mongoAppender" />
             <appender-ref ref="ERROR_ROLLING_FILE"/>
         </root>
-
     </Loggers>
 </Configuration>

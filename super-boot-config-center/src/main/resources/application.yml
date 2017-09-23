@@ -33,4 +33,4 @@ eureka:
     #无心跳多久后,该服务失效
     lease-expiration-duration-in-seconds: 30
     appname: 配置中心
-    instance-id: ${spring.application.name}:${server.port}
+    instance-id: ${spring.application.name}:${random.int}

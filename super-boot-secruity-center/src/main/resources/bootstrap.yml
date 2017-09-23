@@ -8,6 +8,20 @@ spring:
       discovery:
         enabled: true
         service-id: super-boot-config-center
+    #启用消息追踪
+    bus:
+      trace:
+        enabled: true
+  #配置消息总线
+  rabbitmq:
+    host: localhost
+    port: 6572
+    username: admin
+    password: admin
+#关闭安全认证
+management:
+  security:
+    enabled: false
 #配置注册中心
 eureka:
   client:

@@ -17,7 +17,7 @@
 
     <!--配置MongoDB，设置数据直接写入数据库-->
     <NoSql name="mongoAppender" bufferSize="10"> <!--建议bufferSize配置,减少频繁写操作。 -->
-        <MongoDb databaseName="logs" collectionName="log" server="127.0.0.1" port="27017"/>
+        <MongoDb databaseName="logs" collectionName="user" server="127.0.0.1" port="27017"/>
     </NoSql>
 
 
