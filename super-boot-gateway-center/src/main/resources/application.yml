@@ -1,6 +1,6 @@
 #web容器配置
 server:
   context-path: /
-  port: 8080
+  port: 80
   tomcat:
     uri-encoding: UTF-8

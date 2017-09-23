@@ -8,33 +8,72 @@
 ## 组织结构
 ``` lua
 super-boot
+├── client-config  -- 项目配置文件信息，业务模块通过配置中心读取自动配置服务
 ├── project_info  --  项目相关信息包含数据字典、SQL语句、工具等
 ├── super-boot-common   --  项目公共模块
 ├── super-boot-dao      --  公共数据库操作模块
-├── super-boot-status   --  服务状态管理模块
-├── super-boot-operation-center -- 运维中心
+├── super-boot-config-center   --  配置中心
+├── super-boot-gateway-center  --  网关中心
+├── super-boot-logger-center   --  日志中心
+├── super-boot-operation-center -- 监控中心 
 ├── super-boot-registry-center --  注册中心  
-├── super-boot-secruity-center --  鉴权中心  
-├── super-boot-registry-center --  注册中心  
-├── super-boot-logger-center   --  日志中心  
+├── super-boot-secruity-center --  鉴权中心
 ├── super-boot-user-center     --  用户中心  
+ 
+
+  
+
 
 ```
+
+## 项目启动顺序
+  1、启动注册中心（super-boot-registry-center）
+  2、启动配置中心（super-boot-config-center）
+  3、启动网关中心（super-boot-gateway-center）
+  4、启动业务模块（无先后顺序）
+  5、如果需要看服务运行监控则启用监控中心（super-boot-operation-center）
 
 ## 模块介绍
 
 > super-boot-common
 
-项目共用工具类及通用方法常量等信息，项目打包的时候会打包为jar包放入项目lib中。
+此模块项目共用工具类及通用方法常量等信息，项目打包的时候会打包为jar包放入项目lib中。
 
 > super-boot-dao
 
-项目公共数据库操作模块，此模块主要配置操作super_boot_base数据库的相关接口方法，此模块定义为各模块均会用到的表，比如api定义的表及api接口授权角色表。项目打包的时候会打包为jar包放入项目lib中。
+此模块项目公共数据库操作模块，此模块主要配置操作super_boot_base数据库的相关接口方法，此模块定义为各模块均会用到的表，比如api定义的表及api接口授权角色表。项目打包的时候会打包为jar包放入项目lib中。
 
-> super-boot-status
+> client-config
 
-此项目主要为采集个模块运行状态信息，包含内存、CUP、硬盘等相关信息，项目打包的时候会打包为jar包放入项目lib中。
+此模块为各项目远程配置信息，服务端使用配置中心读取配置进行服务的相关动态设置，在分布式环境中减少每个服务都需要单独配置。
 
+> super-boot-config-center
+
+此模块为配置中心，在分布式环境中需要配置为高可用集群模式，增加安全及稳定性。启动后访问http://localhost:9080/config-info.yml 
+
+> super-boot-gateway-center
+
+此模块为API网关中心，提供统一的API调用接口及相关配置功能。启动后可以访问 http://localhost:80，可以看到服务是否启动成功
+
+> super-boot-logger-center
+
+此模块为日志可视化管理模块，提供项目操作日志的追踪分析及查看功能。
+
+> super-boot-operation-center
+
+此模块为监控中心，主要用于监控各服务模块运行状况。启动后可以访问 http://localhost:8080/hystrix
+
+> super-boot-registry-center
+
+此模块为注册中心，提供所以服务模块的注册、容错、负载均衡等功能。分布式环境中需要配置为高可用集群模式，要保证注册中心的稳定。启动后访问 http://localhost:1111，可以看到目前已经运行的服务
+
+> super-boot-secruity-center
+
+此模块为鉴权中心，主要提供TOKEN的生成、刷新、校验等功能。
+
+> super-boot-user-center
+
+此模块为用户中心，提供用户注册、密码修改等相关功能。
 
 
 ## Idea逆向生成数据库实体类
