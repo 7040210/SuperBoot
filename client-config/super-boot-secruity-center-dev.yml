@@ -150,6 +150,11 @@ spring:
       timeout: 10000
   mvc:
     throw-exception-if-no-handler-found: true
+  #启用消息追踪
+  cloud:
+    bus:
+      trace:
+        enabled: true
 #关闭安全认证
 management:
   security:

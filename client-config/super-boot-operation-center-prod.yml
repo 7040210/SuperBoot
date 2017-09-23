@@ -19,6 +19,11 @@ spring:
     port: 6572
     username: admin
     password: admin
+  #启用消息追踪
+  cloud:
+    bus:
+      trace:
+        enabled: true
 #关闭安全认证
 management:
   security:
