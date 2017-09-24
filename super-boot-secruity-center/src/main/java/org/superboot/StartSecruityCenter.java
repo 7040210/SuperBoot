@@ -7,11 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
 import org.superboot.config.RequestMappingHandlerConfig;
 import org.superboot.pub.utils.Pub_DBUtils;
 
@@ -31,10 +28,9 @@ import javax.annotation.PostConstruct;
 @EnableSwagger2Doc
 @SpringBootApplication
 @EnableCaching
-@EnableDiscoveryClient
+@EnableEurekaClient
 @EnableFeignClients
 @EnableCircuitBreaker
-@RefreshScope
 public class StartSecruityCenter {
 
 
@@ -59,14 +55,4 @@ public class StartSecruityCenter {
         pub_DBUtils.addApiToDB(requestMappingHandlerConfig);
     }
 
-
-    /**
-     * 设置RestTemplate支持SpringCloud注册中心调用
-     * @return
-     */
-    @Bean
-    @LoadBalanced
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
 }

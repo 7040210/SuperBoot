@@ -2,12 +2,11 @@ package org.superboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.netflix.turbine.EnableTurbine;
 
 /**
- * <b>  </b>
+ * <b> 监控中心 </b>
  * <p>
  * 功能描述:
  * </p>
@@ -20,7 +19,6 @@ import org.springframework.cloud.netflix.turbine.EnableTurbine;
 @EnableHystrixDashboard
 @SpringBootApplication
 @EnableTurbine
-@RefreshScope
 public class StartOperationCenter {
 
 
