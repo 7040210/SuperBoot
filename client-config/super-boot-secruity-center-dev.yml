@@ -3,11 +3,6 @@ debug: true
 #日志配置
 logging:
   config: classpath:log4j2-dev.xml
-
-#关闭安全认证
-management:
-  security:
-    enabled: false
 #spring配置
 spring:
   application:
@@ -23,7 +18,6 @@ spring:
   #使用CGLIB来实现AOP，false是标准Java的实现
   aop:
     proxy-target-class: true
-
   http:
     encoding:
       force: true
