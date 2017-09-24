@@ -155,6 +155,10 @@ spring:
     port: 5672
     username: admin
     password: admin
+#关闭安全认证
+management:
+  security:
+    enabled: false
 #Swagger配置
 swagger:
   #是否启用swagger，默认：true
