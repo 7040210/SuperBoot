@@ -23,11 +23,6 @@ spring:
   #使用CGLIB来实现AOP，false是标准Java的实现
   aop:
     proxy-target-class: true
-  cloud:
-    #启用消息追踪
-    bus:
-      trace:
-        enabled: true
 
   http:
     encoding:
