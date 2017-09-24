@@ -8,6 +8,7 @@ server:
 spring:
   application:
     name: super-boot-operation-center
+    index: ${random.int}
   http:
     encoding:
       force: true

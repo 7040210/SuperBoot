@@ -8,3 +8,4 @@ server:
 spring:
   application:
     name: super-boot-test-center
+    index: ${random.int}
