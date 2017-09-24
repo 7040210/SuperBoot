@@ -18,7 +18,7 @@ spring:
   #配置消息中心
   rabbitmq:
     host: localhost
-    port: 6572
+    port: 5672
     username: admin
     password: admin
 #关闭安全认证

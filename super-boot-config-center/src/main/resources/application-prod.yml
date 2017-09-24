@@ -11,3 +11,14 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:1111/eureka/
+spring:
+  #配置消息中心
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
+#关闭安全认证
+management:
+  security:
+    enabled: false

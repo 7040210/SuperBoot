@@ -144,6 +144,17 @@ spring:
       timeout: 10000
   mvc:
     throw-exception-if-no-handler-found: true
+  cloud:
+    #启用消息追踪
+    bus:
+      trace:
+        enabled: true
+  #配置消息总线
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
 #Swagger配置
 swagger:
   #是否启用swagger，默认：true
