@@ -13,6 +13,21 @@ spring:
   devtools:
     remote:
       secret: thisismysecret
+  cloud:
+    #启用消息追踪
+    bus:
+      trace:
+        enabled: true
+  #配置消息总线
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
+#关闭安全认证
+management:
+  security:
+    enabled: false
 #启用调试模式
 debug: true
 #日志配置
