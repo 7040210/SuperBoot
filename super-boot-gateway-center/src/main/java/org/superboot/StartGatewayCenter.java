@@ -1,7 +1,8 @@
 package org.superboot;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.SpringCloudApplication;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 /**
@@ -15,8 +16,9 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
  * @time 9:42
  * @Path org.superboot.StartGatewayCenter
  */
-@SpringBootApplication
+@SpringCloudApplication
 @EnableZuulProxy
+@RefreshScope
 public class StartGatewayCenter {
 
 
