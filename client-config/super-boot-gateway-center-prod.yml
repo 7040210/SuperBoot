@@ -1,3 +1,9 @@
+#web容器配置
+server:
+  context-path: /
+  port: 80
+  tomcat:
+    uri-encoding: UTF-8
 #定义环境引用的配置文件
 spring:
   application:
