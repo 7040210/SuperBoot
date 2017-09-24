@@ -28,12 +28,7 @@ spring:
     bus:
       trace:
         enabled: true
-  #配置消息总线
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: admin
-    password: admin
+
   http:
     encoding:
       force: true
