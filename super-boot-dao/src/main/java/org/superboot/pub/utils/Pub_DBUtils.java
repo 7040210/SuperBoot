@@ -36,11 +36,13 @@ public class Pub_DBUtils {
     @Autowired  //业务服务类
     private BaseApiRepository sysApiRepository;
 
+    @Autowired
+    private RequestMappingHandlerConfig requestMappingHandlerConfig;
+
     /**
      * 自动添加服务器的接口API到数据库
-     * @param requestMappingHandlerConfig
      */
-    public void addApiToDB(RequestMappingHandlerConfig requestMappingHandlerConfig){
+    public void addApiToDB(){
         RequestMappingHandlerMapping requestMappingHandlerMapping = requestMappingHandlerConfig.requestMappingHandlerMapping ();
         Map<RequestMappingInfo, HandlerMethod> map = requestMappingHandlerMapping.getHandlerMethods();
         Set<RequestMappingInfo> mappings = map.keySet();

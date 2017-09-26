@@ -2,6 +2,7 @@
 server:
   context-path: /
   port: 9080
+  index: ${random.int}
   tomcat:
     uri-encoding: UTF-8
 #启用调试模式

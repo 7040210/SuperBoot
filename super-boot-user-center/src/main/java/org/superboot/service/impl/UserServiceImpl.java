@@ -2,6 +2,7 @@ package org.superboot.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.superboot.base.BaseResponse;
 import org.superboot.base.BaseToken;
 import org.superboot.base.SuperBootCode;
@@ -39,6 +40,9 @@ public class UserServiceImpl implements UserService {
     private UcenterUserRoleRepository sysUserRoleRepository;
     @Autowired
     private UcenterRoleRepository sysRoleRepository;
+
+    @Autowired
+    private  Pub_Tools pubTools;
 
     @Override
     public BaseResponse register(RegisterUser regUser) {
@@ -83,6 +87,7 @@ public class UserServiceImpl implements UserService {
      * @param user_type 用户类型 -1管理员 其他为普通用户
      * @return
      */
+    @Transactional("businessTransactionManager")
     public BaseResponse saveUser(RegisterUser regUser, int user_type) {
 
         String usercode = regUser.getUsercode();
@@ -113,7 +118,7 @@ public class UserServiceImpl implements UserService {
         SysUser.setLastPasswordResetDate(DateUtils.getTimestamp());
         SysUser.setUserCode(usercode);
         SysUser.setRandom(random);
-        SysUser.setPkUser(Pub_Tools.genUUID());
+        SysUser.setPkUser(pubTools.genUUID());
 
         SysUser = userRepository.save(SysUser);
 
@@ -121,7 +126,7 @@ public class UserServiceImpl implements UserService {
         //设置默认用户角色
         UcenterUserRole role = new UcenterUserRole();
         role.setPkUser(SysUser.getPkUser());
-        role.setUserRoleId(Pub_Tools.genUUID());
+        role.setUserRoleId(pubTools.genUUID());
         if (-1 == user_type) {
             role.setPkRole(sysRoleRepository.findByRoleCode("ROLE_ADMIN").getPkRole());
         } else {
@@ -134,7 +139,7 @@ public class UserServiceImpl implements UserService {
         token.setUserid(SysUser.getPkUser());
         token.setUsername(usercode);
 
-        // int i = 100 / 0;
+         int i = 100 / 0;
 
         return new BaseResponse(SuperBootCode.ADD_SUCCESS, token);
     }

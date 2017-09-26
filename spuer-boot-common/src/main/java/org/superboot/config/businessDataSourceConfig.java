@@ -3,19 +3,19 @@ package org.superboot.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
+import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
+import java.util.Map;
 
 /**
  * <b> 业务数据源配置 </b>
@@ -29,16 +29,14 @@ import javax.sql.DataSource;
  * @Path org.superboot.config.businessDataSourceConfig
  */
 @Configuration
+@EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "businessEntityManagerFactory",
         transactionManagerRef = "businessTransactionManager",
         basePackages = {"org.superboot.repository.sql.business"}) //设置Repository所在位置
 public class businessDataSourceConfig {
 
-    @Autowired
-    private JpaProperties jpaProperties;
 
-    @Autowired
-    private JpaVendorAdapter jpaVendorAdapter;
+    private static final String PACKAGES_TO_SCAN = "org.superboot.entity.business";
 
 
     @Autowired
@@ -46,35 +44,40 @@ public class businessDataSourceConfig {
     private DataSource dataSource;
 
 
-    /**
-     * EntityManagerFactory类似于Hibernate的SessionFactory,mybatis的SqlSessionFactory
-     * 总之,在执行操作之前,我们总要获取一个EntityManager,这就类似于Hibernate的Session,
-     * mybatis的sqlSession.
-     *
-     * @return
-     */
+    //配置EntityManager实体
+    @Bean(name = "businessEntityManager")
+    public EntityManager entityManager(EntityManagerFactoryBuilder builder) {
+        return businessEntityManagerFactory(builder).getObject().createEntityManager();
+    }
+
+
+    //配置EntityManager工厂实体
     @Bean(name = "businessEntityManagerFactory")
-    public EntityManagerFactory businessEntityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-        factory.setJpaVendorAdapter(jpaVendorAdapter);
-        factory.setPackagesToScan("org.superboot.entity.business");
-        factory.setDataSource(dataSource);//数据源
-
-        factory.setJpaPropertyMap(jpaProperties.getProperties());
-        factory.afterPropertiesSet();//在完成了其它所有相关的配置加载以及属性设置后,才初始化
-        return factory.getObject();
+    public LocalContainerEntityManagerFactoryBean businessEntityManagerFactory(EntityManagerFactoryBuilder builder) {
+        return builder
+                .dataSource(dataSource)
+                .properties(getVendorProperties(dataSource))
+                .packages(PACKAGES_TO_SCAN.split(",")) //设置应用creditDataSource的基础包名
+                .persistenceUnit("businessPersistenceUnit")
+                .build();
     }
 
-    /**
-     * 获取事务管理器
-     * @return
-     */
+
+    //注入jpa配置实体
+    @Autowired
+    private JpaProperties jpaProperties;
+
+    //获取jpa配置信息
+    private Map<String, String> getVendorProperties(DataSource dataSource) {
+        return jpaProperties.getHibernateProperties(dataSource);
+    }
+
+
+    //配置事务
+    @Primary
     @Bean(name = "businessTransactionManager")
-    public PlatformTransactionManager businessTransactionManager() {
-        JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
-        jpaTransactionManager.setEntityManagerFactory(this.businessEntityManagerFactory());
-        return jpaTransactionManager;
+    public PlatformTransactionManager transactionManagerBook(EntityManagerFactoryBuilder builder) {
+        return new JpaTransactionManager(businessEntityManagerFactory(builder).getObject());
     }
-
 
 }

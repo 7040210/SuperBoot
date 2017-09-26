@@ -5,6 +5,7 @@ import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.superboot.pub.Pub_Tools;
 import org.superboot.pub.Pub_Utils;
@@ -28,6 +29,12 @@ public class MongoAspect {
 
     ThreadLocal<Long> startTime = new ThreadLocal<>();
 
+
+    @Autowired
+    private Pub_Utils pubUtils;
+    @Autowired
+    private Pub_Tools pubTools;
+
     /**
      * 设置JPA切入点
      */
@@ -41,15 +48,15 @@ public class MongoAspect {
         startTime.set(System.currentTimeMillis());
         logger.debug("*************************Mongo操作开始*************************");
         logger.debug("调用方法 : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
-        if (joinPoint.getSignature().getName().startsWith("save") ||joinPoint.getSignature().getName().startsWith("insert") ) {
+        if (joinPoint.getSignature().getName().startsWith("save") || joinPoint.getSignature().getName().startsWith("insert")) {
             logger.debug("默认字段赋值开始");
             if (0 < joinPoint.getArgs().length) {
                 for (int i = 0; i < joinPoint.getArgs().length; i++) {
                     Object o = joinPoint.getArgs()[i];
                     //设置删除标志
-                    joinPoint.getArgs()[i] = Pub_Tools.setFieldValue("dr", 0, o);
+                    joinPoint.getArgs()[i] = pubTools.setFieldValue("dr", 0, o);
                     //对主键进行赋值
-                    joinPoint.getArgs()[i] = Pub_Utils.setIdValue(o);
+                    joinPoint.getArgs()[i] = pubUtils.setIdValue(o);
                 }
             }
             logger.debug("默认字段赋值结束");

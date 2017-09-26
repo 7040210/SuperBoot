@@ -53,7 +53,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public BaseMessage defaultErrorHandler(HttpServletRequest req, Exception e)  {
+    public BaseMessage defaultErrorHandler(HttpServletRequest req, Exception e) {
         return Pub_Tools.genNoMsg(SuperBootCode.NO.getCode(), e.getMessage());
     }
 
@@ -67,10 +67,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = RuntimeException.class)
     @ResponseBody
-    public BaseMessage runtimeErrorHandler(HttpServletRequest req, RuntimeException e)  {
-        if(e instanceof RuntimeException){
-            throw new RuntimeException(e.getMessage());
-        }
+    public BaseMessage runtimeErrorHandler(HttpServletRequest req, RuntimeException e) {
         return Pub_Tools.genNoMsg(SuperBootCode.NO.getCode(), e.getMessage());
     }
 
@@ -85,7 +82,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     @ResponseBody
-    public BaseMessage methodArgumentNotValidExceptionErrorHandler(HttpServletRequest req, Exception e)  {
+    public BaseMessage methodArgumentNotValidExceptionErrorHandler(HttpServletRequest req, Exception e) {
         MethodArgumentNotValidException c = (MethodArgumentNotValidException) e;
         List<FieldError> errors = c.getBindingResult().getFieldErrors();
         Locale locale = LocaleContextHolder.getLocale();
@@ -108,7 +105,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = SuperBootException.class)
     @ResponseBody
-    public BaseMessage superBootErrorHandler(HttpServletRequest req, Exception e)   {
+    public BaseMessage superBootErrorHandler(HttpServletRequest req, Exception e) {
         int code = ((SuperBootException) e).getCode();
         String data = local.getMessage(code);
         return Pub_Tools.genNoMsg(code, data);

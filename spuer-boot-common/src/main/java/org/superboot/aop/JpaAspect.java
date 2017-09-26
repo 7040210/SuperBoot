@@ -1,7 +1,11 @@
 package org.superboot.aop;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.superboot.pub.Pub_Tools;
 import org.superboot.pub.Pub_Utils;
@@ -27,6 +31,10 @@ public class JpaAspect {
 
     ThreadLocal<Long> startTime = new ThreadLocal<>();
 
+
+    @Autowired
+    private Pub_Utils pubUtils;
+
     /**
      * 设置JPA切入点
      */
@@ -50,7 +58,7 @@ public class JpaAspect {
                     //设置删除标志
                     joinPoint.getArgs()[i] = Pub_Tools.setFieldValue("dr", 0, o);
                     //对主键进行赋值
-                    joinPoint.getArgs()[i] = Pub_Utils.setIdValue(o);
+                    joinPoint.getArgs()[i] = pubUtils.setIdValue(o);
                 }
             }
             logger.debug("默认字段赋值结束");

@@ -2,6 +2,7 @@
 server:
   context-path: /
   port: 80
+  index: ${random.int}
   tomcat:
     uri-encoding: UTF-8
 #日志配置

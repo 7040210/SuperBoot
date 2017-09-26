@@ -31,18 +31,18 @@ public class Pub_Tools {
      * 工作中心ID 0-31
      */
     @Value("${Snowflake.workerId}")
-    private static long workerId;
+    private  long workerId;
 
     /**
      * 数据中心ID 0-31
      */
     @Value("${Snowflake.datacenterId}")
-    private static long datacenterId;
+    private  long datacenterId;
 
     @Resource
     Pub_LocalTools local;
 
-    public static long genUUID() {
+    public  long genUUID() {
         SnowflakeIdWorker idWorker0 = new SnowflakeIdWorker(workerId, datacenterId);
         return idWorker0.nextId();
     }

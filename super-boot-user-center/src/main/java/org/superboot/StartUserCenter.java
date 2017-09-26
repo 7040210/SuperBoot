@@ -1,17 +1,13 @@
 package org.superboot;
 
-import com.didispace.swagger.EnableSwagger2Doc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.SpringCloudApplication;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
-import org.superboot.config.RequestMappingHandlerConfig;
 import org.superboot.pub.utils.Pub_DBUtils;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.annotation.PostConstruct;
 
@@ -26,16 +22,12 @@ import javax.annotation.PostConstruct;
  * @time 16:05
  * @Path org.superboot.StartUserCenter
  */
-@EnableSwagger2Doc
 @EnableCaching
 @SpringCloudApplication
 @EnableFeignClients
 @RefreshScope
+@EnableSwagger2
 public class StartUserCenter {
-
-
-    @Autowired
-    private RequestMappingHandlerConfig requestMappingHandlerConfig;
 
 
     public static void main(String[] args) {
@@ -52,7 +44,7 @@ public class StartUserCenter {
      */
     @PostConstruct  //这个注解很重要，可以在每次启动的时候检查是否有URL更新，RequestMappingHandlerMapping只能在controller层用。这里我们放在主类中
     public void detectHandlerMethods() {
-        pub_DBUtils.addApiToDB(requestMappingHandlerConfig);
+       // pub_DBUtils.addApiToDB();
     }
 
 }

@@ -28,10 +28,10 @@ super-boot
 
 ## 项目启动顺序
   1、启动注册中心（super-boot-registry-center）
-  2、启动配置中心（super-boot-config-center）
-  3、启动网关中心（super-boot-gateway-center）
-  4、启动业务模块（无先后顺序）
-  5、如果需要看服务运行监控则启用监控中心（super-boot-operation-center）
+<br>  2、启动配置中心（super-boot-config-center）
+<br>  3、启动网关中心（super-boot-gateway-center）
+<br>  4、启动业务模块（无先后顺序）
+<br>  5、如果需要看服务运行监控则启用监控中心（super-boot-operation-center）
 
 ## 模块介绍
 
@@ -46,12 +46,12 @@ super-boot
 > super-boot-config-center
 
 此模块为配置中心，在分布式环境中需要配置为高可用集群模式，增加安全及稳定性。
-启动后可以访问 http://localhost:9080/config-info.yml 
+<br>启动后可以访问 http://localhost:9080/config-info.yml 
 
 > super-boot-gateway-center
 
 此模块为API网关中心，提供统一的API调用接口及相关配置功能。
-启动后可以访问 http://localhost:80
+<br>启动后可以访问 http://localhost:80
 
 > super-boot-logger-center
 
@@ -62,22 +62,22 @@ super-boot
 > super-boot-operation-center
 
 此模块为监控中心，主要用于监控各服务模块运行状况。
-启动后可以访问 http://localhost:8080/hystrix
+<br>启动后可以访问 http://localhost:8080/hystrix
 
 > super-boot-registry-center
 
 此模块为注册中心，提供所以服务模块的注册、容错、负载均衡等功能。分布式环境中需要配置为高可用集群模式，要保证注册中心的稳定。
-启动后可以访问 http://localhost:1111
+<br>启动后可以访问 http://localhost:1111
 
 > super-boot-secruity-center
 
 此模块为鉴权中心，主要提供TOKEN的生成、刷新、校验等功能。
-启动后可以访问 http://localhost:3333/swagger-ui.html
+<br>启动后可以访问 http://localhost:3333/swagger-ui.html
 
 > super-boot-user-center
 
 此模块为用户中心，提供用户注册、密码修改等相关功能。
-启动后可以访问 http://localhost:2222/swagger-ui.html
+<br>启动后可以访问 http://localhost:2222/swagger-ui.html
 
 
 ## Idea逆向生成数据库实体类
@@ -126,3 +126,35 @@ super-boot
 #### 主要用到的注解类型
  
  ![注解类型](project_info/png/validate.png)
+
+
+
+##  Spring Data JPA 为此提供了一些表达条件查询的关键字，大致如下：
+
+#### And --- 等价于 SQL 中的 and 关键字，比如 findByUsernameAndPassword(String user, Striang pwd)
+
+#### Or --- 等价于 SQL 中的 or 关键字，比如 findByUsernameOrAddress(String user, String addr)
+
+#### Between --- 等价于 SQL 中的 between 关键字，比如 findBySalaryBetween(int max, int min)
+
+#### LessThan --- 等价于 SQL 中的 "<"，比如 findBySalaryLessThan(int max)
+
+#### GreaterThan --- 等价于 SQL 中的">"，比如 findBySalaryGreaterThan(int min)
+
+#### IsNull --- 等价于 SQL 中的 "is null"，比如 findByUsernameIsNull()
+
+#### IsNotNull --- 等价于 SQL 中的 "is not null"，比如 findByUsernameIsNotNull()
+
+#### NotNull --- 与 IsNotNull 等价
+
+#### Like --- 等价于 SQL 中的 "like"，比如 findByUsernameLike(String user)
+
+#### NotLike --- 等价于 SQL 中的 "not like"，比如 findByUsernameNotLike(String user)
+
+#### OrderBy ---等价于 SQL 中的 "order by"，比如 findByUsernameOrderBySalaryAsc(String user)
+
+#### Not --- 等价于 SQL 中的 "！ ="，比如 findByUsernameNot(String user)
+
+#### In --- 等价于 SQL 中的 "in"，比如 findByUsernameIn(Collection<String> userList) ，方法的参数可以是 Collection 类型，也可以是数组或者不定长参数
+
+#### NotIn --- 等价于 SQL 中的 "not in"，比如 findByUsernameNotIn(Collection<String> userList) ，方法的参数可以是 Collection 类型，也可以是数组或者不定长参数

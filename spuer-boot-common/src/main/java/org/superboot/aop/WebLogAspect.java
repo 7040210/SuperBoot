@@ -52,13 +52,13 @@ public class WebLogAspect {
      * 工作中心ID 0-31
      */
     @Value("${Snowflake.workerId}")
-    private static long workerId;
+    private  long workerId;
 
     /**
      * 数据中心ID 0-31
      */
     @Value("${Snowflake.datacenterId}")
-    private static long datacenterId;
+    private  long datacenterId;
 
 
     private JoinPoint joinPoint;

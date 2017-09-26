@@ -3,20 +3,19 @@ package org.superboot.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
+import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
+import java.util.Map;
 
 /**
  * <b> 主数据源配置 </b>
@@ -30,20 +29,27 @@ import javax.sql.DataSource;
  * @Path org.superboot.config.BaseDataSourceConfig
  */
 @Configuration
+@EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "baseEntityManagerFactory",
         transactionManagerRef = "baseTransactionManager",
         basePackages = {"org.superboot.repository.sql.base"}) //设置Repository所在位置
 public class BaseDataSourceConfig {
 
-    @Autowired
-    private JpaProperties jpaProperties;
-
-    @Autowired
-    private JpaVendorAdapter jpaVendorAdapter;
 
     @Autowired
     @Qualifier("baseDataSource")
     private DataSource dataSource;
+
+
+    private static final String PACKAGES_TO_SCAN = "org.superboot.entity.base";
+
+
+    //配置EntityManager实体
+    @Primary
+    @Bean(name = "baseEntityManager")
+    public EntityManager entityManager(EntityManagerFactoryBuilder builder) {
+        return baseEntityManagerFactory(builder).getObject().createEntityManager();
+    }
 
 
     /**
@@ -53,30 +59,31 @@ public class BaseDataSourceConfig {
      *
      * @return
      */
+    @Primary
     @Bean(name = "baseEntityManagerFactory")
-    @Primary
-    public EntityManagerFactory baseEntityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-        factory.setJpaVendorAdapter(jpaVendorAdapter);
-        factory.setPackagesToScan("org.superboot.entity.base");
-        factory.setDataSource(dataSource);//数据源
-
-        factory.setJpaPropertyMap(jpaProperties.getProperties());
-        factory.afterPropertiesSet();//在完成了其它所有相关的配置加载以及属性设置后,才初始化
-        return factory.getObject();
+    public LocalContainerEntityManagerFactoryBean baseEntityManagerFactory(EntityManagerFactoryBuilder builder) {
+        return builder
+                .dataSource(dataSource)
+                .properties(getVendorProperties(dataSource))
+                .packages(PACKAGES_TO_SCAN.split(",")) //设置应用creditDataSource的基础包名
+                .persistenceUnit("basePersistenceUnit")
+                .build();
     }
 
-    /**
-     * 获取事务管理器
-     * @return
-     */
+    //注入jpa配置实体
+    @Autowired
+    private JpaProperties jpaProperties;
+
+    //获取jpa配置信息
+    private Map<String, String> getVendorProperties(DataSource dataSource) {
+        return jpaProperties.getHibernateProperties(dataSource);
+    }
+
+    //配置事务
+    @Primary
     @Bean(name = "baseTransactionManager")
-    @Primary
-    public PlatformTransactionManager baseTransactionManager() {
-        JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
-        jpaTransactionManager.setEntityManagerFactory(this.baseEntityManagerFactory());
-        return jpaTransactionManager;
+    public PlatformTransactionManager transactionManagerBook(EntityManagerFactoryBuilder builder) {
+        return new JpaTransactionManager(baseEntityManagerFactory(builder).getObject());
     }
-
 
 }

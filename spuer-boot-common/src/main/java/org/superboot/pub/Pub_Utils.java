@@ -1,5 +1,7 @@
 package org.superboot.pub;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.superboot.utils.ReflectionUtils;
 
 import javax.persistence.Id;
@@ -17,14 +19,18 @@ import java.lang.reflect.Method;
  * @time 15:48
  * @Path org.superboot.pub.utils.Pub_Utils
  */
+@Component
 public class Pub_Utils {
+
+    @Autowired
+    private Pub_Tools pubTools;
     /**
      * 获取主键列的字段名称
      *
      * @param o 实体对象
      * @return
      */
-    public static String getIdField(Object o) {
+    public  String getIdField(Object o) {
         Field[] fields = o.getClass().getDeclaredFields();
         for (Field field : fields) {
             //判断是否有ID的注解
@@ -51,7 +57,7 @@ public class Pub_Utils {
      * @param o 实体类
      * @return
      */
-    public static Object setIdValue(Object o) {
+    public  Object setIdValue(Object o) {
         //获取主键列所在字段
         String field = getIdField(o);
         if (null != field) {
@@ -59,7 +65,7 @@ public class Pub_Utils {
             Object val = ReflectionUtils.getFieldValue(o, field);
             if (null == val) {
                 //设置主键
-                ReflectionUtils.setFieldValue(o, field, Pub_Tools.genUUID());
+                ReflectionUtils.setFieldValue(o, field, pubTools.genUUID());
             }
         }
         return o;
