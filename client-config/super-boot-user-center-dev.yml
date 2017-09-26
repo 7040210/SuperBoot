@@ -166,50 +166,14 @@ spring:
 management:
   security:
     enabled: false
-#Swagger配置
-swagger:
-  #是否启用swagger，默认：true
-  enabled: true
-  #标题
-  title: 权限管理平台接口文档
-  #描述
-  description: 官网：http://www.superboot.org/
-  #版本
-  version: 1.0
-  #许可证
-  license: Apache License, Version 2.0
-  #许可证URL
-  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.html
-  #服务条款URL
-  termsOfServiceUrl: http://www.superboot.org/
-  #swagger扫描的基础包，默认：全扫描
-  base-package: org.superboot.controller
-  #需要处理的基础URL规则，默认：/**
-  base-path: /**
-  #需要排除的URL规则，默认：空
-  exclude-path: /error ,/view/**
-  #文档的host信息，默认：空
-  host:
-  contact:
-    #维护人
-    name: Jesion
-    #维护人URL
-    url: http://www.superboot.org/
-    #维护人email
-    email: 7040210@qq.com
-  #自定义参数信息
-  globalOperationParameters[0]:
-    #参数名
-    name: _SuperBootToken_
-    #描述信息
-    description: Token信息
-    #指定参数类型
-    modelRef: string
-    #指定参数存放位置,可选header,query,path,body.form
-    parameterType: header
-    #指定参数是否必传，true,false
-    required: false
-
+#该配置是让Hystrix的超时时间改为30秒
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
 #Twitter_Snowflake 序列号生成器配置
 Snowflake:
   #工作中心ID 0-31
