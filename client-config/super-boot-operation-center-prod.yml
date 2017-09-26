@@ -45,7 +45,6 @@ eureka:
     #无心跳多久后,该服务失效
     lease-expiration-duration-in-seconds: 30
     appname: 监控中心
-    instance-id: ${spring.application.name}:${random.int}
 turbine:
   cluster-name-expression: default
   combine-host-port: true

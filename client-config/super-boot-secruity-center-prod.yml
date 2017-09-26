@@ -227,4 +227,3 @@ eureka:
     #无心跳多久后,该服务失效
     lease-expiration-duration-in-seconds: 30
     appname: 鉴权中心
-    instance-id: ${spring.application.name}:${random.int}
