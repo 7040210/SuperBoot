@@ -163,14 +163,6 @@ spring:
 management:
   security:
     enabled: false
-#该配置是让Hystrix的超时时间改为3秒
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 3000
 #Twitter_Snowflake 序列号生成器配置
 Snowflake:
   #工作中心ID 0-31

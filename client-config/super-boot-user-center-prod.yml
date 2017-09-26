@@ -176,14 +176,6 @@ Snowflake:
 feign:
   hystrix:
     enabled: true
-#该配置是让Hystrix的超时时间改为30秒
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 30000
 #配置注册中心信息
 eureka:
   instance:
