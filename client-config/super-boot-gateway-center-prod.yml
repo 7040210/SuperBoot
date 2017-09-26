@@ -47,6 +47,10 @@ eureka:
     appname: 网关中心
 #配置网关信息
 zuul:
+  #配置超时时间为30秒
+  host:
+    socket-timeout-millis: 30000
+    connect-timeout-millis: 30000
   routes:
     #用户中心
     user:
