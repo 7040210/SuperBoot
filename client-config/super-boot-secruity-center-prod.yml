@@ -38,9 +38,6 @@ spring:
     show-sql: true
   #数据库连接配置
   datasource:
-    type: com.alibaba.druid.pool.xa.DruidXADataSource
-    xa:
-      data-source-class-name: com.alibaba.druid.pool.xa.DruidXADataSource
     base:
       name: baseDB
       driver-class-name: com.mysql.jdbc.Driver
