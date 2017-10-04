@@ -44,6 +44,12 @@
             </exclusions>
         </dependency>
 
+        <!--使用Nio引擎undertow-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+
         <!--配置中心-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

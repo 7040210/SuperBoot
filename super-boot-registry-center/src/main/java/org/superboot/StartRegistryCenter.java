@@ -22,4 +22,5 @@ public class StartRegistryCenter {
         SpringApplication.run(StartRegistryCenter.class, args);
     }
 
+
 }

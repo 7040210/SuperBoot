@@ -1,8 +1,5 @@
 package org.superboot.repository.sql.base;
 
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.superboot.base.BaseDAO;
 import org.superboot.entity.base.BaseApi;
@@ -21,13 +18,10 @@ import java.util.List;
  * @Path org.superboot.repository.sql.base.BaseApiRepository
  */
 @Service
-@CacheConfig(cacheNames = "apis")
 public interface BaseApiRepository extends BaseDAO<BaseApi> {
 
 
-    @Cacheable(key = "#p0+#p1")
     List<BaseApi> findByUrlAndMethodName(String url, String methodName);
 
-    @CachePut(key = "#p0.url+#p0.methodName")
     BaseApi save(BaseApi api);
 }

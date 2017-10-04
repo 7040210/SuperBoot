@@ -23,4 +23,6 @@ public class StartConfigCenter {
     public static void main(String[] args) {
         SpringApplication.run(StartConfigCenter.class, args);
     }
+
+
 }

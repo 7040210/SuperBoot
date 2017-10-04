@@ -14,6 +14,32 @@
     <name>super-boot-config-center</name>
 
     <dependencies>
+
+        <!-- 工具类模块 -->
+        <dependency>
+            <groupId>org</groupId>
+            <artifactId>super-boot-utils</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+
+
+
+        <!-- 基础信息模块 -->
+        <dependency>
+            <groupId>org</groupId>
+            <artifactId>super-boot-base</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+
+        <!-- 基础实体模块 -->
+        <dependency>
+            <groupId>org</groupId>
+            <artifactId>super-boot-entity</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-server</artifactId>
@@ -24,6 +50,12 @@
                     <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <!--使用Nio引擎undertow-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
 
         <!--log4j2-->

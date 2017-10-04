@@ -2,8 +2,6 @@
 server:
   context-path: /
   port: 8080
-  tomcat:
-    uri-encoding: UTF-8
 #定义环境引用的配置文件
 spring:
   application:

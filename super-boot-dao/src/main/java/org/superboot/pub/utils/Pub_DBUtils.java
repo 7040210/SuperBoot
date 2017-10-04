@@ -42,31 +42,31 @@ public class Pub_DBUtils {
     /**
      * 自动添加服务器的接口API到数据库
      */
-    public void addApiToDB(){
-        RequestMappingHandlerMapping requestMappingHandlerMapping = requestMappingHandlerConfig.requestMappingHandlerMapping ();
+    public void addApiToDB() {
+        RequestMappingHandlerMapping requestMappingHandlerMapping = requestMappingHandlerConfig.requestMappingHandlerMapping();
         Map<RequestMappingInfo, HandlerMethod> map = requestMappingHandlerMapping.getHandlerMethods();
         Set<RequestMappingInfo> mappings = map.keySet();
-        for(RequestMappingInfo info : mappings) {
+        for (RequestMappingInfo info : mappings) {
             HandlerMethod method = map.get(info);
             String moduleStr = method.toString();
-            if(0<moduleStr.split("\\(").length){
+            if (0 < moduleStr.split("\\(").length) {
                 moduleStr = moduleStr.split("\\(")[0];
             }
 
-            if(2<moduleStr.split(" ").length){
+            if (2 < moduleStr.split(" ").length) {
                 moduleStr = moduleStr.split(" ")[2];
             }
-            int i=moduleStr.lastIndexOf(".");
-            moduleStr = moduleStr.substring(0,i);
+            int i = moduleStr.lastIndexOf(".");
+            moduleStr = moduleStr.substring(0, i);
             String urlparm = info.getPatternsCondition().toString();
-            String url = urlparm.substring(1, urlparm.length()-1);
+            String url = urlparm.substring(1, urlparm.length() - 1);
             String methodName = method.getMethod().getName();
 
             //获取API信息
-            List<BaseApi> list = sysApiRepository.findByUrlAndMethodName(url,methodName);
-            if(null == list || 0 == list.size() ){
+            List<BaseApi> list = sysApiRepository.findByUrlAndMethodName(url, methodName);
+            if (null == list || 0 == list.size()) {
                 //只有项目用到的资源才需要添加
-                if(moduleStr.startsWith("org.superboot.controller")){
+                if (moduleStr.startsWith("org.superboot.controller")) {
                     BaseApi api = new BaseApi();
                     api.setUrl(url);
                     api.setMethodPath(moduleStr);
@@ -77,18 +77,18 @@ public class Pub_DBUtils {
                         Object o = Class.forName(moduleStr).newInstance();
                         //映射模块路径
                         RequestMapping requestMapping = o.getClass().getAnnotation(RequestMapping.class);
-                        if(null != requestMapping){
-                            api.setModulePath(StringUtils.join(requestMapping.value(),","));
+                        if (null != requestMapping) {
+                            api.setModulePath(StringUtils.join(requestMapping.value(), ","));
                         }
                         //设置模块名称
                         Api api_annotation = o.getClass().getAnnotation(Api.class);
-                        if(null != api_annotation){
-                            api.setModuleName(StringUtils.join(api_annotation.tags(),","));
+                        if (null != api_annotation) {
+                            api.setModuleName(StringUtils.join(api_annotation.tags(), ","));
                         }
                         //根据API注解设置API名称及备注信息
-                        Annotation operation_annotation = Pub_Tools.getMothodAnnotationByAnnotation(o, ApiOperation.class,methodName);
-                        if(null != operation_annotation){
-                            api.setApiName( ((ApiOperation) operation_annotation).value());
+                        Annotation operation_annotation = Pub_Tools.getMothodAnnotationByAnnotation(o, ApiOperation.class, methodName);
+                        if (null != operation_annotation) {
+                            api.setApiName(((ApiOperation) operation_annotation).value());
                             api.setRemark(((ApiOperation) operation_annotation).notes());
                         }
                         sysApiRepository.save(api);

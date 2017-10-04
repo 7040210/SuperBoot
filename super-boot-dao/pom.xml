@@ -20,6 +20,44 @@
     </properties>
     <dependencies>
 
+        <!-- 工具类模块 -->
+        <dependency>
+            <groupId>org</groupId>
+            <artifactId>super-boot-utils</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+
+        <!-- 基础信息模块 -->
+        <dependency>
+            <groupId>org</groupId>
+            <artifactId>super-boot-base</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+
+        <!-- 基础实体模块 -->
+        <dependency>
+            <groupId>org</groupId>
+            <artifactId>super-boot-entity</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+        <!-- 基础AOP模块 -->
+        <dependency>
+            <groupId>org</groupId>
+            <artifactId>super-boot-aop</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+        <!-- 全局方法模块 -->
+        <dependency>
+            <groupId>org</groupId>
+            <artifactId>super-boot-global</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+
         <!-- 公共模块 -->
         <dependency>
             <groupId>org</groupId>

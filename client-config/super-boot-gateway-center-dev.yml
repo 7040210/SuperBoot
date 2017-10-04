@@ -2,8 +2,6 @@
 server:
   context-path: /
   port: 80
-  tomcat:
-    uri-encoding: UTF-8
 #定义环境引用的配置文件
 spring:
   application:
@@ -81,3 +79,7 @@ zuul:
     secruity:
       path: /AuthApi/**
       serviceId: super-boot-secruity-center
+  #启用饥饿加载
+  ribbon:
+    eager-load:
+      enabled: true

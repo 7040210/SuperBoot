@@ -2,8 +2,6 @@
 server:
   context-path: /
   port: 3333
-  tomcat:
-    uri-encoding: UTF-8
 #启用调试模式
 debug: true
 #日志配置

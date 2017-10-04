@@ -10,6 +10,11 @@
 super-boot
 ├── client-config  -- 项目配置文件信息，业务模块通过配置中心读取自动配置服务
 ├── project_info  --  项目相关信息包含数据字典、SQL语句、工具等
+├── super-boot-utils    --  项目公用工具模块
+├── super-boot-aop      --  项目公用业务拦截模块
+├── super-boot-base     --  项目公用常量模块
+├── super-boot-entity   --  项目公用实体模块
+├── super-boot-global   --  项目公用全局模块
 ├── super-boot-common   --  项目公共模块
 ├── super-boot-dao      --  公共数据库操作模块
 ├── super-boot-config-center   --  配置中心
@@ -34,6 +39,30 @@ super-boot
 <br>  5、如果需要看服务运行监控则启用监控中心（super-boot-operation-center）
 
 ## 模块介绍
+
+> super-boot-utils
+
+此模块项目共用工具类及通用方法常量等信息，项目打包的时候会打包为jar包放入项目lib中。
+
+> super-boot-aop
+
+此模块为业务模块公用拦截器，比如日志拦截等，项目打包的时候会打包为jar包放入项目lib中。
+
+
+> super-boot-base
+
+此模块项目公用常量信息，项目打包的时候会打包为jar包放入项目lib中。
+
+
+> super-boot-entity
+
+此模块项目共用实体类，项目打包的时候会打包为jar包放入项目lib中。
+
+
+> super-boot-global
+
+此模块项目共用全局拦截器，项目打包的时候会打包为jar包放入项目lib中。
+
 
 > super-boot-common
 

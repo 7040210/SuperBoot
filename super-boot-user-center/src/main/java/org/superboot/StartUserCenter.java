@@ -44,7 +44,7 @@ public class StartUserCenter {
      */
     @PostConstruct  //这个注解很重要，可以在每次启动的时候检查是否有URL更新，RequestMappingHandlerMapping只能在controller层用。这里我们放在主类中
     public void detectHandlerMethods() {
-       // pub_DBUtils.addApiToDB();
+        // pub_DBUtils.addApiToDB();
     }
 
 }

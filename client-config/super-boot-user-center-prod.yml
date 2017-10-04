@@ -2,8 +2,6 @@
 server:
   context-path: /
   port: 2222
-  tomcat:
-    uri-encoding: UTF-8
 #日志配置
 logging:
   config: classpath:log4j2-prod.xml
