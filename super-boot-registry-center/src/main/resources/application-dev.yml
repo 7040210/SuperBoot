@@ -15,7 +15,7 @@ eureka:
     fetch-registry: true
     #设置与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址。默认是http://localhost:8761/eureka ；多个地址可使用 , 分隔。
     serviceUrl:
-      defaultZone: http://localhost:${server.port}/eureka/
+      defaultZone: http://superboot:superboot@localhost:${server.port}/eureka/
 #日志配置
 logging:
   config: classpath:log4j2-dev.xml

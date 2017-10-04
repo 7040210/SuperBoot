@@ -20,7 +20,7 @@ import org.superboot.entity.LoginUser;
  * @time 21:58
  * @Path org.superboot.remote.UserRemote
  */
-@FeignClient(name= "SUPER-BOOT-GATEWAY-CENTER",fallback = UserRemoteImpl.class)
+@FeignClient(name= "SUPER-BOOT-GATEWAY-CENTER")
 public interface UserRemote {
 
     @RequestMapping(value = "/UserApi/users/login", method = RequestMethod.POST)

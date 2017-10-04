@@ -11,7 +11,7 @@ logging:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:1111/eureka/
+      defaultZone: http://superboot:superboot@localhost:1111/eureka/
 spring:
   #配置消息中心
   rabbitmq:
