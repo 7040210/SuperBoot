@@ -32,6 +32,8 @@ spring:
   devtools:
     remote:
       secret: thisismysecret
+  zipkin:
+    base-url: http://superboot:superboot@localhost:4444
   jpa:
      properties:
         hibernate:

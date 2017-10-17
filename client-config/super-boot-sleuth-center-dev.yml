@@ -38,7 +38,13 @@ debug: true
 #日志配置
 logging:
   config: classpath:log4j2-dev.xml
-
+#启用安全配置
+security:
+  basic:
+    enabled: true
+  user:
+    name: superboot #用户名
+    password: superboot #密码
 eureka:
   instance:
     #心跳时间间隔

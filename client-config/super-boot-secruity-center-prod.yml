@@ -28,6 +28,8 @@ spring:
     multipart:
       enabled: true
       max-file-size: 1024MB
+  zipkin:
+    base-url: http://superboot:superboot@localhost:4444
   #热加载配置
   devtools:
     remote:

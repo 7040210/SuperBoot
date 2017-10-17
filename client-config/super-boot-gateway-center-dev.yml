@@ -39,6 +39,8 @@ spring:
         min-idle: 5
       cache-expire: 1800
       timeout: 10000
+  zipkin:
+    base-url: http://superboot:superboot@localhost:4444
 #关闭安全认证
 management:
   security:
