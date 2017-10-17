@@ -7,13 +7,16 @@ spring:
   application:
     name: super-boot-sleuth-center
     index: ${random.int}
-  http:
-    encoding:
-      force: true
-      charset: UTF-8
-    multipart:
-      enabled: true
-      max-file-size: 1024MB
+  sleuth:
+    enabled: false
+  datasource:
+    schema[0]: classpath:/zipkin.sql
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/super_boot_sleuth?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: superboot
+    password: 123456
+    initialize: true
+    continue-on-error: true
   #热加载配置
   devtools:
     remote:
@@ -33,6 +36,9 @@ spring:
 management:
   security:
     enabled: false
+zipkin:
+  storage:
+    type: mysql
 #启用调试模式
 debug: true
 #日志配置
