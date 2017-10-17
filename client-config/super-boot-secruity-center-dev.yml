@@ -38,8 +38,6 @@ spring:
     port: 5672
     username: admin
     password: admin
-  zipkin:
-    base-url: http://superboot:superboot@localhost:4444
   http:
     encoding:
       force: true
