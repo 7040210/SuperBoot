@@ -50,8 +50,9 @@ spring:
       password: 123456
       #初始化大小
       initial-size: 5
-      min-idle: 5
-      max-active: 20
+      min-idle: 30
+      max-idle: 60
+      max-active: 50
       # 配置获取连接等待超时的时间
       max-wait: 60000
       # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
@@ -83,8 +84,9 @@ spring:
       password: 123456
       #初始化大小
       initial-size: 5
-      min-idle: 5
-      max-active: 20
+      min-idle: 30
+      max-idle: 60
+      max-active: 50
       # 配置获取连接等待超时的时间
       max-wait: 60000
       # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
