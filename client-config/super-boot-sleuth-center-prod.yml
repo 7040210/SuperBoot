@@ -1,0 +1,51 @@
+#web容器配置
+server:
+  context-path: /
+  port: 80
+#定义环境引用的配置文件
+spring:
+  application:
+    name: super-boot-sleuth-center
+    index: ${random.int}
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+    multipart:
+      enabled: true
+      max-file-size: 1024MB
+  #热加载配置
+  devtools:
+    remote:
+      secret: thisismysecret
+  cloud:
+    #启用消息追踪
+    bus:
+      trace:
+        enabled: true
+  #配置消息总线
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
+#关闭安全认证
+management:
+  security:
+    enabled: false
+#日志配置
+logging:
+  config: classpath:log4j2-prod.xml
+eureka:
+  instance:
+    #心跳时间间隔
+    lease-renewal-interval-in-seconds: 10
+    #无心跳多久后,该服务失效
+    lease-expiration-duration-in-seconds: 30
+    appname: 链路中心
+#Twitter_Snowflake 序列号生成器配置
+Snowflake:
+  #工作中心ID 0-31
+  workerId: 0
+  #数据中心ID(0~31)
+  datacenterId: 0
