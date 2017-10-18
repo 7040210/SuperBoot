@@ -62,6 +62,15 @@ Snowflake:
   workerId: 0
   #数据中心ID(0~31)
   datacenterId: 0
+
+#配置服务超时时间默认为60秒
+hystrix:
+    command:
+        default:
+            execution:
+                isolation:
+                    thread:
+                        timeoutInMilliseconds: 60000
 #配置网关信息
 zuul:
   #配置超时时间为30秒
