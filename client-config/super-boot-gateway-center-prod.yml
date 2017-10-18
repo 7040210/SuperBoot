@@ -79,4 +79,4 @@ zuul:
     eager-load:
       enabled: true
   #需要启用饥饿加载的服务
-  ignored-services: *
+  ignored-services: super-boot-user-center,super-boot-secruity-center

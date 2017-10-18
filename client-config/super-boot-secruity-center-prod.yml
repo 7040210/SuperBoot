@@ -191,9 +191,9 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 30000
+            timeoutInMilliseconds: 60000
 #启用饥饿加载
 ribbon:
   eager-load:
     enabled: true
-    clients: *
+    clients: super-boot-user-center
