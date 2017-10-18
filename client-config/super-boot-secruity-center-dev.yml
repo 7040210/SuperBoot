@@ -72,7 +72,7 @@ spring:
       # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
       time-between-eviction-runs-millis: 60000
       # 配置一个连接在池中最小生存的时间，单位是毫秒
-      min-evictable-idle-time-millis: 30
+      min-evictable-idle-time-millis: 30000
       #检测连接是否有效的sql
       validation-query: SELECT 'x'
       validation-query-timeout: 10000
@@ -105,7 +105,7 @@ spring:
       # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
       time-between-eviction-runs-millis: 60000
       # 配置一个连接在池中最小生存的时间，单位是毫秒
-      min-evictable-idle-time-millis: 30
+      min-evictable-idle-time-millis: 30000
       #检测连接是否有效的sql
       validation-query: SELECT 'x'
       validation-query-timeout: 10000
