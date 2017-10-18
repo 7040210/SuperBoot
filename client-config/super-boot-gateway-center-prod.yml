@@ -82,9 +82,3 @@ zuul:
     secruity:
       path: /AuthApi/**
       serviceId: super-boot-secruity-center
-  #启用饥饿加载
-  ribbon:
-    eager-load:
-      enabled: true
-  #需要启用饥饿加载的服务
-  ignored-services: super-boot-user-center,super-boot-secruity-center
