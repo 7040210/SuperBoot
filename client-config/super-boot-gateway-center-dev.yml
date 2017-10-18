@@ -83,3 +83,5 @@ zuul:
   ribbon:
     eager-load:
       enabled: true
+  #需要启用饥饿加载的服务
+  ignored-services: *

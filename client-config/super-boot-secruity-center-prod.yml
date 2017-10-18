@@ -192,3 +192,8 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 30000
+#启用饥饿加载
+ribbon:
+  eager-load:
+    enabled: true
+    clients: *
