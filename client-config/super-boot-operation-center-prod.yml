@@ -33,13 +33,6 @@ spring:
     port: 5672
     username: admin
     password: admin
-  #启用安全配置
-  security:
-    basic:
-      enabled: false
-    user:
-      name: superboot #用户名
-      password: superboot #密码
   redis:
     cluster:
       nodes: 127.0.0.1:7000, 127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003,127.0.0.1:7004,127.0.0.1:7005
@@ -50,10 +43,13 @@ spring:
         min-idle: 5
       cache-expire: 1800
       timeout: 10000
-#关闭安全认证
-management:
-  security:
+#启用安全配置
+security:
+  basic:
     enabled: false
+  user:
+    name: superboot #用户名
+    password: superboot #密码
 #日志配置
 logging:
   config: classpath:log4j2-prod.xml
