@@ -78,7 +78,7 @@ zuul:
     socket-timeout-millis: 60000
     connect-timeout-millis: 60000
   #需要过滤的请求
-  ignoredPatterns: /**/swagger-ui.html
+  #ignoredPatterns: /**/swagger-ui.html
   routes:
     #用户中心
     user:
