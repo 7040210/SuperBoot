@@ -50,6 +50,10 @@ security:
   user:
     name: superboot #用户名
     password: superboot #密码
+#关闭安全认证
+management:
+  security:
+    enabled: false
 #日志配置
 logging:
   config: classpath:log4j2-prod.xml
