@@ -46,7 +46,7 @@ spring:
 #启用安全配置
 security:
   basic:
-    enabled: false
+    enabled: true
   user:
     name: superboot #用户名
     password: superboot #密码
