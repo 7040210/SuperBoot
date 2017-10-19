@@ -109,8 +109,10 @@ public class FileUtil {
         } else {
             File[] filelist = baseDir.listFiles(fileFilter);
             for (File file : filelist) {
-                if (file.isFile())
+                if (file.isFile()){
                     files.add(file.getName());
+
+                }
             }
         }
         return files;

@@ -531,8 +531,9 @@ public class StringUtil {
     public static String getInsertSQL(String[] names, ArrayList values, String table) {
         StringBuffer buffer = new StringBuffer("INSERT INTO " + table + " (");
         for (int i = 0; i < names.length; i++) {
-            if (names[i].equalsIgnoreCase("ts"))
+            if (names[i].equalsIgnoreCase("ts")){
                 continue;
+            }
             buffer.append(names[i] + ",");
         }
         buffer.setLength(buffer.length() - 1);

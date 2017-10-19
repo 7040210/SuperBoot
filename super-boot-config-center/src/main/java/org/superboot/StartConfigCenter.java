@@ -24,5 +24,4 @@ public class StartConfigCenter {
         SpringApplication.run(StartConfigCenter.class, args);
     }
 
-
 }

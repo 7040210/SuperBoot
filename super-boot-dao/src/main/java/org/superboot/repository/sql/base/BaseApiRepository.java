@@ -21,7 +21,8 @@ import java.util.List;
 public interface BaseApiRepository extends BaseDAO<BaseApi> {
 
 
-    List<BaseApi> findByUrlAndMethodName(String url, String methodName);
+    Object findByUrlAndMethodName(String url, String methodName);
 
+    @Override
     BaseApi save(BaseApi api);
 }

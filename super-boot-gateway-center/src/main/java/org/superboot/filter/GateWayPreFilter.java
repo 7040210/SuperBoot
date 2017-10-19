@@ -71,7 +71,7 @@ public class GateWayPreFilter extends ZuulFilter {
             throws IOException {
         String submitMehtod = request.getMethod();
         // GET
-        if (submitMehtod.equals("GET")) {
+        if ("GET".equals(submitMehtod)) {
             return new JSONObject();
         } else {
             return JSON.parseObject(getRequestPostStr(request));

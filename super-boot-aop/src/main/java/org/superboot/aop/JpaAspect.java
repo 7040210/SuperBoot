@@ -35,6 +35,9 @@ public class JpaAspect {
     @Autowired
     private Pub_Utils pubUtils;
 
+    @Autowired
+    private Pub_Tools pubTools;
+
     /**
      * 设置JPA切入点
      */
@@ -54,9 +57,9 @@ public class JpaAspect {
                 for (int i = 0; i < joinPoint.getArgs().length; i++) {
                     Object o = joinPoint.getArgs()[i];
                     //设置时间戳
-                    joinPoint.getArgs()[i] = Pub_Tools.setFieldValue("ts", DateUtils.getTimestamp(), o);
+                    joinPoint.getArgs()[i] = pubTools.setFieldValue("ts", DateUtils.getTimestamp(), o);
                     //设置删除标志
-                    joinPoint.getArgs()[i] = Pub_Tools.setFieldValue("dr", 0, o);
+                    joinPoint.getArgs()[i] = pubTools.setFieldValue("dr", 0, o);
                     //对主键进行赋值
                     joinPoint.getArgs()[i] = pubUtils.setIdValue(o);
                 }

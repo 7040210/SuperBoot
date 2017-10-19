@@ -29,3 +29,9 @@ security:
   user:
     name: superboot #用户名
     password: superboot #密码
+#Twitter_Snowflake 序列号生成器配置
+Snowflake:
+  #工作中心ID 0-31
+  workerId: 0
+  #数据中心ID(0~31)
+  datacenterId: 0

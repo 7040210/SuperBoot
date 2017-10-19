@@ -28,6 +28,7 @@ public interface BaseApiRoleRepository extends BaseDAO<BaseApiRole> {
     List<BaseApiRole> findByPkRole(long pk_role);
 
     @CachePut(key = "#p0.pkRole")
+    @Override
     BaseApiRole save(BaseApiRole api);
 
 }

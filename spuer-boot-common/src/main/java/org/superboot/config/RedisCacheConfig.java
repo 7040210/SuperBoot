@@ -75,6 +75,7 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
      * @return
      */
     @Bean
+    @Override
     public CacheManager cacheManager() {
         String[] cacheNames = {"default", "users", "roles", "apis", "configs", "info"};
         RedisCacheManager redisCacheManager = new RedisCacheManager(redisTemplate(), Arrays.asList(cacheNames));

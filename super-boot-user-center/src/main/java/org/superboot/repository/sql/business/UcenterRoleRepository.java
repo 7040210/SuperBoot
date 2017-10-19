@@ -36,6 +36,7 @@ public interface UcenterRoleRepository extends BaseDAO<UcenterRole> {
     UcenterRole findByRoleCode(String roleCode);
 
     @CachePut(key = "#p0.roleCode")
+    @Override
     UcenterRole save(UcenterRole role);
 
 

@@ -3,7 +3,7 @@
 
     <properties>
         <!--定义变量,亦可以调用系统变量,比如${env:TESTLOG}/test/logs,其中TESTLOG是自己添加的系统环境变量  -->
-        <property name="log.path">F://git/logs</property>
+        <property name="log.path">D://logs</property>
         <property name="project.name">super-boot-gateway-center</property>
     </properties>
 
@@ -77,6 +77,8 @@
         <appender-ref ref="SYSOUT"/>
         <!-- 输出日志到mongodb -->
         <appender-ref ref="mongoAppender" />
+        <appender-ref ref="DEBUG_ROLLING_FILE"/>
+        <appender-ref ref="INFO_ROLLING_FILE"/>
         <appender-ref ref="ERROR_ROLLING_FILE"/>
     </root>
 

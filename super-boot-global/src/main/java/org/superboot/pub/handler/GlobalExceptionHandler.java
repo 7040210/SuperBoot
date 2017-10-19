@@ -54,7 +54,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public BaseMessage defaultErrorHandler(HttpServletRequest req, Exception e) {
-        return Pub_Tools.genNoMsg(SuperBootCode.NO.getCode(), e.getMessage());
+        saveLog(req,e);
+        return Pub_Tools.genNoMsg(SuperBootCode.EXCEPTION.getCode(), e.getMessage());
     }
 
     /**
@@ -68,7 +69,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = RuntimeException.class)
     @ResponseBody
     public BaseMessage runtimeErrorHandler(HttpServletRequest req, RuntimeException e) {
-        return Pub_Tools.genNoMsg(SuperBootCode.NO.getCode(), e.getMessage());
+        //记录程序异常日志
+        saveLog(req,e);
+        return Pub_Tools.genNoMsg(SuperBootCode.EXCEPTION.getCode(), e.getMessage());
     }
 
 
@@ -91,6 +94,7 @@ public class GlobalExceptionHandler {
             String message = messageSource.getMessage(err, locale);
             errorMsg.append(err.getField() + ":" + message + ",");
         }
+
         return Pub_Tools.genNoMsg(SuperBootCode.PARAMS_NOT_VALIDATE, errorMsg.subSequence(0, errorMsg.length() - 1));
     }
 
@@ -107,9 +111,21 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public BaseMessage superBootErrorHandler(HttpServletRequest req, Exception e) {
         int code = ((SuperBootException) e).getCode();
+        //记录程序异常日志
+        if(SuperBootCode.EXCEPTION.getCode() == code){
+            saveLog(req,e);
+        }
         String data = local.getMessage(code);
         return Pub_Tools.genNoMsg(code, data);
     }
 
 
+    /**
+     * 保存日志信息
+     * @param req
+     * @param e
+     */
+    private void saveLog(HttpServletRequest req,Throwable e){
+
+    }
 }

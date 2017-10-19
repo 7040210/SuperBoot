@@ -15,6 +15,7 @@
       <module fileurl="file://$PROJECT_DIR$/super-boot-operation-center/super-boot-operation-center.iml" filepath="$PROJECT_DIR$/super-boot-operation-center/super-boot-operation-center.iml" />
       <module fileurl="file://$PROJECT_DIR$/super-boot-registry-center/super-boot-registry-center.iml" filepath="$PROJECT_DIR$/super-boot-registry-center/super-boot-registry-center.iml" />
       <module fileurl="file://$PROJECT_DIR$/super-boot-secruity-center/super-boot-secruity-center.iml" filepath="$PROJECT_DIR$/super-boot-secruity-center/super-boot-secruity-center.iml" />
+      <module fileurl="file://$PROJECT_DIR$/super-boot-sleuth-center/super-boot-sleuth-center.iml" filepath="$PROJECT_DIR$/super-boot-sleuth-center/super-boot-sleuth-center.iml" />
       <module fileurl="file://$PROJECT_DIR$/super-boot-user-center/super-boot-user-center.iml" filepath="$PROJECT_DIR$/super-boot-user-center/super-boot-user-center.iml" />
       <module fileurl="file://$PROJECT_DIR$/super-boot-utils/super-boot-utils.iml" filepath="$PROJECT_DIR$/super-boot-utils/super-boot-utils.iml" />
       <module fileurl="file://$PROJECT_DIR$/super-boot-web/super-boot-web.iml" filepath="$PROJECT_DIR$/super-boot-web/super-boot-web.iml" />

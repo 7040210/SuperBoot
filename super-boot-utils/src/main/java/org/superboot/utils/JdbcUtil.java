@@ -84,9 +84,15 @@ public class JdbcUtil {
     // 释放连接
     public void release() {
         try {
-            if (null != rs) rs.close();
-            if (null != pstmt) pstmt.close();
-            if (null != conn) conn.close();
+            if (null != rs){
+                rs.close();
+            }
+            if (null != pstmt){
+                pstmt.close();
+            }
+            if (null != conn){
+                conn.close();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

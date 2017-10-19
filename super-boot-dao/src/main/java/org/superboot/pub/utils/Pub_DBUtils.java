@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+import org.superboot.base.SuperBootCode;
+import org.superboot.base.SuperBootException;
 import org.superboot.config.RequestMappingHandlerConfig;
 import org.superboot.entity.base.BaseApi;
 import org.superboot.pub.Pub_Tools;
@@ -39,6 +41,9 @@ public class Pub_DBUtils {
     @Autowired
     private RequestMappingHandlerConfig requestMappingHandlerConfig;
 
+    @Autowired
+    private Pub_Tools pubTools;
+
     /**
      * 自动添加服务器的接口API到数据库
      */
@@ -63,8 +68,8 @@ public class Pub_DBUtils {
             String methodName = method.getMethod().getName();
 
             //获取API信息
-            List<BaseApi> list = sysApiRepository.findByUrlAndMethodName(url, methodName);
-            if (null == list || 0 == list.size()) {
+            BaseApi list = (BaseApi) sysApiRepository.findByUrlAndMethodName(url, methodName);
+            if (null == list) {
                 //只有项目用到的资源才需要添加
                 if (moduleStr.startsWith("org.superboot.controller")) {
                     BaseApi api = new BaseApi();
@@ -86,18 +91,18 @@ public class Pub_DBUtils {
                             api.setModuleName(StringUtils.join(api_annotation.tags(), ","));
                         }
                         //根据API注解设置API名称及备注信息
-                        Annotation operation_annotation = Pub_Tools.getMothodAnnotationByAnnotation(o, ApiOperation.class, methodName);
+                        Annotation operation_annotation = pubTools.getMothodAnnotationByAnnotation(o, ApiOperation.class, methodName);
                         if (null != operation_annotation) {
                             api.setApiName(((ApiOperation) operation_annotation).value());
                             api.setRemark(((ApiOperation) operation_annotation).notes());
                         }
                         sysApiRepository.save(api);
                     } catch (InstantiationException e) {
-                        e.printStackTrace();
+                        throw new SuperBootException(SuperBootCode.EXCEPTION,e);
                     } catch (IllegalAccessException e) {
-                        e.printStackTrace();
+                        throw new SuperBootException(SuperBootCode.EXCEPTION,e);
                     } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
+                        throw new SuperBootException(SuperBootCode.EXCEPTION,e);
                     }
                 }
             }

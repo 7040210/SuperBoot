@@ -43,10 +43,11 @@ public class DateUtils {
 
     /**
      * 获取时间戳
+     *
      * @return
      */
-    public static Timestamp getTimestamp(){
-        return new Timestamp(new Date().getTime());
+    public static Timestamp getTimestamp() {
+        return new Timestamp(System.currentTimeMillis());
     }
 
     /**
@@ -195,17 +196,21 @@ public class DateUtils {
         int subYear = cal1.get(Calendar.YEAR) - cal2.get(Calendar.YEAR);
         if (0 == subYear) {
             if (cal1.get(Calendar.WEEK_OF_YEAR) == cal2
-                    .get(Calendar.WEEK_OF_YEAR))
+                    .get(Calendar.WEEK_OF_YEAR)) {
                 return true;
+            }
+
         } else if (1 == subYear && 11 == cal2.get(Calendar.MONTH)) {
             // 如果12月的最后一周横跨来年第一周的话则最后一周即算做来年的第一周
             if (cal1.get(Calendar.WEEK_OF_YEAR) == cal2
-                    .get(Calendar.WEEK_OF_YEAR))
+                    .get(Calendar.WEEK_OF_YEAR)) {
                 return true;
+            }
         } else if (-1 == subYear && 11 == cal1.get(Calendar.MONTH)) {
             if (cal1.get(Calendar.WEEK_OF_YEAR) == cal2
-                    .get(Calendar.WEEK_OF_YEAR))
+                    .get(Calendar.WEEK_OF_YEAR)) {
                 return true;
+            }
         }
         return false;
     }
@@ -218,8 +223,9 @@ public class DateUtils {
     public static String getSeqWeek() {
         Calendar c = Calendar.getInstance(Locale.CHINA);
         String week = Integer.toString(c.get(Calendar.WEEK_OF_YEAR));
-        if (week.length() == 1)
+        if (week.length() == 1) {
             week = "0" + week;
+        }
         String year = Integer.toString(c.get(Calendar.YEAR));
         return year + week;
     }
@@ -237,17 +243,18 @@ public class DateUtils {
         String[] jj = null;
         kk = st1.split(":");
         jj = st2.split(":");
-        if (Integer.parseInt(kk[0]) < Integer.parseInt(jj[0]))
+        if (Integer.parseInt(kk[0]) < Integer.parseInt(jj[0])) {
             return "0";
-        else {
+        } else {
             double y = Double.parseDouble(kk[0]) + Double.parseDouble(kk[1])
                     / 60;
             double u = Double.parseDouble(jj[0]) + Double.parseDouble(jj[1])
                     / 60;
-            if ((y - u) > 0)
+            if ((y - u) > 0) {
                 return y - u + "";
-            else
+            } else {
                 return "0";
+            }
         }
     }
 
@@ -307,15 +314,17 @@ public class DateUtils {
         GregorianCalendar gc = (GregorianCalendar) Calendar.getInstance();
         gc.setTime(d);
         int year = gc.get(Calendar.YEAR);
-        if ((year % 400) == 0)
+        if ((year % 400) == 0) {
             return true;
-        else if ((year % 4) == 0) {
-            if ((year % 100) == 0)
+        } else if ((year % 4) == 0) {
+            if ((year % 100) == 0) {
                 return false;
-            else
+            } else {
                 return true;
-        } else
+            }
+        } else {
             return false;
+        }
     }
 
     /**

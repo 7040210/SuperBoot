@@ -9,6 +9,7 @@ import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
+import javax.imageio.plugins.jpeg.JPEGImageWriteParam;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
@@ -249,12 +250,12 @@ public class ImgUtil {
 
         // 指定写图片的方式为 jpg
         imgWrier = ImageIO.getImageWritersByFormatName("jpg").next();
-        imgWriteParams = new javax.imageio.plugins.jpeg.JPEGImageWriteParam(null);
+        imgWriteParams = new JPEGImageWriteParam(null);
         // 要使用压缩，必须指定压缩方式为MODE_EXPLICIT
-        imgWriteParams.setCompressionMode(imgWriteParams.MODE_EXPLICIT);
+        imgWriteParams.setCompressionMode(JPEGImageWriteParam.MODE_EXPLICIT);
         // 这里指定压缩的程度，参数qality是取值0~1范围内，
         imgWriteParams.setCompressionQuality((float) 0.3);
-        imgWriteParams.setProgressiveMode(imgWriteParams.MODE_DISABLED);
+        imgWriteParams.setProgressiveMode(JPEGImageWriteParam.MODE_DISABLED);
         ColorModel colorModel = ColorModel.getRGBdefault();
         // 指定压缩时使用的色彩模式
         imgWriteParams.setDestinationType(new javax.imageio.ImageTypeSpecifier(colorModel, colorModel
@@ -301,11 +302,11 @@ public class ImgUtil {
         imgWrier = ImageIO.getImageWritersByFormatName("jpg").next();
         imgWriteParams = new javax.imageio.plugins.jpeg.JPEGImageWriteParam(null);
         // 要使用压缩，必须指定压缩方式为MODE_EXPLICIT
-        imgWriteParams.setCompressionMode(imgWriteParams.MODE_EXPLICIT);
+        imgWriteParams.setCompressionMode(JPEGImageWriteParam.MODE_EXPLICIT);
         // 这里指定压缩的程度，参数qality是取值0~1范围内，
         imgWriteParams.setCompressionQuality((float) 0.3);
 
-        imgWriteParams.setProgressiveMode(imgWriteParams.MODE_DISABLED);
+        imgWriteParams.setProgressiveMode(JPEGImageWriteParam.MODE_DISABLED);
         ColorModel colorModel = ColorModel.getRGBdefault();
         // 指定压缩时使用的色彩模式
         imgWriteParams.setDestinationType(new javax.imageio.ImageTypeSpecifier(colorModel, colorModel

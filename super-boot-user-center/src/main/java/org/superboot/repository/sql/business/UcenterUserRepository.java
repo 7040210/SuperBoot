@@ -33,6 +33,7 @@ public interface UcenterUserRepository extends BaseDAO<UcenterUser> {
 
 
     @CachePut(key = "#p0.userCode")
+    @Override
     UcenterUser save(UcenterUser user);
 
 }

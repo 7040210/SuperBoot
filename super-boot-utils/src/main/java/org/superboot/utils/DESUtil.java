@@ -101,8 +101,8 @@ public class DESUtil {
         StringBuffer hexString = new StringBuffer();
         for (int i = 0; i < b.length; i++) {
             String plainText = Integer.toHexString(0xff & b[i]);
-            if (plainText.length() < 2)
-                plainText = "0" + plainText;
+            if (plainText.length() < 2){
+                plainText = "0" + plainText;}
             hexString.append(plainText);
         }
         return hexString+"";

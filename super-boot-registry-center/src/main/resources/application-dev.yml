@@ -3,8 +3,6 @@ server:
   context-path: /
   port: 1111
   index: ${random.int}
-  tomcat:
-    uri-encoding: UTF-8
 #启用调试模式
 debug: true
 eureka:
@@ -19,3 +17,14 @@ eureka:
 #日志配置
 logging:
   config: classpath:log4j2-dev.xml
+spring:
+  redis:
+    cluster:
+      nodes: 127.0.0.1:7000, 127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003,127.0.0.1:7004,127.0.0.1:7005
+      pool:
+        max-active: 10
+        max-wait: 10000
+        max-idle: 20
+        min-idle: 5
+      cache-expire: 1800
+      timeout: 10000

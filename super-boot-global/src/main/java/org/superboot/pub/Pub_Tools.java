@@ -56,15 +56,17 @@ public class Pub_Tools {
      * @param methodName      方法名称
      * @return
      */
-    public static Annotation getMothodAnnotationByAnnotation(Object o, Class annotationClass, String methodName) {
+    public  Annotation getMothodAnnotationByAnnotation(Object o, Class annotationClass, String methodName) {
         Method[] methods = o.getClass().getDeclaredMethods();
         for (Method method : methods) {
             //获取传入的方法
-            if (method.getName().toLowerCase().equals(methodName.toLowerCase()))
+            if (method.getName().toLowerCase().equals(methodName.toLowerCase())){
+
                 //判断是否为ID的注解方法
                 if (null != method.getAnnotation(annotationClass)) {
                     return method.getAnnotation(annotationClass);
                 }
+            }
         }
         return null;
     }
@@ -77,15 +79,17 @@ public class Pub_Tools {
      * @param fieldName       字段名称
      * @return
      */
-    public static Annotation getFieldAnnotationByAnnotation(Object o, Class annotationClass, String fieldName) {
+    public  Annotation getFieldAnnotationByAnnotation(Object o, Class annotationClass, String fieldName) {
         Field[] fields = o.getClass().getDeclaredFields();
         for (Field field : fields) {
             //获取传入的字段
-            if (field.getName().toLowerCase().equals(fieldName.toLowerCase()))
+            if (field.getName().toLowerCase().equals(fieldName.toLowerCase())){
+
                 //判断是否为ID的注解方法
                 if (null != field.getAnnotation(annotationClass)) {
                     return field.getAnnotation(annotationClass);
                 }
+            }
         }
         return null;
     }
@@ -99,7 +103,7 @@ public class Pub_Tools {
      * @param o         实体对象
      * @return
      */
-    public static Object setFieldValue(String fieldName, Object value, Object o) throws IllegalAccessException {
+    public Object setFieldValue(String fieldName, Object value, Object o) throws IllegalAccessException {
         Field[] fields = o.getClass().getDeclaredFields();
         for (Field field : fields) {
             if (field.getName().endsWith(fieldName)) {
@@ -285,51 +289,6 @@ public class Pub_Tools {
         }
 
         return text;
-    }
-
-
-    /**
-     * RSA解密
-     *
-     * @param PrivateKey 私钥
-     * @param text       密文
-     * @return
-     */
-    public static String RSAdecrypt(String PrivateKey, String text) throws Exception {
-
-        if (null != text && PrivateKey != null) {
-            RSAUtils RSAUtils = new RSAUtils();
-            //加载秘钥
-            RSAUtils.loadPrivateKey(PrivateKey);
-            //解密
-            byte[] plainText = RSAUtils.decrypt(RSAUtils.getPrivateKey(), RSAUtils.decryptBASE64(transfBack(text)));
-            //URL转码
-            return new String(plainText);
-        }
-
-        return null;
-    }
-
-    /**
-     * RSA加密,加密后的内容会进行特殊字符的转码，解密的时候也需要将转义内容变成原文
-     *
-     * @param PublicKey 公钥
-     * @param text      密文
-     * @return
-     */
-    public static String RSAEncrypt(String PublicKey, String text) throws Exception {
-
-        if (null != text && PublicKey != null) {
-            RSAUtils RSAUtils = new RSAUtils();
-            //加载公钥
-            RSAUtils.loadPublicKey(PublicKey);
-            //加密
-            byte[] plainText = RSAUtils.encrypt(RSAUtils.getPublicKey(), text);
-            //特殊字符转义
-            return transfString(RSAUtils.encryptBASE64(plainText));
-        }
-
-        return null;
     }
 
 

@@ -27,5 +27,6 @@ public interface UcenterUserRoleRepository extends BaseDAO<UcenterUserRole> {
 
 
     @CachePut(key = "#p0.pkUser")
+    @Override
     UcenterUserRole save(UcenterUserRole userrole);
 }

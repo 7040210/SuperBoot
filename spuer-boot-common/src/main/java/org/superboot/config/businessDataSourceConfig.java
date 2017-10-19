@@ -74,7 +74,6 @@ public class businessDataSourceConfig {
 
 
     //配置事务
-    @Primary
     @Bean(name = "businessTransactionManager")
     public PlatformTransactionManager transactionManagerBook(EntityManagerFactoryBuilder builder) {
         return new JpaTransactionManager(businessEntityManagerFactory(builder).getObject());

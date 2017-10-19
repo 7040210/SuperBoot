@@ -6,6 +6,7 @@
     <file url="file://$PROJECT_DIR$/super-boot-aop" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/super-boot-base" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/super-boot-config-center" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/super-boot-config-info" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/super-boot-dao" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/super-boot-entity" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/super-boot-gateway-center" charset="UTF-8" />
@@ -14,6 +15,7 @@
     <file url="file://$PROJECT_DIR$/super-boot-operation-center" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/super-boot-registry-center" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/super-boot-secruity-center" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/super-boot-sleuth-center" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/super-boot-user-center" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/super-boot-user-center/src/main/java/org/superboot/StartUserCenter.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/super-boot-utils" charset="UTF-8" />

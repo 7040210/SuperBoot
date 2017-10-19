@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/project_info/super_boot_base.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/project_info/super_boot_user.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/super-boot-sleuth-center/src/main/resources/zipkin.sql" dialect="MySQL" />
+  </component>
+</project>
