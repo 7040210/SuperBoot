@@ -1,0 +1,47 @@
+#web容器配置
+server:
+  context-path: /
+  port: 10000
+  index: ${random.int}
+eureka:
+  environment: 开发环境
+  server:
+    #关闭服务保护
+    enable-self-preservation: false
+  client:
+    #表示是否将自己注册到Eureka Server，默认为true。
+    register-with-eureka: true
+    #表示是否从Eureka Server获取注册信息，默认为true
+    fetch-registry: true
+    #设置与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址。默认是http://localhost:10000/eureka ；多个地址可使用 , 分隔。
+    serviceUrl:
+      defaultZone: http://admin:superboot.org@localhost:10000/eureka/
+    registry-fetch-interval-seconds: 5
+logging:
+  path: /home/logs
+#启用安全配置
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin #用户名
+    password: superboot.org #密码
+#Twitter_Snowflake 序列号生成器配置
+Snowflake:
+  #工作中心ID 0-31
+  workerId: 0
+  #数据中心ID(0~31)
+  datacenterId: 0
+management:
+  security:
+    enabled: false
+  #设置服务只能本机调用
+  address: 127.0.0.1
+  #指定管理路径
+  context-path: /superboot
+#启用关机指令，需要POST提交  curl -X POST http://admin:superboot.org@localhost:10000/superboot/bye
+endpoints:
+  shutdown:
+    enabled: true
+    #映射路径
+    path: /bye

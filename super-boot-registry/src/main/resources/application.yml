@@ -1,0 +1,24 @@
+#定义环境引用的配置文件
+spring:
+  profiles:
+    active: dev
+  application:
+    name: registry
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+    multipart:
+      enabled: true
+      max-file-size: 1024MB
+eureka:
+  instance:
+    #心跳时间间隔
+    lease-renewal-interval-in-seconds: 10
+    #无心跳多久后,该服务失效
+    lease-expiration-duration-in-seconds: 30
+    appname: 注册中心
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    prefer-ip-address: true
+
+
