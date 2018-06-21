@@ -1,0 +1,56 @@
+#web容器配置
+server:
+  context-path: /
+  port: 11000
+  index: ${random.int}
+#启用调试模式
+debug: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:superboot.org@localhost:10000/eureka/
+    registry-fetch-interval-seconds: 5
+spring:
+  #配置中心使用Git
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/7040210/SuperBoot.git
+          # git仓库地址下的相对地址，可以配置多个，用,分割。
+          search-paths: client-config
+          # git仓库的账号,公开不需要
+          username:
+          password:
+    stream:
+      kafka:
+        binder:
+          brokers: 127.0.0.1:9092
+          zkNodes: 127.0.0.1:2181
+logging:
+  path: /home/logs
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin #用户名
+    password: superboot.org #密码
+#Twitter_Snowflake 序列号生成器配置
+Snowflake:
+  #工作中心ID 0-31
+  workerId: 0
+  #数据中心ID(0~31)
+  datacenterId: 0
+management:
+  security:
+    enabled: false
+  #设置服务只能本机调用
+  address: 127.0.0.1
+  #指定管理路径
+  context-path: /superboot
+#启用关机指令，需要POST提交  curl -X POST http://admin:superboot.org@localhost:11000/superboot/bye
+endpoints:
+  shutdown:
+    enabled: true
+    #映射路径
+    path: /bye
