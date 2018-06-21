@@ -29,10 +29,6 @@ import java.util.regex.Pattern;
  * ——81~99表示省（自治区）辖县级市。
  * </p>
  *
- * @author jesion
- * @date 2017/9/5
- * @time 17:03
- * @Path org.superboot.utils.IdcardUtil
  */
 public class IdcardUtil {
     /**

@@ -8,10 +8,6 @@ import java.lang.annotation.*;
  * 功能描述:
  * </p>
  *
- * @author jesion
- * @date 2017/9/15
- * @time 13:51
- * @Path org.superboot.base.NotValidateToken
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

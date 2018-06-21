@@ -17,10 +17,6 @@ import java.util.concurrent.atomic.AtomicLong;
  * 1000万：480,12,40.0%<p>
  * 100万：50,10,5.0%<p>
  *
- * @author jesion
- * @date 2017/9/5
- * @time 16:08
- * @Path org.superboot.utils.SystemClock
  */
 public class SystemClock {
     private final long period;

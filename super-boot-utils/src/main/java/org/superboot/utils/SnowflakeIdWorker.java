@@ -14,10 +14,6 @@ package org.superboot.utils;
  * SnowFlake的优点是，整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞(由数据中心ID和机器ID作区分)，并且效率较高，经测试，SnowFlake每秒能够产生26万ID左右。
  * </p>
  *
- * @author jesion
- * @date 2017/9/5
- * @time 16:07
- * @Path org.superboot.utils.SnowflakeIdWorker
  */
 public class SnowflakeIdWorker {
 

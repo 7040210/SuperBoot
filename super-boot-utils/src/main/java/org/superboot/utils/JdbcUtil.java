@@ -12,10 +12,6 @@ import java.util.Map;
  * 功能描述:
  * </p>
  *
- * @author jesion
- * @date 2017/9/5
- * @time 16:36
- * @Path org.superboot.utils.JdbcUtil
  */
 public class JdbcUtil {
 

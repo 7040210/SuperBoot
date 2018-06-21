@@ -12,10 +12,6 @@ import java.io.Serializable;
  * 功能描述:
  * </p>
  *
- * @author jesion
- * @date 2017/9/9
- * @time 15:28
- * @Path org.superboot.entity.base.api.BaseMessage
  */
 @Data
 @ApiModel("基础消息返回对象")
@@ -37,8 +33,8 @@ public class BaseMessage  implements Serializable {
 
     public BaseMessage(Throwable e) {
         super();
-        this.code = SuperBootCode.NO.getCode();
-        this.status = SuperBootStatus.NO.getCode();
+        this.code = StatusCode.NO.getCode();
+        this.status = BaseStatus.NO.getCode();
         this.message = e.getMessage();
     }
 

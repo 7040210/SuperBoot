@@ -8,10 +8,6 @@ import java.security.MessageDigest;
  * 功能描述:
  * </p>
  *
- * @author jesion
- * @date 2017/9/5
- * @time 16:42
- * @Path org.superboot.utils.MD5Util
  */
 public class MD5Util {
 

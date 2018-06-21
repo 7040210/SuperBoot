@@ -10,10 +10,6 @@ import javax.servlet.http.HttpServletResponse;
  * 功能描述:
  * </p>
  *
- * @author jesion
- * @date 2017/9/5
- * @time 16:34
- * @Path org.superboot.utils.CookieUtil
  */
 public class CookieUtil {
 

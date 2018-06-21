@@ -15,10 +15,6 @@ import java.util.regex.Pattern;
  * 功能描述:
  * </p>
  *
- * @author jesion
- * @date 2017/9/5
- * @time 16:51
- * @Path org.superboot.utils.StringUtil
  */
 public class StringUtil {
 

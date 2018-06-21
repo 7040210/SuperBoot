@@ -15,10 +15,6 @@ import java.util.List;
  * 功能描述:
  * </p>
  *
- * @author jesion
- * @date 2017/9/5
- * @time 17:17
- * @Path org.superboot.utils.JSONUtil
  */
 public class JSONUtil {
 

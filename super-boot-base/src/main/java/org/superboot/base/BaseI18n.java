@@ -6,10 +6,6 @@ package org.superboot.base;
  * 功能描述:
  * </p>
  *
- * @author jesion
- * @date 2017/9/12
- * @time 15:37
- * @Path org.superboot.base.BaseI18n
  */
 public enum BaseI18n {
     zh_CN("zh_CN", "中文"),

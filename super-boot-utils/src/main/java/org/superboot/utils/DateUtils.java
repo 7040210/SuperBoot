@@ -1,5 +1,7 @@
 package org.superboot.utils;
 
+import com.xiaoleilu.hutool.date.DateUtil;
+
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.ParsePosition;
@@ -12,10 +14,6 @@ import java.util.*;
  * 功能描述:
  * </p>
  *
- * @author jesion
- * @date 2017/9/5
- * @time 16:55
- * @Path org.superboot.utils.DateUtils
  */
 public class DateUtils {
 
@@ -57,6 +55,9 @@ public class DateUtils {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(System.currentTimeMillis()) + "";
     }
+
+
+
 
 
     /**
@@ -112,23 +113,7 @@ public class DateUtils {
         return date_3_hm_date;
     }
 
-    /**
-     * 计算当月最后一天,返回字符串
-     *
-     * @return
-     */
-    public String getEndDay() {
-        String str = "";
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-        Calendar lastDate = Calendar.getInstance();
-        lastDate.set(Calendar.DATE, 1);// 设为当前月的1号
-        lastDate.add(Calendar.MONTH, 1);// 加一个月，变为下月的1号
-        lastDate.add(Calendar.DATE, -1);// 减去一天，变为当月最后一天
-
-        str = sdf.format(lastDate.getTime());
-        return str;
-    }
 
     /**
      * 获取一个月的最后一天
@@ -817,7 +802,6 @@ public class DateUtils {
      * @return
      */
     public static String getFirstDayOfQuarter(Integer year, Integer quarter) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         Integer month = new Integer(0);
@@ -832,7 +816,7 @@ public class DateUtils {
         } else {
             month = calendar.get(Calendar.MONTH);
         }
-        return sdf.format(getFirstDayOfMonth(year, month));
+        return getFirstDayOfMonth(year, month);
     }
 
     /**
@@ -989,6 +973,49 @@ public class DateUtils {
         }
     }
 
+    /**
+     * 获取当月日期列表
+     *
+     * @param d 日期
+     * @return
+     */
+    public static List<String> getMonList(Date d, String fmt) {
+        if (null == fmt) {
+            fmt = "dd";
+        }
+        List<String> list = new ArrayList<>();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(d);
+        cal.set(Calendar.DATE, 1);
+        int month = cal.get(Calendar.MONTH);
+        while (cal.get(Calendar.MONTH) == month) {
+            list.add(DateUtil.format(cal.getTime(), fmt));
+            cal.add(Calendar.DATE, 1);
+        }
+        return list;
+    }
+
+    /**
+     * 获取当月日期列表
+     *
+     * @param date yyyy-MM-dd
+     * @return
+     */
+    public static List<String> getMonList(String date, String fmt) {
+        return getMonList(DateUtil.parse(date), fmt);
+    }
+
+    /**
+     * 获取当月日期列表
+     *
+     * @param date
+     * @return
+     */
+    public static List<String> getMonList(String date) {
+        return getMonList(DateUtil.parse(date), "dd");
+    }
+
+
     private static long toSeconds(long date) {
         return date / 1000L;
     }
@@ -1009,10 +1036,10 @@ public class DateUtils {
         return toDays(date) / 30L;
     }
 
+
     private static long toYears(long date) {
         return toMonths(date) / 365L;
     }
-
 
     public static void main(String[] args) {
         //获取当前是第几周
@@ -1060,5 +1087,24 @@ public class DateUtils {
         }
 
         System.out.println(DateUtils.getWeekByDate("2016-11-03") - DateUtils.getWeekByDate("2016-09-05") + 1);
+        System.out.println("key"+System.currentTimeMillis());
+    }
+
+    /**
+     * 计算当月最后一天,返回字符串
+     *
+     * @return
+     */
+    public String getEndDay() {
+        String str = "";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        Calendar lastDate = Calendar.getInstance();
+        lastDate.set(Calendar.DATE, 1);// 设为当前月的1号
+        lastDate.add(Calendar.MONTH, 1);// 加一个月，变为下月的1号
+        lastDate.add(Calendar.DATE, -1);// 减去一天，变为当月最后一天
+
+        str = sdf.format(lastDate.getTime());
+        return str;
     }
 }

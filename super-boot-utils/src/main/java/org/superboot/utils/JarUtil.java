@@ -11,10 +11,6 @@ import java.util.jar.JarFile;
  * 功能描述:
  * </p>
  *
- * @author jesion
- * @date 2017/9/5
- * @time 16:35
- * @Path org.superboot.utils.JarUtil
  */
 public class JarUtil {
 

@@ -10,10 +10,6 @@ import java.util.regex.Pattern;
  * 功能描述:提供一些简单的校验方法
  * </p>
  *
- * @author jesion
- * @date 2017/9/5
- * @time 18:00
- * @Path org.superboot.utils.ValidUtils
  */
 public class ValidUtils {
 

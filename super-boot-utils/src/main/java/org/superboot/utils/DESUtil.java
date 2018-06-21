@@ -13,10 +13,6 @@ import javax.crypto.spec.IvParameterSpec;
  * 功能描述:JAVA版与C#通用的DES加密解密工具
  * </p>
  *
- * @author jesion
- * @date 2017/9/5
- * @time 16:59
- * @Path org.superboot.utils.DESUtil
  */
 public class DESUtil {
 

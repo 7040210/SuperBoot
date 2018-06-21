@@ -9,10 +9,6 @@ import java.util.regex.Pattern;
  * 功能描述:
  * </p>
  *
- * @author jesion
- * @date 2017/9/5
- * @time 17:02
- * @Path org.superboot.utils.HtmlUtils
  */
 public class HtmlUtils {
     private static final String regEx_script = "<script[^>]*?>[\\s\\S]*?<\\/script>";

@@ -1,5 +1,7 @@
 package org.superboot.utils;
 
+import com.xiaoleilu.hutool.util.StrUtil;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,10 +11,6 @@ import java.util.List;
  * 功能描述: 处理中文转拼音的逻辑
  * </p>
  *
- * @author jesion
- * @date 2017/9/5
- * @time 17:05
- * @Path org.superboot.utils.PinYinUtils
  */
 public class PinYinUtils {
 
@@ -102,6 +100,9 @@ public class PinYinUtils {
         if (pyDicList == null) {
             readPyDicList();
         }
+        if (StrUtil.isBlank(name)) {
+            return name;
+        }
         name = name.replace(" ", "");
         StringBuffer pinYinGroup = new StringBuffer();
         for (int i = 0; i < name.length(); i++) {
@@ -119,7 +120,7 @@ public class PinYinUtils {
 
 
     public static void main(String[] args ){
-        System.out.println(getFullPinYin("犇"));
+        System.out.println(getFullPinYin(""));
         System.out.println(getIndexPinYin("犇"));
         System.out.println(getRootChar("犇"));
     }

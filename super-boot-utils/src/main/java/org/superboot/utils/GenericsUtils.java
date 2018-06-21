@@ -13,10 +13,6 @@ import java.util.List;
  * 功能描述:
  * </p>
  *
- * @author jesion
- * @date 2017/9/9
- * @time 11:59
- * @Path org.superboot.utils.GenericsUtils
  */
 public class GenericsUtils {
     /**

@@ -11,10 +11,6 @@ import java.util.ResourceBundle;
  * 功能描述:
  * </p>
  *
- * @author jesion
- * @date 2017/9/5
- * @time 16:45
- * @Path org.superboot.utils.PropertiesFileUtil
  */
 public class PropertiesFileUtil {
 

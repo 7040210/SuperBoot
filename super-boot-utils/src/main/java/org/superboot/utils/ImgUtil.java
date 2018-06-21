@@ -22,10 +22,6 @@ import java.util.List;
  * 功能描述:
  * </p>
  *
- * @author jesion
- * @date 2017/9/5
- * @time 17:10
- * @Path org.superboot.utils.ImgUtil
  */
 public class ImgUtil {
 
@@ -300,7 +296,7 @@ public class ImgUtil {
 
         // 指定写图片的方式为 jpg
         imgWrier = ImageIO.getImageWritersByFormatName("jpg").next();
-        imgWriteParams = new javax.imageio.plugins.jpeg.JPEGImageWriteParam(null);
+        imgWriteParams = new JPEGImageWriteParam(null);
         // 要使用压缩，必须指定压缩方式为MODE_EXPLICIT
         imgWriteParams.setCompressionMode(JPEGImageWriteParam.MODE_EXPLICIT);
         // 这里指定压缩的程度，参数qality是取值0~1范围内，

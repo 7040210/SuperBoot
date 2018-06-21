@@ -13,10 +13,6 @@ import java.util.*;
  * 功能描述:根据敏感词库过滤消息中的敏感词信息 敏感词库文件必须为：Sensitiveword.txt
  * </p>
  *
- * @author jesion
- * @date 2017/9/5
- * @time 17:29
- * @Path org.superboot.utils.SensitiveWordUtil
  */
 public class SensitiveWordUtil {
 

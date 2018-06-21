@@ -9,10 +9,6 @@ import java.util.*;
  * 功能描述:根据身份证号获取用户的相关信息
  * </p>
  *
- * @author jesion
- * @date 2017/9/5
- * @time 17:02
- * @Path org.superboot.utils.IdcardInfoUtil
  */
 public class IdcardInfoUtil {
     // 省份
