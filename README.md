@@ -48,7 +48,12 @@ Note right of 网关: 验证用户身份、生成用户Redis信息
 
 ```
 
+## 项目依赖
+
+​	此分布式项目要求配置人员有相关的从业经验，在启用之前要安装好MongoDB，Zookeeper、Kafka、Mysql、Redis等环境，然后修改项目内的具体配置信息。最后导入db.sql文件到数据库即可。
+
 ## 项目启动顺序
+
   1、启动注册中心（super-boot-registry）
 <br>  2、启动配置中心（super-boot-config）
 <br>  3、启动网关中心（super-boot-gateway）
@@ -68,7 +73,12 @@ Note right of 网关: 验证用户身份、生成用户Redis信息
 
 > super-boot-global
 
-此模块项目共用全局拦截器，项目打包的时候会打包为jar包放入项目lib中。
+此模块项目公共服务，提供读写分离、缓存、鉴权、多语等一系列功能，项目打包的时候会打包为jar包放入项目lib中。
+
+> super-boot-registry
+
+此模块为注册中心，提供所有服务模块的注册、容错、负载均衡等功能。分布式环境中需要配置为高可用集群模式，要保证注册中心的稳定。
+<br>启动后可以访问 http://localhost:10000
 
 > super-boot-config
 
@@ -77,13 +87,8 @@ Note right of 网关: 验证用户身份、生成用户Redis信息
 
 > super-boot-gateway
 
-此模块为API网关中心，提供统一的API调用接口及相关配置功能。
-<br>启动后可以访问 http://localhost:9080
-
-> super-boot-registry
-
-此模块为注册中心，提供所以服务模块的注册、容错、负载均衡等功能。分布式环境中需要配置为高可用集群模式，要保证注册中心的稳定。
-<br>启动后可以访问 http://localhost:10000
+此模块为API网关中心，提供统一的API调用接口及相关配置功能，支持限流、权限认证等功能。
+<br>启动后可以访问 http://localhost:9080/swagger-ui.html
 
 > super-boot-user
 
