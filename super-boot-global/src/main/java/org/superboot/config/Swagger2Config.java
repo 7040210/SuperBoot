@@ -23,7 +23,6 @@ import java.util.List;
  * <p>
  * 功能描述:配置API接口后，可用直接在地址后 添加：/swagger-ui.html 访问接口
  * </p>
- *
  */
 @Configuration
 @EnableSwagger2

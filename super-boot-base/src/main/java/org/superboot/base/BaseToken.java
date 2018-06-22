@@ -60,18 +60,6 @@ public class BaseToken implements Serializable {
     @ApiModelProperty(value = "职务名称")
     private String dutiesName;
 
-    @ApiModelProperty(value = "单位类型列表, unit_type1 物业 unit_type2 业主 unit_type3 运维")
-    private String unitTypeList;
-
-    @ApiModelProperty(value = "单位主键列表")
-    private String pkUnitList;
-
-    @ApiModelProperty(value = "单位名称列表")
-    private String unitNameList;
-
-    @ApiModelProperty(value = "用户头像")
-    private String userPic;
-
 
     public BaseToken() {
         super();

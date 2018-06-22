@@ -15,8 +15,9 @@ public interface ModuleDAO extends BaseJpaDAO<SuperbootModule> {
 
     /**
      * 获取模块信息
+     *
      * @param moduleId 模块编码
-     * @param dr 删除标识
+     * @param dr       删除标识
      * @return
      */
     SuperbootModule findByModuleIdAndDr(String moduleId, int dr);

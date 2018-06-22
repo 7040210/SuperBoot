@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 允许或不允许多种结果集从一个单独的语句中返回（需要适合的驱动） -->
+        <setting name="multipleResultSetsEnabled" value="true" />
+        <!-- 使用列标签代替列名。不同的驱动在这方便表现不同。参考驱动文档或充分测试两种方法来决定所使用的驱动 -->
+        <setting name="useColumnLabel" value="true" />
+
+        <setting name="callSettersOnNulls" value="true"/>
+    </settings>
+</configuration>

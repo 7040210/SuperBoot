@@ -1,4 +1,5 @@
 package org.superboot.utils;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 
@@ -7,12 +8,12 @@ import java.util.Enumeration;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 public class RequestUtil {
 
     /**
      * 移除request指定参数
+     *
      * @param request
      * @param paramName
      * @return
@@ -36,6 +37,7 @@ public class RequestUtil {
 
     /**
      * 获取请求basePath
+     *
      * @param request
      * @return
      */
@@ -47,9 +49,9 @@ public class RequestUtil {
         basePath.append(scheme);
         basePath.append("://");
         basePath.append(domain);
-        if("http".equalsIgnoreCase(scheme) && 80 != port) {
+        if ("http".equalsIgnoreCase(scheme) && 80 != port) {
             basePath.append(":").append(String.valueOf(port));
-        } else if("https".equalsIgnoreCase(scheme) && port != 443) {
+        } else if ("https".equalsIgnoreCase(scheme) && port != 443) {
             basePath.append(":").append(String.valueOf(port));
         }
         return basePath.toString();
@@ -57,6 +59,7 @@ public class RequestUtil {
 
     /**
      * 获取ip工具类，除了getRemoteAddr，其他ip均可伪造
+     *
      * @param request
      * @return
      */

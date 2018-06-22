@@ -5,7 +5,6 @@ package org.superboot.base;
  * <p>
  * 功能描述:定义系统的响应状态
  * </p>
- *
  */
 public enum BaseStatus {
     NO(-1, "请求失败"),

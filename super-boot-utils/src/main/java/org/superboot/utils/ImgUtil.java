@@ -1,8 +1,6 @@
 package org.superboot.utils;
 
 
-
-
 import org.apache.commons.lang.StringUtils;
 
 import javax.imageio.IIOImage;
@@ -21,7 +19,6 @@ import java.util.List;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 public class ImgUtil {
 
@@ -152,7 +149,7 @@ public class ImgUtil {
                 tarHeight = iSrcHeight - y;
             }
 
-            if(0 > tarWidth || 0 > tarHeight){
+            if (0 > tarWidth || 0 > tarHeight) {
                 return null;
             }
             return imgFileName.getSubimage(x, y, tarWidth, tarHeight);

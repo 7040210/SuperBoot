@@ -11,7 +11,6 @@ import java.util.Map;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 public class JdbcUtil {
 
@@ -41,8 +40,8 @@ public class JdbcUtil {
         int index = 1;
         // 填充sql语句中的占位符
         if (null != params && !params.isEmpty()) {
-            for (int i = 0; i < params.size(); i ++) {
-                pstmt.setObject(index ++, params.get(i));
+            for (int i = 0; i < params.size(); i++) {
+                pstmt.setObject(index++, params.get(i));
             }
         }
         result = pstmt.executeUpdate();
@@ -51,11 +50,11 @@ public class JdbcUtil {
 
     // 查询多条记录
     public List<Map> selectByParams(String sql, List params) throws SQLException {
-        List<Map> list = new ArrayList<> ();
+        List<Map> list = new ArrayList<>();
         int index = 1;
         pstmt = conn.prepareStatement(sql);
         if (null != params && !params.isEmpty()) {
-            for (int i = 0; i < params.size(); i ++) {
+            for (int i = 0; i < params.size(); i++) {
                 pstmt.setObject(index++, params.get(i));
             }
         }
@@ -64,7 +63,7 @@ public class JdbcUtil {
         int cols_len = metaData.getColumnCount();
         while (rs.next()) {
             Map map = new HashMap();
-            for (int i = 0; i < cols_len; i ++) {
+            for (int i = 0; i < cols_len; i++) {
                 String cols_name = metaData.getColumnName(i + 1);
                 Object cols_value = rs.getObject(cols_name);
                 if (null == cols_value) {
@@ -80,13 +79,13 @@ public class JdbcUtil {
     // 释放连接
     public void release() {
         try {
-            if (null != rs){
+            if (null != rs) {
                 rs.close();
             }
-            if (null != pstmt){
+            if (null != pstmt) {
                 pstmt.close();
             }
-            if (null != conn){
+            if (null != conn) {
                 conn.close();
             }
         } catch (SQLException e) {

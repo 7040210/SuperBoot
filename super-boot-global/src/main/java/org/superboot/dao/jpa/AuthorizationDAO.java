@@ -9,7 +9,6 @@ import org.superboot.entity.jpa.SuperbootAuthorization;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 @Repository
 public interface AuthorizationDAO extends BaseJpaDAO<SuperbootAuthorization> {

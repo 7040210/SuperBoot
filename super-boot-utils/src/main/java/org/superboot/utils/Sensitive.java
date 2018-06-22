@@ -7,7 +7,6 @@ import java.lang.annotation.*;
  * <p>
  * 功能描述:定义字符的脱敏规则，规则参考 @SensitiveType ,其中需要使用地址规则的时候 需要指定endLength信息，自定义规则需要同时指定beginLength 与 endLength
  * </p>
- *
  */
 @Target({ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
@@ -16,19 +15,22 @@ import java.lang.annotation.*;
 public @interface Sensitive {
     /**
      * 规则类型 参考 @SensitiveType
+     *
      * @return
      */
-    SensitiveType type() ;
+    SensitiveType type();
 
     /**
      * 前面显示位数
+     *
      * @return
      */
-    int beginLength() default 0 ;
+    int beginLength() default 0;
 
     /**
      * 在地址脱敏的时候，此字段为后面隐藏位数，自定义规则的时候为后面显示位数
+     *
      * @return
      */
-    int endLength() default 0 ;
+    int endLength() default 0;
 }

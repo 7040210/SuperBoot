@@ -11,7 +11,6 @@ import org.superboot.base.BaseRequest;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 @Data
 @ApiModel("TOKEN信息")

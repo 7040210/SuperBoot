@@ -22,7 +22,6 @@ import java.lang.reflect.Method;
  * 目前项目用到读写分离所以直接在数据库操作的时候根据操作方式判断数据源
  * 如果项目需要根据服务定义的话可以配置其他的拦截模式
  * </p>
- *
  */
 @Aspect
 @Order(3)
@@ -31,7 +30,7 @@ public class DataSourceAspect {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Around("execution(public * " + BaseConstants.BASE_PACKAGE + ".dao.jpa..*.*(..))")
+    @Around("execution(public * org.superboot.dao.jpa..*.*(..))")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
         MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
         Method targetMethod = methodSignature.getMethod();

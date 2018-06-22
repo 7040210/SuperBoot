@@ -10,13 +10,13 @@ import java.util.jar.JarFile;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 public class JarUtil {
 
     /**
      * 解压jar文件到指定目录
-     * @param fileName 文件名称
+     *
+     * @param fileName   文件名称
      * @param outputPath 输出路径
      */
     public static synchronized void decompress(String fileName, String outputPath) {

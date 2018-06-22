@@ -16,11 +16,11 @@ import org.superboot.base.BaseRequest;
 @ApiModel("注册用户基本信息")
 public class RegisterUser extends BaseRequest {
 
-    @ApiModelProperty(value = "账号",required = true)
+    @ApiModelProperty(value = "账号", required = true)
     @NotBlank
     private String userCode;
 
-    @ApiModelProperty(value ="密码",required = true)
+    @ApiModelProperty(value = "密码", required = true)
     @NotBlank
     private String userPassword;
 
@@ -30,7 +30,7 @@ public class RegisterUser extends BaseRequest {
     @ApiModelProperty("手机号码")
     private String userPhone;
 
-    @ApiModelProperty(value ="姓名",required = true)
+    @ApiModelProperty(value = "姓名", required = true)
     private String userName;
 
     @ApiModelProperty("停用时间")

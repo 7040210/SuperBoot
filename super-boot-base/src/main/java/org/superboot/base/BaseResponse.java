@@ -11,15 +11,14 @@ import java.io.Serializable;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 @Data
 @ApiModel("响应信息")
 public class BaseResponse<T> implements Serializable {
 
-    @ApiModelProperty(value = "业务码",required = true)
+    @ApiModelProperty(value = "业务码", required = true)
     private int code;
-    @ApiModelProperty(value = "状态码",required = true)
+    @ApiModelProperty(value = "状态码", required = true)
     private int status;
     @ApiModelProperty(value = "数据信息")
     private T data;

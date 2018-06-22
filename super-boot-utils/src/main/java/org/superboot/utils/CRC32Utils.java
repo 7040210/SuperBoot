@@ -8,16 +8,16 @@ import java.util.zip.CRC32;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 public class CRC32Utils {
 
     /**
      * 自写生成CRC32唯一码算法
+     *
      * @param str
      * @return
      */
-    public static String getCRC32(String str){
+    public static String getCRC32(String str) {
         int[] table = {
                 0x00000000, 0x77073096, 0xee0e612c, 0x990951ba, 0x076dc419, 0x706af48f, 0xe963a535, 0x9e6495a3,
                 0x0edb8832, 0x79dcb8a4, 0xe0d5e91e, 0x97d2d988, 0x09b64c2b, 0x7eb17cbd, 0xe7b82d07, 0x90bf1d91,
@@ -55,7 +55,7 @@ public class CRC32Utils {
         byte[] bytes = str.getBytes();
         int crc = 0xffffffff;
         for (byte b : bytes) {
-            crc = (crc >>>8 ^ table[(crc ^ b) & 0xff]);
+            crc = (crc >>> 8 ^ table[(crc ^ b) & 0xff]);
         }
         crc = crc ^ 0xffffffff;
         return Integer.toHexString(crc).toUpperCase();
@@ -64,10 +64,11 @@ public class CRC32Utils {
 
     /**
      * 根据UUID生成CRC32唯一8位码 (JAVA提供)
+     *
      * @return
      */
-    public static synchronized  String genCRC32BYJDK(){
-        String uuid = UUID.randomUUID()+"";
+    public static synchronized String genCRC32BYJDK() {
+        String uuid = UUID.randomUUID() + "";
         CRC32 crc32 = new CRC32();
         crc32.update(uuid.getBytes());
         return Long.toHexString(crc32.getValue()).toUpperCase();
@@ -75,17 +76,18 @@ public class CRC32Utils {
 
     /**
      * 根据UUID生成CRC32唯一8位码 (自写算法)
+     *
      * @return
      */
-    public static synchronized  String genCRC32(){
-        String uuid = UUID.randomUUID()+"";
+    public static synchronized String genCRC32() {
+        String uuid = UUID.randomUUID() + "";
         return getCRC32(uuid).toUpperCase();
     }
 
     public static void main(String[] args) {
 
 
-        System.out.println("CRC32:"+genCRC32());
-        System.out.println("CRC32BYJAVA:"+genCRC32BYJDK());
+        System.out.println("CRC32:" + genCRC32());
+        System.out.println("CRC32BYJAVA:" + genCRC32BYJDK());
     }
 }

@@ -5,7 +5,6 @@ package org.superboot.base;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 public enum BaseI18n {
     zh_CN("zh_CN", "中文"),

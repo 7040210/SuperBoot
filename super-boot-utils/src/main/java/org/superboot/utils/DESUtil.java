@@ -12,7 +12,6 @@ import javax.crypto.spec.IvParameterSpec;
  * <p>
  * 功能描述:JAVA版与C#通用的DES加密解密工具
  * </p>
- *
  */
 public class DESUtil {
 
@@ -97,11 +96,12 @@ public class DESUtil {
         StringBuffer hexString = new StringBuffer();
         for (int i = 0; i < b.length; i++) {
             String plainText = Integer.toHexString(0xff & b[i]);
-            if (plainText.length() < 2){
-                plainText = "0" + plainText;}
+            if (plainText.length() < 2) {
+                plainText = "0" + plainText;
+            }
             hexString.append(plainText);
         }
-        return hexString+"";
+        return hexString + "";
     }
 
 

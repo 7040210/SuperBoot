@@ -12,7 +12,6 @@ import java.util.List;
  * <p>
  * 功能描述:提供对一些敏感信息的脱敏操作
  * </p>
- *
  */
 public class SensitiveInfoUtils {
 
@@ -151,12 +150,13 @@ public class SensitiveInfoUtils {
 
     /**
      * [自定义脱敏规则] 定义自定义脱敏规则，指定前面位数与后面位数，其他均星号隐藏
-     * @param code 代脱敏字符
+     *
+     * @param code        代脱敏字符
      * @param beginLength 前面位数
-     * @param endLength 后面位数
+     * @param endLength   后面位数
      * @return
      */
-    public static String other(String code, int beginLength ,int endLength){
+    public static String other(String code, int beginLength, int endLength) {
         return StringUtils.left(code, beginLength).concat(StringUtils.removeStart(StringUtils.leftPad(StringUtils.right(code, endLength), StringUtils.length(code), "*"), "***"));
     }
 
@@ -236,7 +236,7 @@ public class SensitiveInfoUtils {
                                 break;
                             }
                             case OTHER: {
-                                field.set(javaBean, SensitiveInfoUtils.other(valueStr,annotation.beginLength(),annotation.endLength()));
+                                field.set(javaBean, SensitiveInfoUtils.other(valueStr, annotation.beginLength(), annotation.endLength()));
                                 break;
                             }
                             default: {

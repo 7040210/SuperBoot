@@ -13,7 +13,6 @@ import java.util.*;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 public class DateUtils {
 
@@ -55,9 +54,6 @@ public class DateUtils {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(System.currentTimeMillis()) + "";
     }
-
-
-
 
 
     /**
@@ -112,7 +108,6 @@ public class DateUtils {
         Date date_3_hm_date = new Date(date_3_hm);
         return date_3_hm_date;
     }
-
 
 
     /**
@@ -1087,7 +1082,7 @@ public class DateUtils {
         }
 
         System.out.println(DateUtils.getWeekByDate("2016-11-03") - DateUtils.getWeekByDate("2016-09-05") + 1);
-        System.out.println("key"+System.currentTimeMillis());
+        System.out.println("key" + System.currentTimeMillis());
     }
 
     /**

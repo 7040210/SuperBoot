@@ -10,7 +10,6 @@ import java.util.List;
  * <p>
  * 功能描述: 处理中文转拼音的逻辑
  * </p>
- *
  */
 public class PinYinUtils {
 
@@ -36,7 +35,7 @@ public class PinYinUtils {
                 .append(INDEX_34970)
                 .append(INDEX_39971)
                 .append(INDEX_40869);
-        String[] pyStr = (pyDicStr+"").split(",");
+        String[] pyStr = (pyDicStr + "").split(",");
         pyDicList = Arrays.asList(pyStr);
     }
 
@@ -85,7 +84,7 @@ public class PinYinUtils {
             String n = name.substring(i, i + 1);
             indexPinYin.append(getRootChar(n) + ",");
         }
-        return ""+(indexPinYin
+        return "" + (indexPinYin
                 .substring(0, indexPinYin.length() - 1)
                 .toLowerCase());//小写
     }
@@ -115,11 +114,11 @@ public class PinYinUtils {
                 pinYinGroup.append(n + ",");
             }
         }
-        return ""+(pinYinGroup.substring(0, pinYinGroup.length() - 1));
+        return "" + (pinYinGroup.substring(0, pinYinGroup.length() - 1));
     }
 
 
-    public static void main(String[] args ){
+    public static void main(String[] args) {
         System.out.println(getFullPinYin(""));
         System.out.println(getIndexPinYin("犇"));
         System.out.println(getRootChar("犇"));

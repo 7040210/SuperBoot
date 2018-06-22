@@ -9,7 +9,6 @@ import org.superboot.entity.jpa.SuperbootPermissions;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 @Repository
 public interface PermissionsDAO extends BaseJpaDAO<SuperbootPermissions> {

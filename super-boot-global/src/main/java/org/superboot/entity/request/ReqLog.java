@@ -10,7 +10,6 @@ import org.superboot.base.BaseRequest;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 @Data
 @ApiModel("日志请求过滤条件，暂不支持模糊搜索")

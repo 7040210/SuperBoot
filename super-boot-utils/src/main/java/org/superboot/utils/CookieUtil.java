@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 public class CookieUtil {
 
@@ -24,7 +23,7 @@ public class CookieUtil {
     public static void setCookie(HttpServletResponse response, String name, String value, String path, int maxAge) {
         Cookie cookie = new Cookie(name, value);
         cookie.setPath(path);
-        if (maxAge > 0){
+        if (maxAge > 0) {
             cookie.setMaxAge(maxAge);
         }
         response.addCookie(cookie);

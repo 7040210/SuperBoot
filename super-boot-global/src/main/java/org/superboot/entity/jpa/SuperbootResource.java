@@ -10,10 +10,6 @@ import java.util.Objects;
  * 功能描述:
  * </p>
  *
- * @author zhangshuai
- * @date 2018/6/21
- * @time 15:02
- * @Path org.superboot.entity.jpa.SuperbootResource
  */
 @Entity
 @Table(name = "superboot_resource", schema = "superboot", catalog = "")

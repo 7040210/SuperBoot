@@ -10,7 +10,6 @@ import java.util.List;
  * <p>
  * 功能描述: 提供基础的函数计算，包含获取最大、最小、求和、平均
  * </p>
- *
  */
 public class FunctionUtils {
     /**

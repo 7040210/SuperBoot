@@ -10,7 +10,6 @@ import java.util.List;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 public class Children {
 
@@ -18,6 +17,7 @@ public class Children {
 
     /**
      * 获取节点数量
+     *
      * @return
      */
     public int getSize() {
@@ -26,6 +26,7 @@ public class Children {
 
     /**
      * 添加子节点
+     *
      * @param node
      */
     public void addChild(Node node) {
@@ -40,19 +41,20 @@ public class Children {
         // 可根据不同的排序属性，传入不同的比较器，这里传入ID比较器
         Collections.sort(list, new NodeIDComparator());
         // 对每个节点的下一层节点进行排序
-        for (Iterator it = list.iterator(); it.hasNext();) {
+        for (Iterator it = list.iterator(); it.hasNext(); ) {
             ((Node) it.next()).sortChildren();
         }
     }
 
     /**
      * 拼接子节点的JSON字符串
+     *
      * @return
      */
     @Override
     public String toString() {
         String result = "[";
-        for (Iterator it = list.iterator(); it.hasNext();) {
+        for (Iterator it = list.iterator(); it.hasNext(); ) {
             result += ((Node) it.next()).toString();
             result += ",";
         }

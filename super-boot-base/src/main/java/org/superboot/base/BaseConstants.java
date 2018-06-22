@@ -4,25 +4,24 @@ package org.superboot.base;
  * <b> 全局常量信息 </b>
  * <p>
  * 功能描述:全局常量及通用方法类
- *
+ * <p>
  * LINUX生成秘钥方法
- *
- *
+ * <p>
+ * <p>
  * #生成1024字节秘钥
  * openssl genrsa -out rsa_private_key.pem 1024
  * #生成公钥
  * openssl rsa -in rsa_private_key.pem -out rsa_public_key.pem -pubout
  * #如果要使用PKCS8编码执行下面语句
  * openssl pkcs8 -topk8 -in rsa_private_key.pem -out pkcs8_rsa_private_key.pem -nocrypt
- *
+ * <p>
  * #查看秘钥
- *
+ * <p>
  * cat rsa_private_key.pem
  * cat rsa_public_key.pem
  * cat pkcs8_rsa_private_key.pem
  *
  * </p>
- *
  */
 public class BaseConstants {
 
@@ -35,7 +34,7 @@ public class BaseConstants {
     /**
      * 外部服务调用授权
      */
-    public static final String OTHER_TOKEN_KEY ="_OtherToken_";
+    public static final String OTHER_TOKEN_KEY = "_OtherToken_";
 
     /**
      * 外部调用传输消息ID
@@ -70,7 +69,7 @@ public class BaseConstants {
     /**
      * 用户TOKEN列表
      */
-    public static final String USER_TOKEN= "UserToken";
+    public static final String USER_TOKEN = "UserToken";
 
     /**
      * TOKEN来源版本
@@ -83,7 +82,6 @@ public class BaseConstants {
     public static final String TOKEN_PLATFORM = "TokenPlatform";
 
 
-
     /**
      * 全访问角色类型
      */
@@ -92,7 +90,7 @@ public class BaseConstants {
     /**
      * 全访问用户角色名称
      */
-    public static final String ALL_USER_NAME ="ALL_USER";
+    public static final String ALL_USER_NAME = "ALL_USER";
 
 
     /**
@@ -116,7 +114,6 @@ public class BaseConstants {
     public static final String GROUP_ADMIN_NAME = "GROUP_ADMIN";
 
 
-
     /**
      * 后台注册用户类型
      */
@@ -125,7 +122,7 @@ public class BaseConstants {
     /**
      * 后台注册角色名称
      */
-    public static final String GEN_USER_NAME ="GEN_USER";
+    public static final String GEN_USER_NAME = "GEN_USER";
 
     /**
      * 开放注册用户角色类型
@@ -200,7 +197,7 @@ public class BaseConstants {
     /**
      * 默认公钥
      */
-    public static final String DEFAULT_PUBLIC_KEY =  "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDWxYt7nwrECUVXDhXusnIr2YCk\n" +
+    public static final String DEFAULT_PUBLIC_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDWxYt7nwrECUVXDhXusnIr2YCk\n" +
             "UtV1w3UBYV7D+ELuBJ+3Da6sR+Apfl1gIGL6aIa6yryo5prxlZ7PkSJJeEZs6kkt\n" +
             "f0HwvG94mNS1TJid3YYopatJug4b6awpL9LA3OS3bOoBN+/GJgCjSUDFR0+FjMDU\n" +
             "rD7HaaW7P9fVVEOnfQIDAQAB\n";
@@ -208,7 +205,7 @@ public class BaseConstants {
     /**
      * 默认私钥
      */
-    public static final String DEFAULT_PRIVATE_KEY =  "MIICXwIBAAKBgQDWxYt7nwrECUVXDhXusnIr2YCkUtV1w3UBYV7D+ELuBJ+3Da6s\n" +
+    public static final String DEFAULT_PRIVATE_KEY = "MIICXwIBAAKBgQDWxYt7nwrECUVXDhXusnIr2YCkUtV1w3UBYV7D+ELuBJ+3Da6s\n" +
             "R+Apfl1gIGL6aIa6yryo5prxlZ7PkSJJeEZs6kktf0HwvG94mNS1TJid3YYopatJ\n" +
             "ug4b6awpL9LA3OS3bOoBN+/GJgCjSUDFR0+FjMDUrD7HaaW7P9fVVEOnfQIDAQAB\n" +
             "AoGBAIf670NIATL5g7OIsY494VeuEGr6Hzi+lhhXo/6D8yxsNQtbWFqv71eWMFyq\n" +
@@ -225,7 +222,7 @@ public class BaseConstants {
     /**
      * 如果使用AOP拦截，则必须使用此私钥进行解密
      */
-    public static final String DEFAULT_PKCS8_PRIVATE_KEY="MIICeQIBADANBgkqhkiG9w0BAQEFAASCAmMwggJfAgEAAoGBANbFi3ufCsQJRVcO\n" +
+    public static final String DEFAULT_PKCS8_PRIVATE_KEY = "MIICeQIBADANBgkqhkiG9w0BAQEFAASCAmMwggJfAgEAAoGBANbFi3ufCsQJRVcO\n" +
             "Fe6ycivZgKRS1XXDdQFhXsP4Qu4En7cNrqxH4Cl+XWAgYvpohrrKvKjmmvGVns+R\n" +
             "Ikl4RmzqSS1/QfC8b3iY1LVMmJ3dhiilq0m6DhvprCkv0sDc5Lds6gE378YmAKNJ\n" +
             "QMVHT4WMwNSsPsdppbs/19VUQ6d9AgMBAAECgYEAh/rvQ0gBMvmDs4ixjj3hV64Q\n" +
@@ -244,7 +241,7 @@ public class BaseConstants {
     /**
      * 默认服务调用授权KEY名称
      */
-    public static final String FEIGN_KEY ="_FeignKey_";
+    public static final String FEIGN_KEY = "_FeignKey_";
 
     /**
      * 默认服务之间调用TOKEN，用于验证服务调用方是否是授权调用方

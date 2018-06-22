@@ -60,6 +60,7 @@ public class TreeChildren implements Comparator, Serializable {
         n1.compareTo(n2);
         return n1.compareTo(n2);
     }
+
     /**
      * 拼接子节点的JSON字符串
      *

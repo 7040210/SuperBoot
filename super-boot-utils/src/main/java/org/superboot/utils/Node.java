@@ -5,7 +5,6 @@ package org.superboot.utils;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 public class Node {
 
@@ -53,6 +52,7 @@ public class Node {
 
     /**
      * 先序遍历，拼接JSON字符串
+     *
      * @return
      */
     @Override

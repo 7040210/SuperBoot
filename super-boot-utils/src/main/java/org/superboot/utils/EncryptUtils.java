@@ -10,7 +10,6 @@ import java.util.zip.CRC32;
  * <p>
  * 功能描述:提供常用加密算法
  * </p>
- *
  */
 public class EncryptUtils {
 

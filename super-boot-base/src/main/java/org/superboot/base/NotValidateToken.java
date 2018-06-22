@@ -7,7 +7,6 @@ import java.lang.annotation.*;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

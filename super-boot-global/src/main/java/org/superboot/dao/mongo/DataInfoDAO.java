@@ -11,7 +11,6 @@ import java.util.List;
  * <p>
  * 功能描述:存储系统请求的LOG日志信息
  * </p>
- *
  */
 @Repository
 public interface DataInfoDAO extends BaseMongoDAO<DataInfo> {

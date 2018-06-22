@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
  * <p>
  * 功能描述:提供一些简单的校验方法
  * </p>
- *
  */
 public class ValidUtils {
 
@@ -24,6 +23,7 @@ public class ValidUtils {
 
     /**
      * 是否为字母或数字
+     *
      * @param test
      * @return
      */
@@ -38,6 +38,7 @@ public class ValidUtils {
 
     /**
      * 是否为字母
+     *
      * @param test
      * @return
      */
@@ -52,6 +53,7 @@ public class ValidUtils {
 
     /**
      * 是否为数字
+     *
      * @param test
      * @return
      */
@@ -66,6 +68,7 @@ public class ValidUtils {
 
     /**
      * 是否为手机号
+     *
      * @param str
      * @return
      */
@@ -81,6 +84,7 @@ public class ValidUtils {
 
     /**
      * 是否为电话号码
+     *
      * @param str
      * @return
      */

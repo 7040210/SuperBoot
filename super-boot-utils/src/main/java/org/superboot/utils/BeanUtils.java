@@ -14,7 +14,6 @@ import java.util.Map;
  * <p>
  * 功能描述:bean对象工具类，继承spring BeanUtils，重写copyProperties方法，处理源对象为空问题
  * </p>
- *
  */
 public class BeanUtils extends org.springframework.beans.BeanUtils {
     /**

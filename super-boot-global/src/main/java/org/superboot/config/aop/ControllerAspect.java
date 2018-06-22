@@ -60,7 +60,7 @@ public class ControllerAspect {
     @Autowired
     private Pub_Tools pubTools;
 
-    @Pointcut("execution(  * " + BaseConstants.CONTROLLER_BASE_PATH + "..*.*(..))")
+    @Pointcut("execution(  * org.superboot.controller..*.*(..))")
     public void webLog() {
     }
 

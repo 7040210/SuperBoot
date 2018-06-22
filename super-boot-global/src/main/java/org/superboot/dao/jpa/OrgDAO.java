@@ -9,7 +9,6 @@ import org.superboot.entity.jpa.SuperbootOrg;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 @Repository
 public interface OrgDAO extends BaseJpaDAO<SuperbootOrg> {

@@ -25,7 +25,7 @@ import javax.persistence.EntityManagerFactory;
  */
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = BaseConstants.BASE_PACKAGE + ".dao.jpa",
+@EnableJpaRepositories(basePackages = "org.superboot.dao.jpa",
         entityManagerFactoryRef = "dataEntityManagerFactory",
         transactionManagerRef = "dataTransactionManager")
 public class DataSourceTransactionConfig {
@@ -49,7 +49,7 @@ public class DataSourceTransactionConfig {
                 .dataSource(dataSource)
                 .properties(jpaProperties.getProperties())
                 //设置实体类所在位置
-                .packages("cn.phxg.entity.jpa")
+                .packages("org.superboot.entity.jpa")
                 .persistenceUnit("dataPersistenceUnit")
                 .build();
     }

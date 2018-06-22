@@ -1,0 +1,31 @@
+#配置注册中心
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:superboot.org@localhost:10000/eureka/
+    registry-fetch-interval-seconds: 5
+  instance:
+   #心跳时间间隔
+    lease-renewal-interval-in-seconds: 10
+    #无心跳多久后,该服务失效
+    lease-expiration-duration-in-seconds: 30
+    appname: 网关中心
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    prefer-ip-address: true
+#配置文件信息通过注册中心的配置中心统一获取
+spring:
+  cloud:
+    config:
+      name: gateway
+      profile: local
+      label: master
+      discovery:
+        enabled: true
+        service-id: config
+      #配置中心启用安全认证
+      username: admin
+      password: superboot.org
+      fail-fast: true
+    bus:
+      trace:
+        enabled: true

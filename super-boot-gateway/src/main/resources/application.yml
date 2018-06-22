@@ -1,0 +1,216 @@
+#web容器配置
+server:
+  port: 9080
+  index: ${random.int}
+#启用调试模式
+debug: true
+
+spring:
+  profiles:
+      active: dev
+  application:
+    name: gateway
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+    multipart:
+      enabled: true
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 127.0.0.1:9092
+          zkNodes: 127.0.0.1:2181
+  data:
+    mongodb:
+      host: 127.0.0.1
+      database: SuperBoot
+  redis:
+    cluster:
+      nodes: 127.0.0.1:7000,127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003,127.0.0.1:7004,127.0.0.1:7005
+    pool:
+      max-idle: 20
+      min-idle: 5
+      max-wait: 10000
+    timeout: 10000
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+  #数据库连接配置
+  datasource:
+    writeDruidDataSource:
+      name: writeDruidDataSource
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/superboot?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&remarks=true&useInformationSchema=true&autoReconnect=true
+      username: root
+      password: root
+      #初始化大小
+      initial-size: 5
+      min-idle: 5
+      max-active: 100
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 30000
+      #检测连接是否有效的sql
+      validation-query: SELECT 'x'
+      validation-query-timeout: 3600
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小 Mysql下建议关闭
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+      # 合并多个DruidDataSource的监控数据
+      useGlobalDataSourceStat: true
+    readDruidDataSource:
+      name: readDruidDataSource
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/superboot?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&remarks=true&useInformationSchema=true&autoReconnect=true
+      username: root
+      password: root
+      #初始化大小
+      initial-size: 5
+      min-idle: 5
+      max-active: 100
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 30000
+      #检测连接是否有效的sql
+      validation-query: SELECT 'x'
+      validation-query-timeout: 3600
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小 Mysql下建议关闭
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+      # 合并多个DruidDataSource的监控数据
+      useGlobalDataSourceStat: true
+    druid:
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filters: stat,wall
+      #配置密码加密存储
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      #启动ConfigFilter 启用密码加密后必须启用此配置
+      filter:
+        config:
+          enabled: true
+      #Druid监控拦截相关配置相关配置
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
+        #缺省sessionStatMaxCount是1000个
+        session-stat-max-count: 1000
+        #关闭session统计功能
+        session-stat-enable: false
+        #druid 0.2.7版本开始支持profile，配置profileEnable能够监控单个url调用的sql列表。
+        profile-enable: false
+      #StatViewServlet配置，说明请参考Druid Wiki，配置_StatViewServlet配置
+      #启动项目后访问 http://127.0.0.1:8080/druid
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        #禁用HTML页面上的“Reset All”功能
+        reset-enable: false
+        login-username: phxg
+        login-password: phxg.cn
+        #IP白名单(没有配置或者为空，则允许所有访问)
+        allow:
+        #IP黑名单 (存在共同时，deny优先于allow)
+        deny:
+  mvc:
+    throw-exception-if-no-handler-found: true
+#Twitter_Snowflake 序列号生成器配置
+Snowflake:
+  #工作中心ID 0-31
+  workerId: 0
+  #数据中心ID(0~31)
+  datacenterId: 0
+management:
+  security:
+    enabled: false
+  #设置服务只能本机调用
+  address: 127.0.0.1
+  #指定管理路径
+  context-path: /superboot
+#启用关机指令，需要POST提交  curl -X POST http://localhost:9080/superboot/bye
+endpoints:
+  shutdown:
+    enabled: true
+    #映射路径
+    path: /bye
+logging:
+  path: /home/logs
+  level:
+    cn.phxg: DEBUG
+#配置服务超时时间默认为600秒
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 600000
+#配置网关信息
+zuul:
+  #配置超时时间为600秒
+  host:
+    socket-timeout-millis: 600000
+    connect-timeout-millis: 600000
+  routes:
+    #用户中心
+    user:
+      path: /UserApi/**
+      serviceId: user
+  #解决重定向不正确的问题
+  add-host-header: true
+  #设置需要继续传递的参数
+  sensitive-headers: Cookie,Set-Cookie,Authorization
+  #网关限流配置,默认同一个用户同一个地址调用每秒钟为10次
+  ratelimit:
+    #对应用来标识请求的key的前缀
+    key-prefix: superboot-prefix
+    #是否启用
+    enabled: true
+    #代理之后
+    behind_proxy: true
+    #对应存储类型（用来存储统计信息），支持CONSUL, REDIS, JPA, IN_MEMORY，建议使用REDIS
+    repository: REDIS
+    #默认配置方案，如果某个单服务需要单独配置，则使用 policies，具体参考API
+    default-policy:
+      #可选 - 每个刷新时间窗口对应的请求数量限制
+      limit: 30
+      #可选-  每个刷新时间窗口对应的请求时间限制（秒）
+      quota: 1
+      # 刷新时间窗口的时间，默认值 (秒)，比如配置60则为60秒运行访问limit的次数
+      refresh-interval: 1
+      #origin是通过客户端IP地址区分 url类型的限流就是通过请求路径区分 user是通过登录用户名进行区分，也包括匿名用户
+      type:
+        - user
+        - origin
+        - url
+ribbon:
+  ReadTimeout: 600000
+  ConnectTimeout: 600000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  eager-load:
+    enabled: true
+user:
+  ribbon:
+    ConnectTimeout: 600000
+    ReadTimeout: 600000

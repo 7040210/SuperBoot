@@ -5,7 +5,6 @@ package org.superboot.base;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 public enum BasePlatForm {
 
@@ -17,7 +16,7 @@ public enum BasePlatForm {
 
     private String code;
 
-    private  String platform;
+    private String platform;
 
     public String getCode() {
         return code;
@@ -35,7 +34,7 @@ public enum BasePlatForm {
         this.platform = platform;
     }
 
-    BasePlatForm(String code, String platform){
+    BasePlatForm(String code, String platform) {
         this.code = code;
         this.platform = platform;
     }

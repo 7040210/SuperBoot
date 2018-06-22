@@ -12,7 +12,6 @@ import java.util.*;
  * <p>
  * 功能描述:根据敏感词库过滤消息中的敏感词信息 敏感词库文件必须为：Sensitiveword.txt
  * </p>
- *
  */
 public class SensitiveWordUtil {
 
@@ -27,11 +26,9 @@ public class SensitiveWordUtil {
     /**
      * 通配符匹配
      *
-     * @param pattern
-     *            通配符模式
-     * @param str
-     *            待匹配的字符串 <a href="http://my.oschina.net/u/556800" target="_blank" rel="nofollow">@return</a>
-     *            匹配成功则返回true，否则返回false
+     * @param pattern 通配符模式
+     * @param str     待匹配的字符串 <a href="http://my.oschina.net/u/556800" target="_blank" rel="nofollow">@return</a>
+     *                匹配成功则返回true，否则返回false
      */
     private static boolean wildcardMatch(String pattern, String str) {
         int patternLength = pattern.length();
@@ -69,10 +66,8 @@ public class SensitiveWordUtil {
     /**
      * 递归查找文件
      *
-     * @param baseDirName
-     *            查找的文件夹路径
-     * @param targetFileName
-     *            需要查找的文件名
+     * @param baseDirName    查找的文件夹路径
+     * @param targetFileName 需要查找的文件名
      */
     private static List<String> findFiles(String baseDirName, String targetFileName) {
         /**
@@ -113,13 +108,13 @@ public class SensitiveWordUtil {
      */
     @SuppressWarnings("resource")
     private Set<String> readSensitiveWordFile() throws Exception {
-        Set<String> set =  new HashSet<String>();
+        Set<String> set = new HashSet<String>();
 
         //扫描项目中所有的敏感词库文件，统一加载到敏感词库中
         List<String> files = findFiles(System.getProperty("user.dir"), "Sensitiveword.txt");
-        if(0<files.size()){
-            for(String fileStr:files){
-                File file = new File( fileStr);    //读取文件
+        if (0 < files.size()) {
+            for (String fileStr : files) {
+                File file = new File(fileStr);    //读取文件
                 InputStreamReader read = new InputStreamReader(new FileInputStream(file), ENCODING);
                 try {
                     if (file.isFile() && file.exists()) {      //文件流是否存在

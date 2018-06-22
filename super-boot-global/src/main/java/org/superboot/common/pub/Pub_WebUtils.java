@@ -224,31 +224,31 @@ public class Pub_WebUtils {
     public HashMap<String, String> filterMap() {
         HashMap<String, String> hashMap = new HashMap<>();
         //添加组织管理员
-        hashMap.put("cn.phxg.controller.sys.SysUserController.addGroupAdmin", "cn.phxg.controller.sys.SysUserController.addGroupAdmin");
+        hashMap.put("org.superboot.controller.sys.SysUserController.addGroupAdmin", "org.superboot.controller.sys.SysUserController.addGroupAdmin");
 
         //添加系统管理员
-        hashMap.put("cn.phxg.controller.sys.SysUserController.addAdmin", "cn.phxg.controller.sys.SysUserController.addAdmin");
+        hashMap.put("org.superboot.controller.sys.SysUserController.addAdmin", "org.superboot.controller.sys.SysUserController.addAdmin");
 
         //添加普通用户
-        hashMap.put("cn.phxg.controller.UserController.addUser", "cn.phxg.controller.UserController.addUser");
+        hashMap.put("org.superboot.controller.UserController.addUser", "org.superboot.controller.UserController.addUser");
 
         //修改密码
-        hashMap.put("cn.phxg.controller.UserController.password", "cn.phxg.controller.UserController.password");
+        hashMap.put("org.superboot.controller.UserController.password", "org.superboot.controller.UserController.password");
 
         //登陆
-        hashMap.put("cn.phxg.controller.UserController.login", "cn.phxg.controller.UserController.login");
+        hashMap.put("org.superboot.controller.UserController.login", "org.superboot.controller.UserController.login");
 
         //添加组织管理员
-        hashMap.put("cn.phxg.controller.group.GroupUserController.addGroupAdmin", "cn.phxg.controller.group.GroupUserController.addGroupAdmin");
+        hashMap.put("org.superboot.controller.group.GroupUserController.addGroupAdmin", "org.superboot.controller.group.GroupUserController.addGroupAdmin");
 
         //添加组织人员
-        hashMap.put("cn.phxg.controller.group.GroupUserController.addGroupUser", "cn.phxg.controller.group.GroupUserController.addGroupUser");
+        hashMap.put("org.superboot.controller.group.GroupUserController.addGroupUser", "org.superboot.controller.group.GroupUserController.addGroupUser");
 
         //网关用户注册
-        hashMap.put("cn.phxg.controller.TokenController.register", "cn.phxg.controller.TokenController.register");
+        hashMap.put("org.superboot.controller.TokenController.register", "org.superboot.controller.TokenController.register");
 
         //网关用户登陆
-        hashMap.put("cn.phxg.controller.TokenController.login", "cn.phxg.controller.TokenController.login");
+        hashMap.put("org.superboot.controller.TokenController.login", "org.superboot.controller.TokenController.login");
 
         return hashMap;
 

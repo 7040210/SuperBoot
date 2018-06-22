@@ -12,7 +12,6 @@ import java.util.Locale;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 @Component
 public class Pub_LocalTools {

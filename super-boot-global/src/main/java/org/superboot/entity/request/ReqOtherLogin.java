@@ -11,7 +11,6 @@ import org.superboot.base.BaseRequest;
  * <p>
  * 功能描述: 提供第三方使用员工ID方式登陆系统
  * </p>
- *
  */
 @Data
 @ApiModel("外部系统授权登陆")

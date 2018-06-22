@@ -10,7 +10,6 @@ import java.util.ResourceBundle;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 public class PropertiesFileUtil {
 
@@ -54,7 +53,7 @@ public class PropertiesFileUtil {
         try {
             String value = resourceBundle.getString(key);
             return value;
-        }catch (MissingResourceException e) {
+        } catch (MissingResourceException e) {
             return "";
         }
     }
@@ -64,7 +63,7 @@ public class PropertiesFileUtil {
         try {
             String value = resourceBundle.getString(key);
             return Integer.parseInt(value);
-        }catch (MissingResourceException e) {
+        } catch (MissingResourceException e) {
             return null;
         }
     }
@@ -77,7 +76,7 @@ public class PropertiesFileUtil {
                 return true;
             }
             return false;
-        }catch (MissingResourceException e) {
+        } catch (MissingResourceException e) {
             return false;
         }
     }

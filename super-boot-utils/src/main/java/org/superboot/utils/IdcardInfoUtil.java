@@ -8,7 +8,6 @@ import java.util.*;
  * <p>
  * 功能描述:根据身份证号获取用户的相关信息
  * </p>
- *
  */
 public class IdcardInfoUtil {
     // 省份

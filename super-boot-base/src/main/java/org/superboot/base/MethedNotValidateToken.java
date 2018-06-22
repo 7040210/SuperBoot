@@ -7,7 +7,6 @@ import java.lang.annotation.*;
  * <p>
  * 功能描述:如果调用的接口没通过网关，则此注解必须添加
  * </p>
- *
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

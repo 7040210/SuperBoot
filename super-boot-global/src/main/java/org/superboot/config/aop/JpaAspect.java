@@ -27,7 +27,6 @@ import java.util.List;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 @Aspect
 @Order(4)
@@ -83,12 +82,12 @@ public class JpaAspect {
                     //如果传入对象是数组，则需要循环处理里边每个对象
                     if (joinPoint.getArgs()[i] instanceof List) {
                         List list = (List) joinPoint.getArgs()[i];
-                        for(int j =0 ;j < list.size() ;j++){
-                            ((List)joinPoint.getArgs()[i]).set(j,setValue(list.get(j),token));
+                        for (int j = 0; j < list.size(); j++) {
+                            ((List) joinPoint.getArgs()[i]).set(j, setValue(list.get(j), token));
                         }
 
                     } else {
-                        joinPoint.getArgs()[i] = setValue(joinPoint.getArgs()[i],token);
+                        joinPoint.getArgs()[i] = setValue(joinPoint.getArgs()[i], token);
                     }
                 }
             }
@@ -99,7 +98,8 @@ public class JpaAspect {
 
     /**
      * 设置字段默认值
-     * @param o VO对象信息
+     *
+     * @param o     VO对象信息
      * @param token 用户信息
      * @return
      * @throws Throwable
@@ -143,7 +143,7 @@ public class JpaAspect {
                 if (null == pubTools.getFieldValue("createby", o)) {
                     pubTools.setFieldValue("createby", token.getUserId(), o);
                 }
-                 pubTools.setFieldValue("lastmodifyby", token.getUserId(), o);
+                pubTools.setFieldValue("lastmodifyby", token.getUserId(), o);
             }
 
             //设置修改时间

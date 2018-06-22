@@ -11,7 +11,6 @@ import java.util.List;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 @Repository
 public interface PermissionsResourceDAO extends BaseJpaDAO<SuperbootPermissionsResource> {

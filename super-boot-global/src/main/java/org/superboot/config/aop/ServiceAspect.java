@@ -25,7 +25,6 @@ import java.lang.reflect.Method;
  * 添加用 add 开头
  * 删除用 del 开头
  * </p>
- *
  */
 @Aspect
 @Order(1)
@@ -35,7 +34,7 @@ public class ServiceAspect {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
 
-    @Pointcut("execution( * " + BaseConstants.BASE_PACKAGE + ".service..*.*(..))")
+    @Pointcut("execution( * org.superboot.service..*.*(..))")
     public void aspect() {
     }
 

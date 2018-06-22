@@ -9,7 +9,6 @@ import java.lang.reflect.Field;
  * <p>
  * 功能描述:树形结构 节点
  * </p>
- *
  */
 @Data
 public class TreeNode {

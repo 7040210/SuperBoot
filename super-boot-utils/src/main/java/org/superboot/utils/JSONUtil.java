@@ -14,7 +14,6 @@ import java.util.List;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 public class JSONUtil {
 
@@ -22,14 +21,15 @@ public class JSONUtil {
     /**
      * 排序时候依据的key
      */
-    public static  String sortKey ;
+    public static String sortKey;
 
     /**
      * 根据KEY对JSONARRAY进行排序
+     *
      * @param array 需要排序的对象
      * @return
      */
-    public static JSONArray sortJsonArray(JSONArray array){
+    public static JSONArray sortJsonArray(JSONArray array) {
 
         //对JSONARRAY进行排序
         JSONArray sortedJsonArray = new JSONArray();
@@ -37,17 +37,16 @@ public class JSONUtil {
         for (int i = 0; i < array.size(); i++) {
             jsonValues.add(array.getJSONObject(i));
         }
-        Collections.sort( jsonValues, new Comparator<JSONObject>() {
+        Collections.sort(jsonValues, new Comparator<JSONObject>() {
             @Override
             public int compare(JSONObject a, JSONObject b) {
                 String valA = new String();
                 String valB = new String();
 
                 try {
-                    valA = a.get(sortKey)+"";
-                    valB = b.get(sortKey)+"";
-                }
-                catch (JSONException e) {
+                    valA = a.get(sortKey) + "";
+                    valB = b.get(sortKey) + "";
+                } catch (JSONException e) {
                 }
                 return valA.compareTo(valB);
             }

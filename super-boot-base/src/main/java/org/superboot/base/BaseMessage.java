@@ -11,11 +11,10 @@ import java.io.Serializable;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 @Data
 @ApiModel("基础消息返回对象")
-public class BaseMessage  implements Serializable {
+public class BaseMessage implements Serializable {
 
 
     @ApiModelProperty(value = "返回码")

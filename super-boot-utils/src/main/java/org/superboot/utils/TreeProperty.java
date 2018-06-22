@@ -10,7 +10,6 @@ import java.lang.annotation.Target;
  * <p>
  * 功能描述:树节点字段属性注解服务
  * </p>
- *
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})

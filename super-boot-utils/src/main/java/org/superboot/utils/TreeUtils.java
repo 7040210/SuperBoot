@@ -14,7 +14,6 @@ import java.util.*;
  * <p>
  * 功能描述: 根据传入List对象动态构造树结构菜单
  * </p>
- *
  */
 public class TreeUtils {
     /**
@@ -50,7 +49,7 @@ public class TreeUtils {
      * @param dataList
      * @return
      */
-    public static JSONObject genTree(List<HashMap<String,String>> dataList) {
+    public static JSONObject genTree(List<HashMap<String, String>> dataList) {
         if (0 < dataList.size()) {
             // 节点列表（散列表，用于临时存储节点对象）
             HashMap nodeList = new HashMap();
@@ -60,10 +59,10 @@ public class TreeUtils {
             for (Iterator it = dataList.iterator(); it.hasNext(); ) {
                 Map dataRecord = (Map) it.next();
                 Node node = new Node();
-                node.id = ""+dataRecord.get("id");
-                node.code = ""+ dataRecord.get("code");
-                node.name = ""+ dataRecord.get("name");
-                node.parentId = ""+ dataRecord.get("parentId");
+                node.id = "" + dataRecord.get("id");
+                node.code = "" + dataRecord.get("code");
+                node.name = "" + dataRecord.get("name");
+                node.parentId = "" + dataRecord.get("parentId");
                 nodeList.put(node.id, node);
             }
             // 构造无序的多叉树

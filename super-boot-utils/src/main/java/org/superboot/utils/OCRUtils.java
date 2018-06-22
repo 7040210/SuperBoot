@@ -11,7 +11,6 @@ import java.util.ArrayList;
  * <p>
  * 功能描述: 识别依赖tesseract 项目组件，请提前安装后使用图片识别功能
  * </p>
- *
  */
 public class OCRUtils {
 

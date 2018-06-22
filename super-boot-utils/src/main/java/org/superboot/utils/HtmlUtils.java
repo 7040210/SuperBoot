@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 public class HtmlUtils {
     private static final String regEx_script = "<script[^>]*?>[\\s\\S]*?<\\/script>";
@@ -17,11 +16,11 @@ public class HtmlUtils {
 
     /**
      * 清除HTML标签
+     *
      * @param htmlStr
      * @return
      */
-    public static String delHTMLTag(String htmlStr)
-    {
+    public static String delHTMLTag(String htmlStr) {
         Pattern p_script = Pattern.compile("<script[^>]*?>[\\s\\S]*?<\\/script>", 2);
         Matcher m_script = p_script.matcher(htmlStr);
         htmlStr = m_script.replaceAll("");
@@ -39,11 +38,11 @@ public class HtmlUtils {
 
     /**
      * 转换特殊的HTML标签
+     *
      * @param content
      * @return
      */
-    public static String changeTag(String content)
-    {
+    public static String changeTag(String content) {
         content = content.replaceAll("&", "&amp;");
         content = content.replaceAll("<", "&lt;");
         content = content.replaceAll(">", "&gt;");

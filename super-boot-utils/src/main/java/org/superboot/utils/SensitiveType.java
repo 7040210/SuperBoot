@@ -5,7 +5,6 @@ package org.superboot.utils;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 public enum SensitiveType {
     /**

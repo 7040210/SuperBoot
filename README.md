@@ -3,9 +3,16 @@
 [![GitHub stars](https://img.shields.io/github/stars/7040210/SuperBoot.svg?style=social&label=Stars)](https://github.com/7040210/SuperBoot)
 [![GitHub forks](https://img.shields.io/github/forks/7040210/SuperBoot.svg?style=social&label=Fork)](https://github.com/7040210/SuperBoot)
 
-　　SuperBoot框架是基于SpringCloud、SpringBoot敏捷开发框架，框架开发初衷是为了方便快速开发项目，无需关心基础代码的编写，可以更专注于业务本身。框架实现基于JWT Token授权验证，实现单点登录SSO，服务鉴权，实现Redis数据缓存，在保证数据一致性的前提下提高接口响应速度。无缝集成MongoDB数据库，提供对非结构型数据存储，解决关系型数据库瓶颈问题。集成swagger框架，实现自动API测试及调试功能，解决程序员最反感的编写技术文档的问题。数据源基于Druid，提供更高性能及SQL监控。框架提供统一异常处理，统一响应结果，增加对JPA、Mongo的AOP拦截，由Snowflake ID自动生成赋值主键，数据实体无需开发均可由Idea自动生成。增删改查默认基于方法名称即可实现，无需写具体SQL。查询支持JPA、QueryDSL、Mybatis等方式。支持数据库读写分离，Feign增加服务直接的安全调用。v01版本是基础学习，主分支基于实际业务做了部分拆解及优化。
+　　SuperBoot框架是基于SpringCloud、SpringBoot敏捷开发框架，框架开发初衷是为了方便快速开发项目，无需关心基础代码的编写，可以更专注于业务本身。框架实现基于JWT Token授权验证，实现单点登录SSO，服务鉴权，实现Redis数据缓存，在保证数据一致性的前提下提高接口响应速度。无缝集成MongoDB数据库，提供对非结构型数据存储，解决关系型数据库瓶颈问题。集成swagger框架，实现自动API测试及调试功能，解决程序员最反感的编写技术文档的问题。数据源基于Druid，提供更高性能及SQL监控。框架提供统一异常处理，统一响应结果，增加对JPA、Mongo的AOP拦截，由Snowflake ID自动生成赋值主键，数据实体无需开发均可由Idea自动生成。增删改查默认基于方法名称即可实现，无需写具体SQL。查询支持JPA、QueryDSL、Mybatis等方式。支持数据库读写分离，Feign增加服务直接的安全调用。v01版本是基础学习，主分支基于目前线上功能拆出来的功能模块，实现开箱即用。
 
-## 组织结构
+如果GITHUB访问较慢，可以访问码云上面的同步代码
+
+https://gitee.com/7040210/SuperBoot
+
+
+
+
+## 项目结构
 ``` lua
 super-boot
 ├── client-config  		-- 项目配置文件信息，业务模块通过配置中心读取自动配置服务
@@ -51,6 +58,32 @@ Note right of 网关: 验证用户身份、生成用户Redis信息
 ## 项目依赖
 
 ​	此分布式项目要求配置人员有相关的从业经验，在启用之前要安装好MongoDB，Zookeeper、Kafka、Mysql、Redis等环境，然后修改项目内的具体配置信息。最后导入db.sql文件到数据库即可。
+
+## 相关账号密码
+
+注册中心及配置中心:
+
+​	账号:admin
+
+​	密码:superboot.org
+
+MYSQL:
+
+​	用户:root
+
+​	密码:root
+
+系统管理员:
+
+​	账号:admin
+
+​	密码:123456
+
+组织管理员:
+
+​	账号:group
+
+​	密码:123456
 
 ## 项目启动顺序
 
@@ -174,3 +207,17 @@ Note right of 网关: 验证用户身份、生成用户Redis信息
 
 #### NotIn --- 等价于 SQL 中的 "not in"，比如 findByUsernameNotIn(Collection<String> userList) ，方法的参数可以是 Collection 类型，也可以是数组或者不定长参数
 
+
+
+## 其他QueryDSL、系统安全、读写分离请参考project-info下具体文档
+
+
+
+
+
+
+
+
+## 赞助作者
+
+![请作者喝咖啡](project_info/png/wx.png)

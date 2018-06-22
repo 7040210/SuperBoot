@@ -17,10 +17,10 @@ import org.superboot.base.BaseRequest;
 @ApiModel("登录基本信息")
 public class LoginUser extends BaseRequest {
 
-    @ApiModelProperty(value = "账号",required = true)
+    @ApiModelProperty(value = "账号", required = true)
     @NotBlank
     private String userCode;
-    @ApiModelProperty(value = "密码",required = true)
+    @ApiModelProperty(value = "密码", required = true)
     @NotBlank
     @Length(min = 6, max = 50)
     private String userPassword;

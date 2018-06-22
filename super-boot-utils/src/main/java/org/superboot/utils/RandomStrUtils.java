@@ -8,10 +8,9 @@ import java.util.Random;
  * <p>
  * 功能描述:
  * </p>
- *
  */
 public class RandomStrUtils {
-    private static final String POSSIBLE_CHARS="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    private static final String POSSIBLE_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
 
     private static final Random RANDOM = new Random();
@@ -140,6 +139,7 @@ public class RandomStrUtils {
 
     /**
      * 生产一个指定长度的随机字符串
+     *
      * @param length 字符串长度
      * @return
      */

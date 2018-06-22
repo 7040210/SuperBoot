@@ -19,7 +19,6 @@ import java.lang.reflect.Method;
  * <p>
  * 功能描述:此种方式为需要在方法上添加注解来指定数据源
  * </p>
- *
  */
 @Aspect
 @Order(2)
@@ -28,7 +27,7 @@ public class TargetDataSourceAspect {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Around("@annotation(" + BaseConstants.BASE_PACKAGE + ".config.datasource.TargetDataSource)")
+    @Around("@annotation(org.superboot.config.datasource.TargetDataSource)")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
         MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
         Method targetMethod = methodSignature.getMethod();
