@@ -20,10 +20,10 @@ super-boot
 ├── super-boot-utils    	--  项目公用工具模块
 ├── super-boot-base     	--  项目公用常量模块
 ├── super-boot-global   	--  项目公用全局模块
-├── super-boot-demo     	--  项目示例
 ├── super-boot-registry     --  注册中心
 ├── super-boot-config       --  配置中心
 ├── super-boot-gateway      --  网关中心
+├── super-boot-user         --  用户中心
 ```
 ## 数据流程图
 ```sequence
@@ -90,7 +90,7 @@ MYSQL:
   1、启动注册中心（super-boot-registry）
 <br>  2、启动配置中心（super-boot-config）
 <br>  3、启动网关中心（super-boot-gateway）
-<br>  4、启动业务模块（无先后顺序）
+<br>  4、启动业务模块（无先后顺序，项目内包含user为用户中心）
 
 ## 模块介绍
 
