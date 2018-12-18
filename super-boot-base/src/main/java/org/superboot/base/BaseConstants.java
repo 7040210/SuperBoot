@@ -29,7 +29,7 @@ public class BaseConstants {
     /**
      * token存储字段名
      */
-    public static final String TOKEN_KEY = "_ImpToken_";
+    public static final String TOKEN_KEY = "_SuperBootToken_";
 
     /**
      * 外部服务调用授权
