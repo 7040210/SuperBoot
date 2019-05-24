@@ -180,6 +180,7 @@ zuul:
   add-host-header: true
   #设置需要继续传递的参数
   sensitive-headers: Cookie,Set-Cookie,Authorization
+  ignored-headers: _secretKey_
   #网关限流配置,默认同一个用户同一个地址调用每秒钟为10次
   ratelimit:
     #对应用来标识请求的key的前缀
