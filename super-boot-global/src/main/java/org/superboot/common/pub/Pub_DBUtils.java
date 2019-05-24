@@ -84,16 +84,7 @@ public class Pub_DBUtils {
         //构建API及权限分组信息
         for (RequestMappingInfo info : mappings) {
             HandlerMethod method = map.get(info);
-            String moduleStr = method.toString();
-            if (0 < moduleStr.split("\\(").length) {
-                moduleStr = moduleStr.split("\\(")[0];
-            }
-
-            if (2 < moduleStr.split(" ").length) {
-                moduleStr = moduleStr.split(" ")[2];
-            }
-            int i = moduleStr.lastIndexOf(".");
-            moduleStr = moduleStr.substring(0, i);
+            String moduleStr = method.getBeanType().getName();
             String urlparm = info.getPatternsCondition().toString();
             String url = urlparm.substring(1, urlparm.length() - 1);
             String methodName = method.getMethod().getName();

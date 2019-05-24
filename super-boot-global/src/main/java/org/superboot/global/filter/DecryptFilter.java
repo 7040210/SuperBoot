@@ -34,13 +34,18 @@ public class DecryptFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         //判断是否进行了数据加密
-        String requestType = req.getHeader(BaseConstants.SECRET_KEY);
-        if (StrUtil.isNotBlank(requestType)) {
-            //执行数据解密
-            chain.doFilter(new RequestBodyDecryptWrapper(req), response);
-        } else {
+        if ("GET".equals(req.getMethod())) {
             chain.doFilter(request, response);
+        } else {
+            String requestType = req.getHeader(BaseConstants.SECRET_KEY);
+            if (StrUtil.isNotBlank(requestType)) {
+                //执行数据解密
+                chain.doFilter(new RequestBodyDecryptWrapper(req), response);
+            } else {
+                chain.doFilter(request, response);
+            }
         }
+
     }
 
 

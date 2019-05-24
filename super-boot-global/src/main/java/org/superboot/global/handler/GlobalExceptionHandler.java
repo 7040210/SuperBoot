@@ -26,6 +26,7 @@ import javax.crypto.BadPaddingException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.lang.reflect.UndeclaredThrowableException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
 
@@ -64,6 +65,21 @@ public class GlobalExceptionHandler {
             int code = ((BaseException) e).getCode();
             return pubTools.genNoMsg(code);
         }
+        return pubTools.genNoMsg(StatusCode.EXCEPTION.getCode(), e.getMessage());
+    }
+
+    /**
+     * SQL异常
+     *
+     * @param req
+     * @param e
+     * @return
+     * @throws IOException
+     */
+    @ExceptionHandler(value = SQLException.class)
+    public BaseMessage sqlExceptionHandler(HttpServletRequest req, RuntimeException e) throws IOException {
+        //记录程序异常日志
+        webUtils.saveErrLog(req, e);
         return pubTools.genNoMsg(StatusCode.EXCEPTION.getCode(), e.getMessage());
     }
 

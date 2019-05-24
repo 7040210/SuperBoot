@@ -198,7 +198,11 @@ public class RequestBodyDecryptWrapper extends HttpServletRequestWrapper {
                     jsonArray = aesJsonArray(secretKey, jsonArray);
                     //便跟对象内容
                     jsonObject.put(key, jsonArray);
-                } else {
+                }else if (jsonItem instanceof JSONObject) {
+                    JSONObject item = JSON.parseObject(jsonItem.toString());
+                    item = aesJsonObject(secretKey, item);
+                    jsonObject.put(key, item);
+                }  else {
                     //获取内容
                     String value = jsonItem.toString();
                     //执行AES解密
@@ -228,7 +232,7 @@ public class RequestBodyDecryptWrapper extends HttpServletRequestWrapper {
             log.debug("--------------执行字段解密------------------");
             return deValue;
         } catch (Exception e) {
-            return value;
+            throw new BaseException(StatusCode.DECODE_FAIL);
         }
     }
 
