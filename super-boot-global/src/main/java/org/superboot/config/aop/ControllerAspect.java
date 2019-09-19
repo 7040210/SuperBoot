@@ -96,89 +96,67 @@ public class ControllerAspect {
         //判断是否需要Token验证
         if (checkToken) {
             log.debug("--------------执行校验权限操作------------------");
-            //需要验证的请求发起必须来源网关，否则视为无权限请求操作
-            if (StringUtils.isBlank(messageID)) {
-                //此处逻辑主要为了内部测试使用，使用前需要先调用网关进行用户登陆操作
-                String token = request.getHeader(BaseConstants.TOKEN_KEY);
-                if (StringUtils.isNotBlank(token)) {
-                    BaseToken baseToken = redisUtils.getTokenInfo(token);
+            //此处逻辑主要为了内部测试使用，使用前需要先调用网关进行用户登陆操作
+            String token = request.getHeader(BaseConstants.TOKEN_KEY);
+            if (StringUtils.isNotBlank(token)) {
+                BaseToken baseToken = redisUtils.getTokenInfo(token);
+                if (null != baseToken) {
+                    if (null != baseToken.getErrCode()) {
+                        throw new BaseException(baseToken.getErrCode());
+                    }
+                    //读取Redis中用户的信息
                     if (null != baseToken) {
-                        if (null != baseToken.getErrCode()) {
-                            throw new BaseException(baseToken.getErrCode());
+
+                        //判断账号是否已经停用
+                        if (StrUtil.isNotBlank(baseToken.getEndTime())) {
+                            long num = DateUtils.getSecondDiffer(DateUtils.getCurrentDateTime(), baseToken.getEndTime());
+                            if (0 < num) {
+                                throw new BaseException(StatusCode.ACCOUNT_EXPIRED);
+                            }
                         }
-                        //读取Redis中用户的信息
-                        if (null != baseToken) {
 
-                            //判断账号是否已经停用
-                            if (StrUtil.isNotBlank(baseToken.getEndTime())) {
-                                long num = DateUtils.getSecondDiffer(DateUtils.getCurrentDateTime(), baseToken.getEndTime());
-                                if (0 < num) {
-                                    throw new BaseException(StatusCode.ACCOUNT_EXPIRED);
-                                }
+                        if (!checkAuth(methodSignature, baseToken)) {
+
+                            //检验是否授权服务内部之间的调用
+                            String feignKey = attributes.getRequest().getHeader(BaseConstants.FEIGN_KEY);
+                            if (StrUtil.isBlank(feignKey)) {
+                                throw new BaseException(StatusCode.UNAUTHORIZED_OPERATION);
                             }
 
-                            if (!checkAuth(methodSignature, baseToken)) {
-
-                                //检验是否授权服务内部之间的调用
-                                String feignKey = attributes.getRequest().getHeader(BaseConstants.FEIGN_KEY);
-                                if (StrUtil.isBlank(feignKey)) {
-                                    throw new BaseException(StatusCode.UNAUTHORIZED_OPERATION);
-                                }
-
-                            }
-                        } else {
-                            throw new BaseException(StatusCode.UNAUTHORIZED);
                         }
                     } else {
                         throw new BaseException(StatusCode.UNAUTHORIZED);
                     }
                 } else {
-                    //判断是否为内部调用，非内部调用则直接走第三方判断
-                    String feignKey = attributes.getRequest().getHeader(BaseConstants.FEIGN_KEY);
-                    if (StrUtil.isBlank(feignKey)) {
-                        //判断调用接口的服务是否为第三方系统
-                        String oId = request.getHeader(BaseConstants.OTHER_MESSAGE_ID);
-                        if (StrUtil.isBlank(oId)) {
-                            String oToken = request.getHeader(BaseConstants.OTHER_TOKEN_KEY);
-                            if (StrUtil.isBlank(oToken)) {
-                                throw new BaseException(StatusCode.UNAUTHORIZED);
-                            }
-                            //验证TOKEN有效性
-                            pubTools.checkOtherToken(oToken);
-
-                        }
-
-                        //校验第三方系统是否有权限直接访问此接口
-                        if (!checkOtherAuth(methodSignature)) {
-                            throw new BaseException(StatusCode.UNAUTHORIZED);
-                        }
-                    } else {
-                        if (!BaseConstants.DEFAULT_FEIGN_TOKEN.equals(feignKey)) {
-                            throw new BaseException(StatusCode.UNAUTHORIZED);
-                        }
-                    }
-
-
-                }
-
-            } else {
-                //校验用户身份信息
-                BaseToken token = redisUtils.getSessionInfo(messageID);
-                if (null == token) {
                     throw new BaseException(StatusCode.UNAUTHORIZED);
                 }
+            } else {
+                //判断是否为内部调用，非内部调用则直接走第三方判断
+                String feignKey = attributes.getRequest().getHeader(BaseConstants.FEIGN_KEY);
+                if (StrUtil.isBlank(feignKey)) {
+                    //判断调用接口的服务是否为第三方系统
+                    String oId = request.getHeader(BaseConstants.OTHER_MESSAGE_ID);
+                    if (StrUtil.isBlank(oId)) {
+                        String oToken = request.getHeader(BaseConstants.OTHER_TOKEN_KEY);
+                        if (StrUtil.isBlank(oToken)) {
+                            throw new BaseException(StatusCode.UNAUTHORIZED);
+                        }
+                        //验证TOKEN有效性
+                        pubTools.checkOtherToken(oToken);
 
-                //判断账号是否已经停用
-                if (StrUtil.isNotBlank(token.getEndTime())) {
-                    long num = DateUtils.getSecondDiffer(DateUtils.getCurrentDateTime(), token.getEndTime());
-                    if (0 < num) {
-                        throw new BaseException(StatusCode.ACCOUNT_EXPIRED);
+                    }
+
+                    //校验第三方系统是否有权限直接访问此接口
+                    if (!checkOtherAuth(methodSignature)) {
+                        throw new BaseException(StatusCode.UNAUTHORIZED);
+                    }
+                } else {
+                    if (!BaseConstants.DEFAULT_FEIGN_TOKEN.equals(feignKey)) {
+                        throw new BaseException(StatusCode.UNAUTHORIZED);
                     }
                 }
 
-                if (!checkAuth(methodSignature, token)) {
-                    throw new BaseException(StatusCode.UNAUTHORIZED_OPERATION);
-                }
+
             }
             log.debug("--------------校验权限操作完成------------------");
         }
