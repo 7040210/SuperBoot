@@ -27,7 +27,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.33</version>
+            <version>1.2.83</version>
         </dependency>
 
         <!-- 常用工具库，功能与imp-utils类似，都是提供一些常用方法 -->
